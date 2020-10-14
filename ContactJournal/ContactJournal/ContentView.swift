@@ -77,8 +77,7 @@ struct ContentView: View {
     
     private func deleteDeprecatedItems() {
         withAnimation {
-            let twoWeeksAgo = Calendar.current.date(byAdding: .day, value: -14, to: Date())!
-            items.filter({ $0.timestamp < twoWeeksAgo }).forEach(viewContext.delete)
+            items.filter({ $0.isDeprecated }).forEach(viewContext.delete)
             do {
                 try viewContext.save()
             } catch {
@@ -94,5 +93,12 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+    }
+}
+
+extension Item {
+    public var isDeprecated: Bool {
+        let twoWeeksAgo = Calendar.current.date(byAdding: .day, value: -14, to: Date())!
+        return timestamp < twoWeeksAgo
     }
 }
