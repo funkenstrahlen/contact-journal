@@ -22,7 +22,7 @@ struct ItemRow: View {
         return formatter
     }
     
-    let timer = Timer.publish(
+    private let timer = Timer.publish(
         every: 1, // second
         on: .main,
         in: .common
