@@ -15,6 +15,8 @@
 		F89701392536FB0000EEDA18 /* ContactJournal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F89701372536FB0000EEDA18 /* ContactJournal.xcdatamodeld */; };
 		F89701442536FB0000EEDA18 /* ContactJournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89701432536FB0000EEDA18 /* ContactJournalTests.swift */; };
 		F897014F2536FB0000EEDA18 /* ContactJournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897014E2536FB0000EEDA18 /* ContactJournalUITests.swift */; };
+		F8970169253709FB00EEDA18 /* Item+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8970168253709FB00EEDA18 /* Item+CoreData.swift */; };
+		F8970176253716DB00EEDA18 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8970175253716DB00EEDA18 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,9 @@
 		F897014A2536FB0000EEDA18 /* ContactJournalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactJournalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F897014E2536FB0000EEDA18 /* ContactJournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactJournalUITests.swift; sourceTree = "<group>"; };
 		F89701502536FB0000EEDA18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8970168253709FB00EEDA18 /* Item+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreData.swift"; sourceTree = "<group>"; };
+		F8970170253716D500EEDA18 /* ContactJournal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContactJournal.entitlements; sourceTree = "<group>"; };
+		F8970175253716DB00EEDA18 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8970176253716DB00EEDA18 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +89,7 @@
 				F89701422536FB0000EEDA18 /* ContactJournalTests */,
 				F897014D2536FB0000EEDA18 /* ContactJournalUITests */,
 				F897012A2536FAFE00EEDA18 /* Products */,
+				F8970174253716DB00EEDA18 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,10 +106,12 @@
 		F897012B2536FAFE00EEDA18 /* ContactJournal */ = {
 			isa = PBXGroup;
 			children = (
+				F8970170253716D500EEDA18 /* ContactJournal.entitlements */,
 				F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */,
 				F897012E2536FAFE00EEDA18 /* ContentView.swift */,
 				F89701302536FB0000EEDA18 /* Assets.xcassets */,
 				F89701352536FB0000EEDA18 /* Persistence.swift */,
+				F8970168253709FB00EEDA18 /* Item+CoreData.swift */,
 				F897013A2536FB0000EEDA18 /* Info.plist */,
 				F89701372536FB0000EEDA18 /* ContactJournal.xcdatamodeld */,
 				F89701322536FB0000EEDA18 /* Preview Content */,
@@ -134,6 +143,14 @@
 				F89701502536FB0000EEDA18 /* Info.plist */,
 			);
 			path = ContactJournalUITests;
+			sourceTree = "<group>";
+		};
+		F8970174253716DB00EEDA18 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8970175253716DB00EEDA18 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8970169253709FB00EEDA18 /* Item+CoreData.swift in Sources */,
 				F89701362536FB0000EEDA18 /* Persistence.swift in Sources */,
 				F897012F2536FAFE00EEDA18 /* ContentView.swift in Sources */,
 				F89701392536FB0000EEDA18 /* ContactJournal.xcdatamodeld in Sources */,
@@ -425,6 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ContactJournal/ContactJournal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ContactJournal/Preview Content\"";
 				DEVELOPMENT_TEAM = Y85FVF2A97;
@@ -447,6 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ContactJournal/ContactJournal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ContactJournal/Preview Content\"";
 				DEVELOPMENT_TEAM = Y85FVF2A97;
