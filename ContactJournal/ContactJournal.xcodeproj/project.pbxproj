@@ -86,6 +86,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F80BBDF9253735B7003DBE59 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F89701352536FB0000EEDA18 /* Persistence.swift */,
+				F8970168253709FB00EEDA18 /* Item+CoreData.swift */,
+				F89701372536FB0000EEDA18 /* ContactJournal.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		F89701202536FAFE00EEDA18 = {
 			isa = PBXGroup;
 			children = (
@@ -116,10 +126,8 @@
 				F80BBDF4253732F0003DBE59 /* ItemRow.swift */,
 				F80BBDEF253732D4003DBE59 /* EditView.swift */,
 				F89701302536FB0000EEDA18 /* Assets.xcassets */,
-				F89701352536FB0000EEDA18 /* Persistence.swift */,
-				F8970168253709FB00EEDA18 /* Item+CoreData.swift */,
+				F80BBDF9253735B7003DBE59 /* Model */,
 				F897013A2536FB0000EEDA18 /* Info.plist */,
-				F89701372536FB0000EEDA18 /* ContactJournal.xcdatamodeld */,
 				F89701322536FB0000EEDA18 /* Preview Content */,
 			);
 			path = ContactJournal;
