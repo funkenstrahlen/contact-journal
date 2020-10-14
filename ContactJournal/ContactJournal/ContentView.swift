@@ -15,19 +15,29 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)],
         animation: .default)
     private var items: FetchedResults<Item>
+    
+    private var hasDeprecatedItems: Bool {
+        items.contains(where: { $0.isDeprecated })
+    }
 
     var body: some View {
         NavigationView {
             List {
-                Button(action: addItem) {
-                    Label("Neuer Eintrag", systemImage: "plus.circle.fill").foregroundColor(.blue)
+                if items.count == 0 {
+                    Button(action: addItem) {
+                        Label("Neuer Eintrag", systemImage: "plus.circle.fill").foregroundColor(.blue)
+                    }
                 }
+
                 ForEach(items) { item in
                     ItemRow(item: item)
                 }
                 .onDelete(perform: deleteItems)
-                Button(action: deleteDeprecatedItems) {
-                    Label("Alle Einträge älter als 14 Tage löschen", systemImage: "trash").foregroundColor(.red)
+                
+                if hasDeprecatedItems {
+                    Button(action: deleteDeprecatedItems) {
+                        Label("Alle Einträge älter als 14 Tage löschen", systemImage: "trash").foregroundColor(.red)
+                    }
                 }
             }
             .navigationBarTitle("Kontakt Tagebuch")
