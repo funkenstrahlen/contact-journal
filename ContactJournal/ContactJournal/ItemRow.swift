@@ -28,7 +28,7 @@ struct ItemRow: View {
         in: .common
     ).autoconnect()
     
-    @State var relativeTimeString = ""
+    @State var realtimeRelativeTimeString: String?
     
     var body: some View {
         NavigationLink(destination: EditView(item: item)) {
@@ -36,10 +36,10 @@ struct ItemRow: View {
                 HStack(alignment: .lastTextBaseline) {
                     Text("\(item.timestamp, formatter: dateFormatter)").font(.subheadline)
                     Spacer()
-                    Text(relativeTimeString).font(.caption).foregroundColor(.secondary)
+                    Text(realtimeRelativeTimeString ?? relativeDateFormatter.localizedString(for: item.timestamp, relativeTo: Date())).font(.caption).foregroundColor(.secondary)
                     .onReceive(timer) { (_) in
                         guard !item.isFault else { return }
-                        self.relativeTimeString = relativeDateFormatter.localizedString(for: item.timestamp, relativeTo: Date())
+                        self.realtimeRelativeTimeString = relativeDateFormatter.localizedString(for: item.timestamp, relativeTo: Date())
                     }
                 }
                 if(item.content == "") {
