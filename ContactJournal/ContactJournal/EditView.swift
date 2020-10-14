@@ -14,6 +14,7 @@ struct EditView: View {
     
     var body: some View {
         Form {
+            // check if item is valid because it might be deleted and this causes a crash here
             if(!item.isFault) {
                 DatePicker("Datum", selection: $item.timestamp, in: ...Date())
                 Section(header: Text("Kontakte")) {
