@@ -25,3 +25,10 @@ extension Item {
 extension Item : Identifiable {
 
 }
+
+extension Item {
+    public var isDeprecated: Bool {
+        let twoWeeksAgo = Calendar.current.date(byAdding: .day, value: -14, to: Date())!
+        return timestamp < twoWeeksAgo
+    }
+}

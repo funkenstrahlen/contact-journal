@@ -105,10 +105,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
-
-extension Item {
-    public var isDeprecated: Bool {
-        let twoWeeksAgo = Calendar.current.date(byAdding: .day, value: -14, to: Date())!
-        return timestamp < twoWeeksAgo
-    }
-}
