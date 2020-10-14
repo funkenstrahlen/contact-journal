@@ -32,7 +32,7 @@ struct ContentView: View {
                 ForEach(items) { item in
                     ItemRow(item: item)
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: deleteSelectedItems)
                 
                 if hasDeprecatedItems {
                     Button(action: deleteDeprecatedItems) {
@@ -70,7 +70,7 @@ struct ContentView: View {
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteSelectedItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
 
