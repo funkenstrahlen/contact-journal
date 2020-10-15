@@ -13,7 +13,7 @@ struct ItemRow: View {
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE dd. MMMM, HH:mm"
+        formatter.dateFormat = "EEEE dd. MMM HH:mm"
         return formatter
     }()
 
