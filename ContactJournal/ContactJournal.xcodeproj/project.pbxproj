@@ -247,10 +247,10 @@
 			};
 			buildConfigurationList = F89701242536FAFE00EEDA18 /* Build configuration list for PBXProject "ContactJournal" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = de;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				de,
 				Base,
 			);
 			mainGroup = F89701202536FAFE00EEDA18;
