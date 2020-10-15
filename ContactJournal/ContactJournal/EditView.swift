@@ -12,6 +12,12 @@ struct EditView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var item: Item
     
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter
+    }()
+    
     var body: some View {
         Form {
             // check if item is valid because it might be deleted and this causes a crash here
@@ -21,7 +27,8 @@ struct EditView: View {
                     TextEditor(text: $item.content)
                 }
             }
-        }.navigationBarTitle(Text(""), displayMode: .inline)
+        }
+        .navigationBarTitle(Text("\(item.timestamp, formatter: dateFormatter)"), displayMode: .inline)
         .onDisappear(perform: {
             try! viewContext.save()
         })
