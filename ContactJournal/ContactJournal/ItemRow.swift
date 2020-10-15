@@ -32,22 +32,22 @@ struct ItemRow: View {
     
     var body: some View {
         NavigationLink(destination: EditView(item: item)) {
-            VStack(alignment: .leading, spacing: 5) {
-                HStack(alignment: .lastTextBaseline) {
-                    Text("\(item.timestamp, formatter: dateFormatter)").font(.subheadline)
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(alignment: .top) {
+                    Text("\(item.timestamp, formatter: dateFormatter)")
                     Spacer()
-                    Text(realtimeRelativeTimeString ?? relativeDateFormatter.localizedString(for: item.timestamp, relativeTo: Date())).font(.caption).foregroundColor(.secondary)
+                    Text(realtimeRelativeTimeString ?? relativeDateFormatter.localizedString(for: item.timestamp, relativeTo: Date())).foregroundColor(.secondary)
                     .onReceive(timer) { (_) in
                         guard !item.isFault else { return }
                         self.realtimeRelativeTimeString = relativeDateFormatter.localizedString(for: item.timestamp, relativeTo: Date())
                     }
-                }
+                }.font(.subheadline)
                 if(item.content == "") {
                     Text("Keine Kontakte").foregroundColor(.secondary)
                 } else {
                     Text(item.content).lineLimit(4)
                 }
-            }.padding([.vertical])
+            }.padding([.vertical], 8)
         }
     }
 }
