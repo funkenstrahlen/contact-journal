@@ -31,7 +31,10 @@ struct ItemRow: View {
     @State var realtimeRelativeTimeString: String?
     
     private var realtimeRelativeTime: String {
-        relativeDateFormatter.localizedString(for: item.timestamp, relativeTo: Date())
+        if item.timestamp > Calendar.current.date(byAdding: .minute, value: -1, to: Date())! {
+            return "jetzt"
+        }
+        return relativeDateFormatter.localizedString(for: item.timestamp, relativeTo: Date())
     }
     
     var body: some View {
