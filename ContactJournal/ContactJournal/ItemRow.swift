@@ -43,7 +43,7 @@ struct ItemRow: View {
                     }
                 }.font(.subheadline)
                 if(item.content == "") {
-                    Text("Keine Kontakte").foregroundColor(.secondary)
+                    Text("Neuer Eintrag").foregroundColor(.secondary).italic()
                 } else {
                     Text(item.content).lineLimit(4)
                 }
