@@ -28,7 +28,7 @@ struct EditView: View {
             // check if item is valid because it might be deleted and this causes a crash here
             if !item.isFault {
                 DatePicker("Zeitpunkt", selection: $item.timestamp, in: ...Date())
-                Section(header: Text("Beschreibung")) {
+                Section(header: Text("Beschreibung"), footer: Text("z.B. Kaffee mit Pia")) {
                     TextEditor(text: $item.content)
                 }
                 Toggle("Maske getragen", isOn: $item.didWearMask)
