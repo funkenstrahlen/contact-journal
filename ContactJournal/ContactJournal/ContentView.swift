@@ -8,8 +8,21 @@
 import SwiftUI
 import CoreData
 
+struct Settings: View {
+    @AppStorage("shouldAutomaticallyDeleteDeprecatedItems") var shouldAutomaticallyDeleteDeprecatedItems: Bool = false
+    
+    var body: some View {
+        Form {
+            Toggle("Einträge älter als 14 Tage automatisch löschen", isOn: $shouldAutomaticallyDeleteDeprecatedItems)
+        }.navigationBarTitle("Einstellungen")
+    }
+}
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    
+    @AppStorage("shouldAutomaticallyDeleteDeprecatedItems") var shouldAutomaticallyDeleteDeprecatedItems: Bool = false
+    @State private var showsSettings = false
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)],
@@ -35,11 +48,14 @@ struct ContentView: View {
                 .onDelete(perform: deleteSelectedItems)
                 
                 if hasDeprecatedItems {
+                    Spacer()
                     Button(action: deleteDeprecatedItems) {
                         Label("Alle Einträge älter als 14 Tage löschen", systemImage: "trash").foregroundColor(.red)
                     }
                 }
-            }
+            }.background(NavigationLink(destination: Settings(), isActive: $showsSettings) {
+                EmptyView()
+            })
             .navigationBarTitle("Kontakt Tagebuch")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -48,12 +64,24 @@ struct ContentView: View {
                     }
                 }
                 
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        showsSettings = true
+                    }, label: {
+                        Label("Einstellungen", systemImage: "gear")
+                    })
+                }
+                
                 ToolbarItem(placement: .navigationBarLeading) {
                     if items.count > 0 {
                         EditButton()
                     }
                 }
-            }
+            }.onAppear(perform: {
+                if shouldAutomaticallyDeleteDeprecatedItems {
+                    deleteDeprecatedItems()
+                }
+            })
         }
     }
 
