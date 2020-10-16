@@ -54,9 +54,9 @@ struct EditView: View {
                 }
             }
         }
-        .onTapGesture(perform: {
+        .gesture(DragGesture().onChanged({ (_) in
             UIApplication.shared.endEditing()
-        })
+        }))
         .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
         .onDisappear(perform: {
             try! viewContext.save()
