@@ -58,6 +58,7 @@
 		F8970168253709FB00EEDA18 /* Item+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreData.swift"; sourceTree = "<group>"; };
 		F8970170253716D500EEDA18 /* ContactJournal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContactJournal.entitlements; sourceTree = "<group>"; };
 		F8970175253716DB00EEDA18 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -631,9 +632,10 @@
 		F89701372536FB0000EEDA18 /* ContactJournal.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */,
 				F89701382536FB0000EEDA18 /* ContactJournal.xcdatamodel */,
 			);
-			currentVersion = F89701382536FB0000EEDA18 /* ContactJournal.xcdatamodel */;
+			currentVersion = F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */;
 			path = ContactJournal.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

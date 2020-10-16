@@ -28,8 +28,25 @@ struct EditView: View {
             // check if item is valid because it might be deleted and this causes a crash here
             if !item.isFault {
                 DatePicker("Datum", selection: $item.timestamp, in: ...Date())
-                Section(header: Text("Kontakte")) {
+                Section(header: Text("Beschreibung")) {
                     TextEditor(text: $item.content)
+                }
+                Toggle("Maske getragen", isOn: $item.didWearMask)
+                Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
+                HStack {
+                    Text("Ort")
+                    Spacer()
+                    Picker("Ort", selection: $item.isOutside) {
+                        Text("Drinnen").tag(false)
+                        Text("Draußen").tag(true)
+                    }.pickerStyle(SegmentedPickerStyle())
+                }
+
+                Stepper(value: $item.personCount, in: 1...200) {
+                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
+                }
+                Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
+                    Text("\(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
                 }
             }
         }

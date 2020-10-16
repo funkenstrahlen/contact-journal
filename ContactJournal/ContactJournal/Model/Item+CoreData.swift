@@ -20,6 +20,11 @@ extension Item {
 
     @NSManaged public var timestamp: Date
     @NSManaged public var content: String
+    @NSManaged public var isOutside: Bool
+    @NSManaged public var didWearMask: Bool
+    @NSManaged public var couldKeepDistance: Bool
+    @NSManaged public var durationHours: Double
+    @NSManaged public var personCount: Int64
 }
 
 extension Item : Identifiable {
