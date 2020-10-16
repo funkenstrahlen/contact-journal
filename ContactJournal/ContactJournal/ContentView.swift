@@ -8,16 +8,6 @@
 import SwiftUI
 import CoreData
 
-struct Settings: View {
-    @AppStorage("shouldAutomaticallyDeleteDeprecatedItems") var shouldAutomaticallyDeleteDeprecatedItems: Bool = false
-    
-    var body: some View {
-        Form {
-            Toggle("Einträge älter als 14 Tage automatisch löschen", isOn: $shouldAutomaticallyDeleteDeprecatedItems)
-        }.navigationBarTitle("Einstellungen")
-    }
-}
-
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
@@ -59,17 +49,17 @@ struct ContentView: View {
             .navigationBarTitle("Kontakt Tagebuch")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: addItem) {
-                        Label("Neuer Eintrag", systemImage: "plus.circle.fill")
-                    }
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showsSettings = true
                     }, label: {
                         Label("Einstellungen", systemImage: "gear")
                     })
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: addItem) {
+                        Label("Neuer Eintrag", systemImage: "plus.circle.fill")
+                    }
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
