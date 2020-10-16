@@ -37,17 +37,18 @@ struct ItemRow: View {
                     Text("\(item.timestamp, formatter: dateFormatter)")
                     Spacer()
                     Text(realtimeRelativeTimeString ?? relativeDateFormatter.localizedString(for: item.timestamp, relativeTo: Date())).foregroundColor(.secondary)
-                    .onReceive(timer) { (_) in
-                        guard !item.isFault else { return }
-                        self.realtimeRelativeTimeString = relativeDateFormatter.localizedString(for: item.timestamp, relativeTo: Date())
-                    }
                 }.font(.subheadline)
                 if(item.content == "") {
                     Text("Neuer Eintrag").foregroundColor(.secondary).italic()
                 } else {
                     Text(item.content).lineLimit(4)
                 }
-            }.padding([.vertical], 8)
+            }
+            .padding([.vertical], 8)
+            .onReceive(timer) { (_) in
+                guard !item.isFault else { return }
+                self.realtimeRelativeTimeString = relativeDateFormatter.localizedString(for: item.timestamp, relativeTo: Date())
+            }
         }
     }
 }
