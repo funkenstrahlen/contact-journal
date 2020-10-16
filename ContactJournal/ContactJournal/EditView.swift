@@ -18,17 +18,22 @@ struct EditView: View {
         return formatter
     }()
     
+    private var navigationBarTitle: String {
+        guard !item.isFault else { return "" }
+        return dateFormatter.string(from: item.timestamp)
+    }
+    
     var body: some View {
         Form {
             // check if item is valid because it might be deleted and this causes a crash here
-            if(!item.isFault) {
+            if !item.isFault {
                 DatePicker("Datum", selection: $item.timestamp, in: ...Date())
                 Section(header: Text("Kontakte")) {
                     TextEditor(text: $item.content)
                 }
             }
         }
-        .navigationBarTitle(Text("\(item.timestamp, formatter: dateFormatter)"), displayMode: .inline)
+        .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
         .onDisappear(perform: {
             try! viewContext.save()
         })
