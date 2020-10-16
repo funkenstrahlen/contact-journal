@@ -13,7 +13,9 @@ struct Settings: View {
     
     var body: some View {
         Form {
-            Toggle("Einträge älter als 14 Tage automatisch löschen", isOn: $shouldAutomaticallyDeleteDeprecatedItems)
+            Section(footer: Text("Für die Nachvollziehbarkeit von Infektionen sind alte Einträge nicht mehr relevant.")) {
+                Toggle("Einträge älter als 14 Tage automatisch löschen", isOn: $shouldAutomaticallyDeleteDeprecatedItems)
+            }
         }.navigationBarTitle("Einstellungen")
     }
 }
