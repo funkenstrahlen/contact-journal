@@ -23,15 +23,11 @@ struct EditView: View {
         return dateFormatter.string(from: item.timestamp)
     }
     
-    private var oldestValidDate: Date {
-        Calendar.current.date(byAdding: .day, value: -13, to: Date())!
-    }
-    
     var body: some View {
         Form {
             // check if item is valid because it might be deleted and this causes a crash here
             if !item.isFault {
-                DatePicker("Zeitpunkt", selection: $item.timestamp, in: oldestValidDate ... Date())
+                DatePicker("Zeitpunkt", selection: $item.timestamp, in: ...Date())
                 Section(header: Text("Beschreibung"), footer: Text("z.B. Kaffee mit Pia")) {
                     TextEditor(text: $item.content)
                 }
