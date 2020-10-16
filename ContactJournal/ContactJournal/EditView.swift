@@ -50,15 +50,12 @@ struct EditView: View {
                 }
             }
         }
+        .onTapGesture(perform: {
+            UIApplication.shared.endEditing()
+        })
         .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
         .onDisappear(perform: {
             try! viewContext.save()
-        })
-        .toolbar(content: {
-            Button("Fertig") {
-                UIApplication.shared.endEditing()
-                try! viewContext.save()
-            }
         })
     }
 }
