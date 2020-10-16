@@ -17,4 +17,11 @@ struct ContactJournalApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
+    
+    init() {
+        // automatically delete deprecated entries when the user has activated the option
+        if UserDefaults.standard.bool(forKey: "shouldAutomaticallyDeleteDeprecatedItems") {
+            PersistenceController.deleteDeprecatedItems()
+        }
+    }
 }

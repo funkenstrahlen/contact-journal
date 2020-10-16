@@ -14,8 +14,8 @@ public class Item: NSManagedObject {
 }
 
 extension Item {
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Item> {
-        return NSFetchRequest<Item>(entityName: "Item")
+    public class var fetchRequest: NSFetchRequest<Item> {
+        NSFetchRequest<Item>(entityName: "Item")
     }
 
     @NSManaged public var timestamp: Date

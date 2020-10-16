@@ -11,7 +11,6 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    @AppStorage("shouldAutomaticallyDeleteDeprecatedItems") var shouldAutomaticallyDeleteDeprecatedItems: Bool = false
     @State private var showsSettings = false
 
     @FetchRequest(
@@ -67,11 +66,7 @@ struct ContentView: View {
                         EditButton()
                     }
                 }
-            }.onAppear(perform: {
-                if shouldAutomaticallyDeleteDeprecatedItems {
-                    deleteDeprecatedItems()
-                }
-            })
+            }
         }
     }
 
@@ -92,8 +87,7 @@ struct ContentView: View {
     
     private func deleteDeprecatedItems() {
         withAnimation {
-            items.filter({ $0.isDeprecated }).forEach(viewContext.delete)
-            saveContext()
+            PersistenceController.deleteDeprecatedItems()
         }
     }
     
