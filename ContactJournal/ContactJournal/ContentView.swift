@@ -21,8 +21,6 @@ struct ContentView: View {
     private var hasDeprecatedItems: Bool {
         items.contains(where: { $0.isDeprecated })
     }
-    
-    @State private var selectedItem: Item?
 
     var body: some View {
         NavigationView {
@@ -34,9 +32,7 @@ struct ContentView: View {
                 }
 
                 ForEach(items) { item in
-                    NavigationLink(destination: EditView(item: item), tag: item, selection: $selectedItem) {
-                        ItemRow(item: item)
-                    }
+                    ItemRow(item: item)
                 }
                 .onDelete(perform: deleteSelectedItems)
                 
@@ -79,7 +75,6 @@ struct ContentView: View {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
             saveContext()
-            selectedItem = newItem
         }
     }
 

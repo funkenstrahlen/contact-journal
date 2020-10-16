@@ -38,22 +38,24 @@ struct ItemRow: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .top) {
-                Text("\(item.timestamp, formatter: dateFormatter)")
-                Spacer()
-                Text(realtimeRelativeTimeString ?? realtimeRelativeTime).foregroundColor(.secondary)
-            }.font(.subheadline)
-            if(item.content == "") {
-                Text("Neuer Eintrag").foregroundColor(.secondary).italic()
-            } else {
-                Text(item.content).lineLimit(4)
+        NavigationLink(destination: EditView(item: item)) {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(alignment: .top) {
+                    Text("\(item.timestamp, formatter: dateFormatter)")
+                    Spacer()
+                    Text(realtimeRelativeTimeString ?? realtimeRelativeTime).foregroundColor(.secondary)
+                }.font(.subheadline)
+                if(item.content == "") {
+                    Text("Neuer Eintrag").foregroundColor(.secondary).italic()
+                } else {
+                    Text(item.content).lineLimit(4)
+                }
             }
-        }
-        .padding([.vertical], 8)
-        .onReceive(timer) { (_) in
-            guard !item.isFault else { return }
-            self.realtimeRelativeTimeString = realtimeRelativeTime
+            .padding([.vertical], 8)
+            .onReceive(timer) { (_) in
+                guard !item.isFault else { return }
+                self.realtimeRelativeTimeString = realtimeRelativeTime
+            }
         }
     }
 }
