@@ -47,8 +47,11 @@ struct ContentView: View {
                         Label("Neuer Eintrag", systemImage: "plus.circle.fill")
                     }
                 }
+                
                 ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
+                    if items.count > 0 {
+                        EditButton()
+                    }
                 }
             }
         }
