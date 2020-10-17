@@ -22,6 +22,7 @@ struct MultilineTextView: UIViewRepresentable {
         view.isScrollEnabled = false
         view.isEditable = true
         view.isUserInteractionEnabled = true
+        view.textContainer.lineFragmentPadding = 0
         
         let keyboardToolbar = UIToolbar()
         keyboardToolbar.sizeToFit()
