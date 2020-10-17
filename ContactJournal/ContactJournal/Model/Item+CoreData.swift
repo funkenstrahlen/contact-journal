@@ -25,6 +25,7 @@ extension Item {
     @NSManaged public var couldKeepDistance: Bool
     @NSManaged public var durationHours: Double
     @NSManaged public var personCount: Int64
+    @NSManaged public var contactDetails: String
 }
 
 extension Item : Identifiable {

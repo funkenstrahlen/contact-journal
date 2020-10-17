@@ -48,6 +48,9 @@ struct EditView: View {
                 Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
                     Text("\(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
                 }
+                Section(header: Text("Kontaktdaten"), footer: Text("z.B. Telefonnummer, Adresse, E-Mail")) {
+                    TextEditor(text: $item.contactDetails)
+                }
             }
         }
         .gesture(DragGesture().onChanged({ (_) in
