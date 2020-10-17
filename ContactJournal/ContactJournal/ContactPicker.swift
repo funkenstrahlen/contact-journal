@@ -10,7 +10,7 @@ import ContactsUI
 
 protocol EmbeddedContactPickerViewControllerDelegate: class {
     func embeddedContactPickerViewControllerDidCancel(_ viewController: EmbeddedContactPickerViewController)
-    func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contact: CNContact)
+    func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contacts: [CNContact])
 }
 
 class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDelegate {
@@ -33,9 +33,9 @@ class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDele
         }
     }
 
-    func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
         self.dismiss(animated: false) {
-            self.delegate?.embeddedContactPickerViewController(self, didSelect: contact)
+            self.delegate?.embeddedContactPickerViewController(self, didSelect: contacts)
         }
     }
 
@@ -49,8 +49,8 @@ struct ContactPicker: UIViewControllerRepresentable {
     typealias UIViewControllerType = EmbeddedContactPickerViewController
 
     final class Coordinator: NSObject, EmbeddedContactPickerViewControllerDelegate {
-        func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contact: CNContact) {
-            print(contact)
+        func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contacts: [CNContact]) {
+            print(contacts)
         }
 
         func embeddedContactPickerViewControllerDidCancel(_ viewController: EmbeddedContactPickerViewController) {
