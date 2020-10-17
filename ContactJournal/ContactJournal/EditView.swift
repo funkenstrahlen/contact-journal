@@ -68,8 +68,26 @@ struct EditView: View {
         })
     }
     
-    func didSelectContacts(contacts: [CNContact]) {
-        print(contacts)
+    private func didSelectContacts(contacts: [CNContact]) {
+        contacts.forEach(append)
+    }
+    
+    private func append(contact: CNContact) {
+        var contactString = "\n\n"
+        contactString.append("\(contact.givenName) \(contact.familyName)")
+        
+        if let postalAddress = contact.postalAddresses.first {
+            contactString.append("\n\(postalAddress.value.street)\n\(postalAddress.value.postalCode) \(postalAddress.value.city)")
+        }
+        if let phoneNumber = contact.phoneNumbers.first {
+            contactString.append("\n\(phoneNumber.value.stringValue)")
+        }
+        if let emailAddress = contact.emailAddresses.first {
+            contactString.append("\n\(emailAddress.value)")
+        }
+        
+        item.contactDetails.append(contactString)
+        item.contactDetails = item.contactDetails.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
 
