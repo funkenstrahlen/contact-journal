@@ -16,25 +16,13 @@ struct ItemRow: View {
         formatter.dateFormat = "EEEE d. MMM HH:mm"
         return formatter
     }()
-
-    private var relativeDateFormatter: RelativeDateTimeFormatter {
-        let formatter = RelativeDateTimeFormatter()
-        return formatter
-    }
-    
-    private let timer = Timer.publish(
-        every: 1, // second
-        on: .main,
-        in: .common
-    ).autoconnect()
-    
-    @State var realtimeRelativeTimeString: String?
     
     private var realtimeRelativeTime: String {
-        if item.timestamp > Calendar.current.date(byAdding: .minute, value: -1, to: Date())! {
-            return "jetzt"
-        }
-        return relativeDateFormatter.localizedString(for: item.timestamp, relativeTo: Date())
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        if Calendar.current.isDateInToday(item.timestamp) { return "heute" }
+        if Calendar.current.isDateInYesterday(item.timestamp) { return "gestern" }
+        let diffInDays = Calendar.current.dateComponents([.day], from: startOfDay, to: Calendar.current.startOfDay(for: item.timestamp)).day!
+        return "vor \(abs(diffInDays)) Tagen"
     }
     
     var body: some View {
@@ -43,7 +31,7 @@ struct ItemRow: View {
                 HStack(alignment: .top) {
                     Text("\(item.timestamp, formatter: dateFormatter)")
                     Spacer()
-                    Text(realtimeRelativeTimeString ?? realtimeRelativeTime).foregroundColor(.secondary)
+                    Text(realtimeRelativeTime).foregroundColor(.secondary)
                 }.font(.subheadline)
                 if(item.content == "") {
                     Text("Neuer Eintrag").foregroundColor(.secondary).italic()
@@ -52,10 +40,6 @@ struct ItemRow: View {
                 }
             }
             .padding([.vertical], 8)
-            .onReceive(timer) { (_) in
-                guard !item.isFault else { return }
-                self.realtimeRelativeTimeString = realtimeRelativeTime
-            }
         }
     }
 }
