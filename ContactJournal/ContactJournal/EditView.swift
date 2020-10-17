@@ -53,9 +53,9 @@ struct EditView: View {
                 }
                 Section(header: Text("Kontaktdaten"), footer: Text("z.B. Telefonnummer, Adresse, E-Mail")) {
                     MultilineTextView(text: $item.contactDetails)
-                }
-                Button("Kontakt wählen") {
-                    showsContactPicker = true
+                    Button(action: { showsContactPicker = true }, label: {
+                        Label("Aus Adressbuch importieren", systemImage: "person.crop.circle.badge.plus")
+                    })
                 }
             }
         }
