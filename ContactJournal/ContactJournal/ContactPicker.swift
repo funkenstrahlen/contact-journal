@@ -49,9 +49,7 @@ struct ContactPicker: UIViewControllerRepresentable {
     typealias UIViewControllerType = EmbeddedContactPickerViewController
     
     @Binding var showPicker: Bool
-    public var onSelectContact: ((_: CNContact) -> Void)?
-    public var onSelectContacts: ((_: [CNContact]) -> Void)?
-    public var onCancel: (() -> Void)?
+    public var onSelectContacts: ((_: [CNContact]) -> Void)
 
     final class Coordinator: NSObject, EmbeddedContactPickerViewControllerDelegate {
         var parent : ContactPicker
@@ -61,12 +59,11 @@ struct ContactPicker: UIViewControllerRepresentable {
         }
         
         func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contacts: [CNContact]) {
-            print(contacts)
+            parent.onSelectContacts(contacts)
             parent.showPicker = false
         }
 
         func embeddedContactPickerViewControllerDidCancel(_ viewController: EmbeddedContactPickerViewController) {
-            print("cancelled")
             parent.showPicker = false
         }
     }

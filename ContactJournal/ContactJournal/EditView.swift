@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import Contacts
 
 struct EditView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -63,8 +64,12 @@ struct EditView: View {
             try! viewContext.save()
         })
         .sheet(isPresented: $showsContactPicker, content: {
-            ContactPicker(showPicker: $showsContactPicker)
+            ContactPicker(showPicker: $showsContactPicker, onSelectContacts: didSelectContacts(contacts:))
         })
+    }
+    
+    func didSelectContacts(contacts: [CNContact]) {
+        print(contacts)
     }
 }
 
