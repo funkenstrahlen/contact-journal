@@ -63,7 +63,7 @@ struct EditView: View {
             try! viewContext.save()
         })
         .sheet(isPresented: $showsContactPicker, content: {
-            ContactPicker()
+            ContactPicker(showPicker: $showsContactPicker)
         })
     }
 }
