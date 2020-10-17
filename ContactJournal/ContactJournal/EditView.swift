@@ -23,6 +23,8 @@ struct EditView: View {
         return dateFormatter.string(from: item.timestamp)
     }
     
+    @State private var showsContactPicker = false
+    
     var body: some View {
         Form {
             // check if item is valid because it might be deleted and this causes a crash here
@@ -51,11 +53,17 @@ struct EditView: View {
                 Section(header: Text("Kontaktdaten"), footer: Text("z.B. Telefonnummer, Adresse, E-Mail")) {
                     MultilineTextView(text: $item.contactDetails)
                 }
+                Button("Kontakt wählen") {
+                    showsContactPicker = true
+                }
             }
         }
         .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
         .onDisappear(perform: {
             try! viewContext.save()
+        })
+        .sheet(isPresented: $showsContactPicker, content: {
+            ContactPicker()
         })
     }
 }
