@@ -14,14 +14,23 @@ struct MultilineTextView: UIViewRepresentable {
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
+    
+    let view = UITextView()
 
     func makeUIView(context: Context) -> UITextView {
-        let view = UITextView()
         view.font = UIFont.preferredFont(forTextStyle: .body)
         view.delegate = context.coordinator
         view.isScrollEnabled = false
         view.isEditable = true
         view.isUserInteractionEnabled = true
+        
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: context.coordinator, action: #selector(context.coordinator.done))
+        keyboardToolbar.items = [flexBarButton, doneBarButton]
+        view.inputAccessoryView = keyboardToolbar
+        
         return view
     }
 
@@ -38,6 +47,10 @@ struct MultilineTextView: UIViewRepresentable {
 
         func textViewDidChange(_ textView: UITextView) {
             self.parent.text = textView.text
+        }
+        
+        @objc func done() {
+            self.parent.view.endEditing(true)
         }
     }
 }

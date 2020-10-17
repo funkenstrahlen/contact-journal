@@ -53,9 +53,6 @@ struct EditView: View {
                 }
             }
         }
-        .gesture(DragGesture().onChanged({ (_) in
-            UIApplication.shared.endEditing()
-        }))
         .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
         .onDisappear(perform: {
             try! viewContext.save()
@@ -66,11 +63,5 @@ struct EditView: View {
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
         EditView(item: Item(context: PersistenceController.preview.container.viewContext)).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
-}
-
-extension UIApplication {
-    func endEditing() {
-        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
