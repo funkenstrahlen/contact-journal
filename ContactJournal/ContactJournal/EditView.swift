@@ -29,7 +29,7 @@ struct EditView: View {
             if !item.isFault {
                 DatePicker("Zeitpunkt", selection: $item.timestamp, in: ...Date())
                 Section(header: Text("Beschreibung"), footer: Text("z.B. Kaffee mit Pia")) {
-                    TextEditor(text: $item.content)
+                    MultilineTextView(text: $item.content)
                 }
                 Toggle("Maske getragen", isOn: $item.didWearMask)
                 Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
@@ -49,7 +49,7 @@ struct EditView: View {
                     Text("\(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
                 }
                 Section(header: Text("Kontaktdaten"), footer: Text("z.B. Telefonnummer, Adresse, E-Mail")) {
-                    TextEditor(text: $item.contactDetails)
+                    MultilineTextView(text: $item.contactDetails)
                 }
             }
         }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F80BBDF0253732D4003DBE59 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDEF253732D4003DBE59 /* EditView.swift */; };
 		F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDF4253732F0003DBE59 /* ItemRow.swift */; };
+		F8275C61253AB7BC007155B2 /* MultilineTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8275C60253AB7BC007155B2 /* MultilineTextView.swift */; };
 		F8543F682539CAE000583650 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8543F672539CAE000583650 /* Settings.swift */; };
 		F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */; };
 		F897012F2536FAFE00EEDA18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897012E2536FAFE00EEDA18 /* ContentView.swift */; };
@@ -43,6 +44,7 @@
 		F80BBDEF253732D4003DBE59 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		F80BBDF4253732F0003DBE59 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 3.xcdatamodel"; sourceTree = "<group>"; };
+		F8275C60253AB7BC007155B2 /* MultilineTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextView.swift; sourceTree = "<group>"; };
 		F8543F672539CAE000583650 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F89701292536FAFE00EEDA18 /* ContactJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactJournalApp.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				F8543F672539CAE000583650 /* Settings.swift */,
 				F80BBDF4253732F0003DBE59 /* ItemRow.swift */,
 				F80BBDEF253732D4003DBE59 /* EditView.swift */,
+				F8275C60253AB7BC007155B2 /* MultilineTextView.swift */,
 				F89701302536FB0000EEDA18 /* Assets.xcassets */,
 				F80BBDF9253735B7003DBE59 /* Model */,
 				F897013A2536FB0000EEDA18 /* Info.plist */,
@@ -305,6 +308,7 @@
 				F89701362536FB0000EEDA18 /* Persistence.swift in Sources */,
 				F8543F682539CAE000583650 /* Settings.swift in Sources */,
 				F80BBDF0253732D4003DBE59 /* EditView.swift in Sources */,
+				F8275C61253AB7BC007155B2 /* MultilineTextView.swift in Sources */,
 				F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */,
 				F897012F2536FAFE00EEDA18 /* ContentView.swift in Sources */,
 				F89701392536FB0000EEDA18 /* ContactJournal.xcdatamodeld in Sources */,
