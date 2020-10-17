@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import ContactsUI
 
 struct MultilineTextView: UIViewRepresentable {
     @Binding var text: String
