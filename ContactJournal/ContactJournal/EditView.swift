@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import Contacts
 
 struct EditView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -23,13 +24,15 @@ struct EditView: View {
         return dateFormatter.string(from: item.timestamp)
     }
     
+    @State private var showsContactPicker = false
+    
     var body: some View {
         Form {
             // check if item is valid because it might be deleted and this causes a crash here
             if !item.isFault {
                 DatePicker("Zeitpunkt", selection: $item.timestamp, in: ...Date())
                 Section(header: Text("Beschreibung"), footer: Text("z.B. Kaffee mit Pia")) {
-                    MultilineTextView(text: $item.content)
+                    MultilineTextField(placeholder: "", text: $item.content)
                 }
                 Toggle("Maske getragen", isOn: $item.didWearMask)
                 Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
@@ -49,7 +52,10 @@ struct EditView: View {
                     Text("\(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
                 }
                 Section(header: Text("Kontaktdaten"), footer: Text("z.B. Telefonnummer, Adresse, E-Mail")) {
-                    MultilineTextView(text: $item.contactDetails)
+                    MultilineTextField(placeholder: "", text: $item.contactDetails)
+                    Button(action: { showsContactPicker = true }, label: {
+                        Label("Aus Adressbuch importieren", systemImage: "person.crop.circle.badge.plus")
+                    })
                 }
             }
         }
@@ -57,6 +63,31 @@ struct EditView: View {
         .onDisappear(perform: {
             try! viewContext.save()
         })
+        .sheet(isPresented: $showsContactPicker, content: {
+            ContactPicker(showPicker: $showsContactPicker, onSelectContacts: didSelectContacts(contacts:))
+        })
+    }
+    
+    private func didSelectContacts(contacts: [CNContact]) {
+        contacts.forEach(append)
+    }
+    
+    private func append(contact: CNContact) {
+        var contactString = "\n\n"
+        contactString.append("\(contact.givenName) \(contact.familyName)")
+        
+        if let postalAddress = contact.postalAddresses.first {
+            contactString.append("\n\(postalAddress.value.street)\n\(postalAddress.value.postalCode) \(postalAddress.value.city)")
+        }
+        if let phoneNumber = contact.phoneNumbers.first {
+            contactString.append("\n\(phoneNumber.value.stringValue)")
+        }
+        if let emailAddress = contact.emailAddresses.first {
+            contactString.append("\n\(emailAddress.value)")
+        }
+        
+        item.contactDetails.append(contactString)
+        item.contactDetails = item.contactDetails.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
 
