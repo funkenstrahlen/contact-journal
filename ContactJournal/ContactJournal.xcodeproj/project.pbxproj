@@ -10,7 +10,6 @@
 		F80BBDF0253732D4003DBE59 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDEF253732D4003DBE59 /* EditView.swift */; };
 		F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDF4253732F0003DBE59 /* ItemRow.swift */; };
 		F8163F90253B21210047870F /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8163F8F253B21210047870F /* ContactPicker.swift */; };
-		F8275C61253AB7BC007155B2 /* MultilineTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8275C60253AB7BC007155B2 /* MultilineTextView.swift */; };
 		F8543F682539CAE000583650 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8543F672539CAE000583650 /* Settings.swift */; };
 		F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */; };
 		F897012F2536FAFE00EEDA18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897012E2536FAFE00EEDA18 /* ContentView.swift */; };
@@ -22,6 +21,7 @@
 		F897014F2536FB0000EEDA18 /* ContactJournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897014E2536FB0000EEDA18 /* ContactJournalUITests.swift */; };
 		F8970169253709FB00EEDA18 /* Item+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8970168253709FB00EEDA18 /* Item+CoreData.swift */; };
 		F8970176253716DB00EEDA18 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8970175253716DB00EEDA18 /* CloudKit.framework */; };
+		F8BBDDA7253F039200844894 /* MultilineTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,6 @@
 		F80BBDF4253732F0003DBE59 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		F8163F8F253B21210047870F /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
 		F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 3.xcdatamodel"; sourceTree = "<group>"; };
-		F8275C60253AB7BC007155B2 /* MultilineTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextView.swift; sourceTree = "<group>"; };
 		F8543F672539CAE000583650 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F89701292536FAFE00EEDA18 /* ContactJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactJournalApp.swift; sourceTree = "<group>"; };
@@ -65,6 +64,7 @@
 		F8970168253709FB00EEDA18 /* Item+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreData.swift"; sourceTree = "<group>"; };
 		F8970170253716D500EEDA18 /* ContactJournal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContactJournal.entitlements; sourceTree = "<group>"; };
 		F8970175253716DB00EEDA18 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextEditor.swift; sourceTree = "<group>"; };
 		F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 2.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,7 +134,7 @@
 				F8543F672539CAE000583650 /* Settings.swift */,
 				F80BBDF4253732F0003DBE59 /* ItemRow.swift */,
 				F80BBDEF253732D4003DBE59 /* EditView.swift */,
-				F8275C60253AB7BC007155B2 /* MultilineTextView.swift */,
+				F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */,
 				F8163F8F253B21210047870F /* ContactPicker.swift */,
 				F89701302536FB0000EEDA18 /* Assets.xcassets */,
 				F80BBDF9253735B7003DBE59 /* Model */,
@@ -312,8 +312,8 @@
 				F89701362536FB0000EEDA18 /* Persistence.swift in Sources */,
 				F8543F682539CAE000583650 /* Settings.swift in Sources */,
 				F80BBDF0253732D4003DBE59 /* EditView.swift in Sources */,
-				F8275C61253AB7BC007155B2 /* MultilineTextView.swift in Sources */,
 				F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */,
+				F8BBDDA7253F039200844894 /* MultilineTextEditor.swift in Sources */,
 				F897012F2536FAFE00EEDA18 /* ContentView.swift in Sources */,
 				F89701392536FB0000EEDA18 /* ContactJournal.xcdatamodeld in Sources */,
 				F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */,
@@ -475,7 +475,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ContactJournal/ContactJournal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"ContactJournal/Preview Content\"";
 				DEVELOPMENT_TEAM = Y85FVF2A97;
 				ENABLE_PREVIEWS = YES;
@@ -500,7 +500,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ContactJournal/ContactJournal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"ContactJournal/Preview Content\"";
 				DEVELOPMENT_TEAM = Y85FVF2A97;
 				ENABLE_PREVIEWS = YES;
