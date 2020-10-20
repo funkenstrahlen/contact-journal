@@ -53,4 +53,15 @@ struct PersistenceController {
             }
         })
     }
+    
+    static func deleteDeprecatedItems() {
+        let context = shared.container.viewContext
+        do {
+            let items = try context.fetch(Item.fetchRequest)
+            items.filter({ $0.isDeprecated }).forEach(context.delete)
+            try context.save()
+        } catch {
+            
+        }
+    }
 }
