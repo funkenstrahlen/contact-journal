@@ -60,7 +60,7 @@ struct ContentView: View {
                     Button(action: {
                         showsSettings = true
                     }, label: {
-                        Label("Einstellungen", systemImage: "gear")
+                        Label("Einstellungen", systemImage: "gearshape")
                     })
                 }
                 
