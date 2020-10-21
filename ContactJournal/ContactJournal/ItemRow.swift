@@ -29,7 +29,7 @@ struct ItemRow: View {
         NavigationLink(destination: EditView(item: item)) {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .top) {
-                    Text("\(item.timestamp, formatter: dateFormatter)")
+                    Text("\(item.timestamp, formatter: dateFormatter)").font(.headline)
                     Spacer()
                     Text(realtimeRelativeTime).foregroundColor(.secondary)
                 }.font(.subheadline)
