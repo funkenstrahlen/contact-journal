@@ -42,6 +42,7 @@ struct ItemRow: View {
                     Text("\(item.didWearMask ? "😷" : "🙂")")
                     Text("\(item.isOutside ? "🌤" : "🏠")")
                     Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
+                    Text("\(item.durationHours, specifier: "%g") h")
                 }.font(.subheadline)
             }
             .padding([.vertical], 8)
@@ -56,6 +57,7 @@ struct ItemRow_Previews: PreviewProvider {
         item.isOutside = true
         item.didWearMask = true
         item.personCount = 15
+        item.durationHours = 2.5
         return item
     }
     
