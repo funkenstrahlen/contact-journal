@@ -37,7 +37,7 @@ struct EditView: View {
                 Section(header: Text("Beschreibung"), footer: Text("z.B. Kaffee mit Pia")) {
                     MultilineTextField(placeholder: "", text: $item.content)
                 }
-                Toggle("Maske getragen", isOn: $item.didWearMask)
+                Toggle("Mund-Nasen-Bedeckung getragen", isOn: $item.didWearMask)
                 Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
                 HStack {
                     Text("Ort")
