@@ -11,11 +11,23 @@ import SwiftUI
 struct Settings: View {
     @AppStorage("shouldAutomaticallyDeleteDeprecatedItems") var shouldAutomaticallyDeleteDeprecatedItems: Bool = false
     
+    @StateObject var userSettings = UserSettings()
+    
     var body: some View {
         ZStack {
             Form {
                 Section(footer: Text("Für die Nachvollziehbarkeit von Infektionen sind alte Einträge nicht mehr relevant.")) {
                     Toggle("Einträge älter als 14 Tage automatisch löschen", isOn: $shouldAutomaticallyDeleteDeprecatedItems)
+                }
+                Section {
+                    Toggle("Push Benachrichtigung als Erinnerung aktivieren", isOn: $userSettings.shouldSendPushNotification)
+                    if userSettings.shouldSendPushNotification {
+                        DatePicker("Uhrzeit", selection: $userSettings.notificationTime, displayedComponents: .hourAndMinute)
+                            .datePickerStyle(WheelDatePickerStyle())
+                            .labelsHidden()
+                            .frame(maxHeight: 100)
+                            .clipped()
+                    }
                 }
             }.navigationBarTitle("Einstellungen")
             VStack {
@@ -40,5 +52,26 @@ struct Settings_Previews: PreviewProvider {
             }
         }
         
+    }
+}
+
+
+
+public class UserSettings: ObservableObject {
+    @Published var shouldSendPushNotification: Bool {
+        didSet{
+            UserDefaults.standard.set(shouldSendPushNotification, forKey: "shouldSendPushNotification")
+        }
+    }
+    
+    @Published var notificationTime: Date {
+        didSet{
+            UserDefaults.standard.set(notificationTime, forKey: "notificationTime")
+        }
+    }
+    
+    init() {
+        self.shouldSendPushNotification = UserDefaults.standard.bool(forKey: "shouldSendPushNotification")
+        self.notificationTime = UserDefaults.standard.object(forKey: "notificationTime") as? Date ?? Date()
     }
 }
