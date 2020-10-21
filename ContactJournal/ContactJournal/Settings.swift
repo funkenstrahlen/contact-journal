@@ -22,6 +22,7 @@ struct Settings: View {
                 Spacer()
                 Link("Impressum & Datenschutzerklärung", destination: URL(string: "https://stefantrauth.de/contact-journal-privacy-policy.html")!)
                     .font(.footnote)
+                    .padding(.vertical)
             }
         }
     }
@@ -29,8 +30,14 @@ struct Settings: View {
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            Settings()
+        Group {
+            NavigationView {
+                Settings()
+            }
+            .previewDevice("iPhone 8")
+            NavigationView {
+                Settings()
+            }
         }
         
     }
