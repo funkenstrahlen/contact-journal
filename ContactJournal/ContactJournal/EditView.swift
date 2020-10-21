@@ -37,7 +37,7 @@ struct EditView: View {
                 Section {
                     DatePicker("Zeitpunkt", selection: $item.timestamp, in: ...Date()).datePickerStyle(WheelDatePickerStyle())
                     Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
-                        Text("\(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
+                        Text("Dauer: \(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
                     }
                 }
 
@@ -68,12 +68,12 @@ struct EditView: View {
             try! viewContext.save()
         })
         .sheet(isPresented: $showsContactPicker, content: {
-            ContactPicker(showPicker: $showsContactPicker, onSelectContacts: didSelectContacts(contacts:))
+            ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
         })
     }
     
-    private func didSelectContacts(contacts: [CNContact]) {
-        contacts.forEach(append)
+    private func didSelectContact(contact: CNContact) {
+        append(contact: contact)
     }
     
     private func append(contact: CNContact) {
@@ -97,6 +97,8 @@ struct EditView: View {
 
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
-        EditView(item: Item(context: PersistenceController.preview.container.viewContext)).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        NavigationView {
+            EditView(item: Item(context: PersistenceController.preview.container.viewContext)).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
     }
 }
