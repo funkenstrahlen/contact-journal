@@ -30,8 +30,8 @@ struct EditView: View {
         Form {
             // check if item is valid because it might be deleted and this causes a crash here
             if !item.isFault {
-                Section(header: Text("Beschreibung"), footer: Text("z.B. Kaffee mit Pia")) {
-                    MultilineTextField(placeholder: "", text: $item.content)
+                Section(header: Text("Beschreibung")) {
+                    MultilineTextField(placeholder: "z.B. Kaffee mit Pia", text: $item.content)
                 }
                 
                 Section {
@@ -40,7 +40,6 @@ struct EditView: View {
                         Text("\(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
                     }
                 }
-                
 
                 Toggle("Mund-Nasen-Bedeckung getragen", isOn: $item.didWearMask)
                 Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
@@ -56,8 +55,8 @@ struct EditView: View {
                 Stepper(value: $item.personCount, in: 1...200) {
                     Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
                 }
-                Section(header: Text("Kontaktdaten"), footer: Text("z.B. Telefonnummer, Adresse, E-Mail")) {
-                    MultilineTextField(placeholder: "", text: $item.contactDetails)
+                Section(header: Text("Kontaktdaten")) {
+                    MultilineTextField(placeholder: "z.B. Telefonnummer, Adresse, E-Mail", text: $item.contactDetails)
                     Button(action: { showsContactPicker = true }, label: {
                         Label("Aus Adressbuch importieren", systemImage: "person.crop.circle.badge.plus")
                     })
