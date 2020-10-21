@@ -12,6 +12,13 @@ struct Exporter {
     private static let exportFilePath = NSTemporaryDirectory() + "Kontakte.csv"
     public static let exportFileURL = URL(fileURLWithPath: exportFilePath)
     
+    private static var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        dateFormatter.timeStyle = .medium
+        return dateFormatter
+    }
+    
     private static func fetchAllItems() -> [Item] {
         let context = PersistenceController.shared.container.viewContext
         do {
@@ -22,7 +29,6 @@ struct Exporter {
     }
     
     private static func csvStringFrom(items: [Item]) -> String {
-        let dateFormatter = ISO8601DateFormatter()
         var csvString = "Datum, Beschreibung\n"
         for item in items {
             csvString.append("\(dateFormatter.string(from: item.timestamp))") // Datum
