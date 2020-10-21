@@ -10,18 +10,26 @@ import SwiftUI
 @main
 struct ContactJournalApp: App {
     let persistenceController = PersistenceController.shared
+    
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
-    }
-    
-    init() {
-        // automatically delete deprecated entries when the user has activated the option
-        if UserDefaults.standard.bool(forKey: "shouldAutomaticallyDeleteDeprecatedItems") {
-            PersistenceController.deleteDeprecatedItems()
+        .onChange(of: scenePhase) { phase in
+            switch phase {
+            case .active:
+                // automatically delete deprecated entries when the user has activated the option
+                if UserDefaults.standard.bool(forKey: "shouldAutomaticallyDeleteDeprecatedItems") {
+                    PersistenceController.deleteDeprecatedItems()
+                }
+            case .inactive: break
+            case .background:
+                PersistenceController.saveContext()
+            @unknown default: break
+            }
         }
     }
 }

@@ -74,14 +74,14 @@ struct ContentView: View {
         withAnimation {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
-            saveContext()
+            PersistenceController.saveContext()
         }
     }
 
     private func deleteSelectedItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
-            saveContext()
+            PersistenceController.saveContext()
         }
     }
     
@@ -91,14 +91,6 @@ struct ContentView: View {
         }
     }
     
-    private func saveContext() {
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
