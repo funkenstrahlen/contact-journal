@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 struct Exporter {
-    private static let exportFilePath = NSTemporaryDirectory() + "Kontakte.csv"
+    private static let exportFilePath = NSTemporaryDirectory() + "Kontakt-Tagebuch.csv"
     public static let exportFileURL = URL(fileURLWithPath: exportFilePath)
     
     private static var dateFormatter: DateFormatter {
