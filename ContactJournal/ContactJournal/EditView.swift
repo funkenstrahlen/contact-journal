@@ -68,12 +68,12 @@ struct EditView: View {
             try! viewContext.save()
         })
         .sheet(isPresented: $showsContactPicker, content: {
-            ContactPicker(showPicker: $showsContactPicker, onSelectContacts: didSelectContacts(contacts:))
+            ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
         })
     }
     
-    private func didSelectContacts(contacts: [CNContact]) {
-        contacts.forEach(append)
+    private func didSelectContact(contact: CNContact) {
+        append(contact: contact)
     }
     
     private func append(contact: CNContact) {

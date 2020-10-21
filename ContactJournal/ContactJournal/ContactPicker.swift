@@ -10,7 +10,7 @@ import ContactsUI
 
 protocol EmbeddedContactPickerViewControllerDelegate: class {
     func embeddedContactPickerViewControllerDidCancel(_ viewController: EmbeddedContactPickerViewController)
-    func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contacts: [CNContact])
+    func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contact: CNContact)
 }
 
 class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDelegate {
@@ -33,9 +33,9 @@ class EmbeddedContactPickerViewController: UIViewController, CNContactPickerDele
         }
     }
 
-    func contactPicker(_ picker: CNContactPickerViewController, didSelect contacts: [CNContact]) {
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
         self.dismiss(animated: false) {
-            self.delegate?.embeddedContactPickerViewController(self, didSelect: contacts)
+            self.delegate?.embeddedContactPickerViewController(self, didSelect: contact)
         }
     }
 
@@ -49,7 +49,7 @@ struct ContactPicker: UIViewControllerRepresentable {
     typealias UIViewControllerType = EmbeddedContactPickerViewController
     
     @Binding var showPicker: Bool
-    public var onSelectContacts: ((_: [CNContact]) -> Void)
+    public var onSelectContact: ((_: CNContact) -> Void)
 
     final class Coordinator: NSObject, EmbeddedContactPickerViewControllerDelegate {
         var parent : ContactPicker
@@ -58,8 +58,8 @@ struct ContactPicker: UIViewControllerRepresentable {
             self.parent = parent
         }
         
-        func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contacts: [CNContact]) {
-            parent.onSelectContacts(contacts)
+        func embeddedContactPickerViewController(_ viewController: EmbeddedContactPickerViewController, didSelect contact: CNContact) {
+            parent.onSelectContact(contact)
             parent.showPicker = false
         }
 
