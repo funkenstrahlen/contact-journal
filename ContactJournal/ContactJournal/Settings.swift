@@ -10,7 +10,6 @@ import SwiftUI
 
 struct Settings: View {
     @AppStorage("shouldAutomaticallyDeleteDeprecatedItems") var shouldAutomaticallyDeleteDeprecatedItems: Bool = false
-    
     @StateObject var userSettings = UserSettings()
     
     var body: some View {
@@ -52,26 +51,5 @@ struct Settings_Previews: PreviewProvider {
             }
         }
         
-    }
-}
-
-public class UserSettings: ObservableObject {
-    @Published var shouldSendPushNotification: Bool {
-        didSet{
-            UserDefaults.standard.set(shouldSendPushNotification, forKey: "shouldSendPushNotification")
-            NotificationManager.rescheduleNotification()
-        }
-    }
-    
-    @Published var notificationTime: Date {
-        didSet{
-            UserDefaults.standard.set(notificationTime, forKey: "notificationTime")
-            NotificationManager.rescheduleNotification()
-        }
-    }
-    
-    init() {
-        self.shouldSendPushNotification = UserDefaults.standard.bool(forKey: "shouldSendPushNotification")
-        self.notificationTime = UserDefaults.standard.object(forKey: "notificationTime") as? Date ?? Date()
     }
 }
