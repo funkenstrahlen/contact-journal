@@ -30,7 +30,10 @@ struct EditView: View {
         Form {
             // check if item is valid because it might be deleted and this causes a crash here
             if !item.isFault {
-                DatePicker("Zeitpunkt", selection: $item.timestamp, in: ...Date())
+                Section(header: Text("Zeitpunkt")) {
+                    DatePicker("Zeitpunkt", selection: $item.timestamp, in: ...Date()).datePickerStyle(WheelDatePickerStyle())
+                }
+                
                 Section(header: Text("Beschreibung"), footer: Text("z.B. Kaffee mit Pia")) {
                     MultilineTextField(placeholder: "", text: $item.content)
                 }
