@@ -24,6 +24,8 @@
 		F8BBDDA7253F039200844894 /* MultilineTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */; };
 		F8DF7170254053E500D3C1EA /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF716F254053E500D3C1EA /* Exporter.swift */; };
 		F8DF71752540581600D3C1EA /* ShareExportAktivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF71742540581600D3C1EA /* ShareExportAktivityController.swift */; };
+		F8F41B0E2540E00E007158A5 /* NotficationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F41B0D2540E00E007158A5 /* NotficationManager.swift */; };
+		F8F41B132540E039007158A5 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F41B122540E039007158A5 /* UserSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 2.xcdatamodel"; sourceTree = "<group>"; };
 		F8DF716F254053E500D3C1EA /* Exporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
 		F8DF71742540581600D3C1EA /* ShareExportAktivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExportAktivityController.swift; sourceTree = "<group>"; };
+		F8F41B0D2540E00E007158A5 /* NotficationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotficationManager.swift; sourceTree = "<group>"; };
+		F8F41B122540E039007158A5 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,8 @@
 				F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */,
 				F897012E2536FAFE00EEDA18 /* ContentView.swift */,
 				F8543F672539CAE000583650 /* Settings.swift */,
+				F8F41B122540E039007158A5 /* UserSettings.swift */,
+				F8F41B0D2540E00E007158A5 /* NotficationManager.swift */,
 				F80BBDF4253732F0003DBE59 /* ItemRow.swift */,
 				F80BBDEF253732D4003DBE59 /* EditView.swift */,
 				F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */,
@@ -322,7 +328,9 @@
 				F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */,
 				F8BBDDA7253F039200844894 /* MultilineTextEditor.swift in Sources */,
 				F8DF71752540581600D3C1EA /* ShareExportAktivityController.swift in Sources */,
+				F8F41B0E2540E00E007158A5 /* NotficationManager.swift in Sources */,
 				F897012F2536FAFE00EEDA18 /* ContentView.swift in Sources */,
+				F8F41B132540E039007158A5 /* UserSettings.swift in Sources */,
 				F89701392536FB0000EEDA18 /* ContactJournal.xcdatamodeld in Sources */,
 				F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */,
 			);
