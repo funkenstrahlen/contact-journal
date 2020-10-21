@@ -40,8 +40,8 @@ struct NotificationManager {
     
     private static func scheduleNotification() {
         let content = UNMutableNotificationContent()
-        content.title = "Title"
-        content.body = "Message"
+        content.title = "Wen hast du heute getroffen?"
+        content.body = "Trage deine Kontakte ein, um sie nicht zu vergessen."
         content.sound = UNNotificationSound.default
         let notificationTriggerDate = UserSettings().notificationTime
         
