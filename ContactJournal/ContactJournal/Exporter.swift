@@ -29,10 +29,17 @@ struct Exporter {
     }
     
     private static func csvStringFrom(items: [Item]) -> String {
-        var csvString = "Datum, Beschreibung\n"
+        // header
+        var csvString = "Datum, Beschreibung, Draußen?, Mund-Nasen-Bedeckung getragen, Abstand gehalten, Dauer (Stunden), Personenzahl, Kontaktdetails\n"
         for item in items {
-            csvString.append("\"\(dateFormatter.string(from: item.timestamp))\"") // Datum
-            csvString.append(",\"\(item.content)\"") // Beschreibung
+            csvString.append("\"\(dateFormatter.string(from: item.timestamp))\"")
+            csvString.append(",\"\(item.content)\"")
+            csvString.append(",\(item.isOutside ? "Ja" : "Nein")")
+            csvString.append(",\(item.didWearMask ? "Ja" : "Nein")")
+            csvString.append(",\(item.couldKeepDistance ? "Ja" : "Nein")")
+            csvString.append(",\(item.durationHours)")
+            csvString.append(",\(item.personCount)")
+            csvString.append(",\"\(item.contactDetails)\"")
             csvString.append("\n")
         }
         return csvString
