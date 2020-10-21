@@ -31,8 +31,8 @@ struct Exporter {
     private static func csvStringFrom(items: [Item]) -> String {
         var csvString = "Datum, Beschreibung\n"
         for item in items {
-            csvString.append("\(dateFormatter.string(from: item.timestamp))") // Datum
-            csvString.append(",\(item.content)") // Beschreibung
+            csvString.append("\"\(dateFormatter.string(from: item.timestamp))\"") // Datum
+            csvString.append(",\"\(item.content)\"") // Beschreibung
             csvString.append("\n")
         }
         return csvString
