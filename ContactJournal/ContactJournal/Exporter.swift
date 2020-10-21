@@ -15,7 +15,7 @@ struct Exporter {
     private static var dateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
-        dateFormatter.timeStyle = .medium
+        dateFormatter.timeStyle = .short
         return dateFormatter
     }
     
