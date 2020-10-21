@@ -30,13 +30,18 @@ struct EditView: View {
         Form {
             // check if item is valid because it might be deleted and this causes a crash here
             if !item.isFault {
-                Section(header: Text("Zeitpunkt")) {
-                    DatePicker("Zeitpunkt", selection: $item.timestamp, in: ...Date()).datePickerStyle(WheelDatePickerStyle())
-                }
-                
                 Section(header: Text("Beschreibung"), footer: Text("z.B. Kaffee mit Pia")) {
                     MultilineTextField(placeholder: "", text: $item.content)
                 }
+                
+                Section {
+                    DatePicker("Zeitpunkt", selection: $item.timestamp, in: ...Date()).datePickerStyle(WheelDatePickerStyle())
+                    Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
+                        Text("\(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
+                    }
+                }
+                
+
                 Toggle("Mund-Nasen-Bedeckung getragen", isOn: $item.didWearMask)
                 Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
                 HStack {
@@ -50,9 +55,6 @@ struct EditView: View {
 
                 Stepper(value: $item.personCount, in: 1...200) {
                     Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
-                }
-                Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
-                    Text("\(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
                 }
                 Section(header: Text("Kontaktdaten"), footer: Text("z.B. Telefonnummer, Adresse, E-Mail")) {
                     MultilineTextField(placeholder: "", text: $item.contactDetails)
