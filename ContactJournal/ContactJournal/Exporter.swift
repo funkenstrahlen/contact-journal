@@ -19,6 +19,12 @@ struct Exporter {
         return dateFormatter
     }
     
+    private static var numberFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 2
+        return numberFormatter
+    }
+    
     private static func fetchAllItems() -> [Item] {
         let context = PersistenceController.shared.container.viewContext
         do {
@@ -37,7 +43,7 @@ struct Exporter {
             csvString.append(",\(item.isOutside ? "Ja" : "Nein")")
             csvString.append(",\(item.didWearMask ? "Ja" : "Nein")")
             csvString.append(",\(item.couldKeepDistance ? "Ja" : "Nein")")
-            csvString.append(",\(item.durationHours)")
+            csvString.append(",\"\(numberFormatter.string(from: NSNumber(value: item.durationHours))!)\"")
             csvString.append(",\(item.personCount)")
             csvString.append(",\(item.contactDetails.escapedForCSV)")
             csvString.append("\n")
