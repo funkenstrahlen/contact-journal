@@ -12,6 +12,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State private var showsSettings = false
+    @State private var showsShareSheet = false
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)],
@@ -43,9 +44,16 @@ struct ContentView: View {
                     }
                     Text("")
                 }
-            }.background(NavigationLink(destination: Settings(), isActive: $showsSettings) {
-                EmptyView()
-            })
+            }
+            .background(
+                VStack {
+                    NavigationLink(destination: Settings(), isActive: $showsSettings) {
+                        EmptyView()
+                    }
+                    EmptyView().sheet(isPresented: $showsShareSheet) {
+                        ShareExportActivityViewController(activityItems: [Exporter.exportFileURL])
+                    }
+                })
             .navigationBarTitle("Kontakt Tagebuch")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -54,6 +62,12 @@ struct ContentView: View {
                     }, label: {
                         Label("Einstellungen", systemImage: "gear")
                     })
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: exportCSV) {
+                        Label("Exportieren", systemImage: "square.and.arrow.up")
+                    }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -77,6 +91,11 @@ struct ContentView: View {
             newItem.timestamp = Date()
             PersistenceController.saveContext()
         }
+    }
+    
+    private func exportCSV() {
+        Exporter.generateCSVExport()
+        showsShareSheet = true
     }
 
     private func deleteSelectedItems(offsets: IndexSet) {

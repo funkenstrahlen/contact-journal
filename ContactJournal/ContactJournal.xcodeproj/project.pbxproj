@@ -22,6 +22,8 @@
 		F8970169253709FB00EEDA18 /* Item+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8970168253709FB00EEDA18 /* Item+CoreData.swift */; };
 		F8970176253716DB00EEDA18 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8970175253716DB00EEDA18 /* CloudKit.framework */; };
 		F8BBDDA7253F039200844894 /* MultilineTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */; };
+		F8DF7170254053E500D3C1EA /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF716F254053E500D3C1EA /* Exporter.swift */; };
+		F8DF71752540581600D3C1EA /* ShareExportAktivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF71742540581600D3C1EA /* ShareExportAktivityController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		F8970175253716DB00EEDA18 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextEditor.swift; sourceTree = "<group>"; };
 		F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 2.xcdatamodel"; sourceTree = "<group>"; };
+		F8DF716F254053E500D3C1EA /* Exporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
+		F8DF71742540581600D3C1EA /* ShareExportAktivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExportAktivityController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,8 @@
 				F80BBDEF253732D4003DBE59 /* EditView.swift */,
 				F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */,
 				F8163F8F253B21210047870F /* ContactPicker.swift */,
+				F8DF71742540581600D3C1EA /* ShareExportAktivityController.swift */,
+				F8DF716F254053E500D3C1EA /* Exporter.swift */,
 				F89701302536FB0000EEDA18 /* Assets.xcassets */,
 				F80BBDF9253735B7003DBE59 /* Model */,
 				F897013A2536FB0000EEDA18 /* Info.plist */,
@@ -307,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8DF7170254053E500D3C1EA /* Exporter.swift in Sources */,
 				F8163F90253B21210047870F /* ContactPicker.swift in Sources */,
 				F8970169253709FB00EEDA18 /* Item+CoreData.swift in Sources */,
 				F89701362536FB0000EEDA18 /* Persistence.swift in Sources */,
@@ -314,6 +321,7 @@
 				F80BBDF0253732D4003DBE59 /* EditView.swift in Sources */,
 				F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */,
 				F8BBDDA7253F039200844894 /* MultilineTextEditor.swift in Sources */,
+				F8DF71752540581600D3C1EA /* ShareExportAktivityController.swift in Sources */,
 				F897012F2536FAFE00EEDA18 /* ContentView.swift in Sources */,
 				F89701392536FB0000EEDA18 /* ContactJournal.xcdatamodeld in Sources */,
 				F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */,
