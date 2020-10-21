@@ -36,8 +36,13 @@ struct ItemRow: View {
                 if(item.content == "") {
                     Text("Neuer Eintrag").foregroundColor(.secondary).italic()
                 } else {
-                    Text(item.content).lineLimit(4)
+                    Text(item.content).lineLimit(2)
                 }
+                HStack {
+                    Text("\(item.didWearMask ? "😷" : "🙂")")
+                    Text("\(item.isOutside ? "🌤" : "🏠")")
+                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
+                }.font(.subheadline)
             }
             .padding([.vertical], 8)
         }
@@ -48,6 +53,9 @@ struct ItemRow_Previews: PreviewProvider {
     static var item: Item {
         let item = Item(context: PersistenceController.preview.container.viewContext)
         item.content = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+        item.isOutside = true
+        item.didWearMask = true
+        item.personCount = 15
         return item
     }
     

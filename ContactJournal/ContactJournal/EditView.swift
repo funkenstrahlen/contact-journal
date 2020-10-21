@@ -43,8 +43,8 @@ struct EditView: View {
                     Text("Ort")
                     Spacer()
                     Picker("Ort", selection: $item.isOutside) {
-                        Text("Drinnen").tag(false)
-                        Text("Draußen").tag(true)
+                        Text("🏠 Drinnen").tag(false)
+                        Text("🌤 Draußen").tag(true)
                     }.pickerStyle(SegmentedPickerStyle())
                 }
 
