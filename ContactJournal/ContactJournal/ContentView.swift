@@ -41,6 +41,7 @@ struct ContentView: View {
                     Button(action: deleteDeprecatedItems) {
                         Label("Alle Einträge älter als 14 Tage löschen", systemImage: "trash").foregroundColor(.red)
                     }
+                    Text("")
                 }
             }.background(NavigationLink(destination: Settings(), isActive: $showsSettings) {
                 EmptyView()
