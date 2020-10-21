@@ -51,7 +51,9 @@ struct ContentView: View {
                         EmptyView()
                     }
                     EmptyView().sheet(isPresented: $showsShareSheet) {
-                        ShareExportActivityViewController(activityItems: [Exporter.exportFileURL])
+                        ShareExportActivityViewController(activityItems: [Exporter.exportFileURL]) { (_, _, _, _) in
+                            showsShareSheet = false
+                        }
                     }
                 })
             .navigationBarTitle("Kontakt Tagebuch")
