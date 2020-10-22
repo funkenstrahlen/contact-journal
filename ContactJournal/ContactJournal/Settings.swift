@@ -19,7 +19,7 @@ struct Settings: View {
                     Toggle("Einträge älter als 14 Tage automatisch löschen", isOn: $shouldAutomaticallyDeleteDeprecatedItems)
                 }
                 Section(footer: Text("Erhalte einmal täglich eine Push Benachrichtigung, die dich daran erinnert dein Kontakt-Tagebuch zu pflegen.")) {
-                    Toggle("Push Benachrichtigung zur Erinnerung aktivieren", isOn: $userSettings.shouldSendPushNotification)
+                    Toggle("Erinnerung als Push Benachrichtigung", isOn: $userSettings.shouldSendPushNotification)
                     if userSettings.shouldSendPushNotification {
                         DatePicker("Uhrzeit", selection: $userSettings.notificationTime, displayedComponents: .hourAndMinute)
                             .datePickerStyle(WheelDatePickerStyle())
