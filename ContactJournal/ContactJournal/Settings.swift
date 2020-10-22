@@ -12,10 +12,33 @@ struct Settings: View {
     @AppStorage("shouldAutomaticallyDeleteDeprecatedItems") var shouldAutomaticallyDeleteDeprecatedItems: Bool = false
     
     var body: some View {
-        Form {
-            Section(footer: Text("Für die Nachvollziehbarkeit von Infektionen sind alte Einträge nicht mehr relevant.")) {
-                Toggle("Einträge älter als 14 Tage automatisch löschen", isOn: $shouldAutomaticallyDeleteDeprecatedItems)
+        ZStack {
+            Form {
+                Section(footer: Text("Für die Nachvollziehbarkeit von Infektionen sind alte Einträge nicht mehr relevant.")) {
+                    Toggle("Einträge älter als 14 Tage automatisch löschen", isOn: $shouldAutomaticallyDeleteDeprecatedItems)
+                }
+            }.navigationBarTitle("Einstellungen")
+            VStack {
+                Spacer()
+                Link("Impressum & Datenschutzerklärung", destination: URL(string: "https://stefantrauth.de/contact-journal-privacy-policy.html")!)
+                    .font(.footnote)
+                    .padding(.vertical)
             }
-        }.navigationBarTitle("Einstellungen")
+        }
+    }
+}
+
+struct Settings_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            NavigationView {
+                Settings()
+            }
+            .previewDevice("iPhone 8")
+            NavigationView {
+                Settings()
+            }
+        }
+        
     }
 }

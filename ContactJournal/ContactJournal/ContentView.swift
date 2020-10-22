@@ -12,6 +12,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State private var showsSettings = false
+    @State private var showsShareSheet = false
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)],
@@ -41,18 +42,34 @@ struct ContentView: View {
                     Button(action: deleteDeprecatedItems) {
                         Label("Alle Einträge älter als 14 Tage löschen", systemImage: "trash").foregroundColor(.red)
                     }
+                    Text("")
                 }
-            }.background(NavigationLink(destination: Settings(), isActive: $showsSettings) {
-                EmptyView()
-            })
+            }
+            .background(
+                VStack {
+                    NavigationLink(destination: Settings(), isActive: $showsSettings) {
+                        EmptyView()
+                    }
+                    EmptyView().sheet(isPresented: $showsShareSheet) {
+                        ShareExportActivityViewController(activityItems: [Exporter.exportFileURL]) { (_, _, _, _) in
+                            showsShareSheet = false
+                        }
+                    }
+                })
             .navigationBarTitle("Kontakt Tagebuch")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showsSettings = true
                     }, label: {
-                        Label("Einstellungen", systemImage: "gear")
+                        Label("Einstellungen", systemImage: "gearshape")
                     })
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: exportCSV) {
+                        Label("Exportieren", systemImage: "square.and.arrow.up")
+                    }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -74,14 +91,19 @@ struct ContentView: View {
         withAnimation {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
-            saveContext()
+            PersistenceController.saveContext()
         }
+    }
+    
+    private func exportCSV() {
+        Exporter.generateCSVExport()
+        showsShareSheet = true
     }
 
     private func deleteSelectedItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
-            saveContext()
+            PersistenceController.saveContext()
         }
     }
     
@@ -91,14 +113,6 @@ struct ContentView: View {
         }
     }
     
-    private func saveContext() {
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
