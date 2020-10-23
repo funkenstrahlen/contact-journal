@@ -35,7 +35,7 @@ struct EditView: View {
                 }
                 
                 Section {
-                    DatePicker("Zeitpunkt", selection: $item.timestamp, in: ...Date()).datePickerStyle(WheelDatePickerStyle())
+                    DatePicker("", selection: $item.timestamp).datePickerStyle(WheelDatePickerStyle())
                     Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
                         Text("Dauer: \(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
                     }
