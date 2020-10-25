@@ -36,25 +36,32 @@ struct EditView: View {
                 
                 Section {
                     DatePicker("", selection: $item.timestamp).datePickerStyle(WheelDatePickerStyle())
+                }
+
+                Section {
                     Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
                         Text("Dauer: \(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
                     }
+                    Toggle("Mund-Nasen-Bedeckung getragen", isOn: $item.didWearMask)
+                    Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
+                    HStack {
+                        Text("Ort")
+                        Spacer()
+                        Picker("Ort", selection: $item.isOutside) {
+                            Text("🏠 Drinnen").tag(false)
+                            Text("🌤 Draußen").tag(true)
+                        }.pickerStyle(SegmentedPickerStyle())
+                    }
+                    Stepper(value: $item.personCount, in: 1...200) {
+                        Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
+                    }
+                    HStack {
+                        item.riskLevel.icon
+                        Text(item.riskLevel.localizedDescription)
+                    }.foregroundColor(item.riskLevel.color)
                 }
 
-                Toggle("Mund-Nasen-Bedeckung getragen", isOn: $item.didWearMask)
-                Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
-                HStack {
-                    Text("Ort")
-                    Spacer()
-                    Picker("Ort", selection: $item.isOutside) {
-                        Text("🏠 Drinnen").tag(false)
-                        Text("🌤 Draußen").tag(true)
-                    }.pickerStyle(SegmentedPickerStyle())
-                }
-
-                Stepper(value: $item.personCount, in: 1...200) {
-                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
-                }
+                
                 Section(header: Text("Kontaktdaten")) {
                     MultilineTextField(placeholder: "z.B. Telefonnummer, Adresse, E-Mail", text: $item.contactDetails)
                     Button(action: { showsContactPicker = true }, label: {
