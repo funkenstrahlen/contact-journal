@@ -41,6 +41,7 @@ struct CreateItemButtonStyle: ButtonStyle {
             .clipShape(Circle())
             .foregroundColor(.blue)
             .shadow(radius: 3)
+            .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
             .padding()
             .padding()
     }
