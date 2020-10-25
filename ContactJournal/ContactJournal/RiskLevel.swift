@@ -29,8 +29,8 @@ public extension RiskLevel {
     
     var localizedDescription: String {
         switch self {
-        case .high: return "erhöhtes Risiko"
-        case .low: return "geringes Risiko"
+        case .high: return "erhöht"
+        case .low: return "gering"
         }
     }
 }

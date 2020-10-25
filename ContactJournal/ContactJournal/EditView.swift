@@ -56,9 +56,14 @@ struct EditView: View {
                         Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
                     }
                     HStack {
-                        item.riskLevel.icon
-                        Text(item.riskLevel.localizedDescription)
-                    }.foregroundColor(item.riskLevel.color)
+                        Text("Ansteckungsrisiko")
+                        Spacer()
+                        HStack {
+                            item.riskLevel.icon
+                            Text(item.riskLevel.localizedDescription)
+                        }.foregroundColor(item.riskLevel.color)
+
+                    }
                 }
 
                 
