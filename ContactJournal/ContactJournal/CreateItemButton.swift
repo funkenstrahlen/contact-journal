@@ -18,13 +18,8 @@ struct CreateItemButton: View {
                 Spacer()
                 Button(action: addItem) {
                     Image(systemName: "plus.circle.fill")
-                }.background(Color(UIColor.systemBackground))
-                .font(.system(size: 55))
-                .clipShape(Circle())
-                .foregroundColor(.blue)
-                .shadow(radius: 3)
-                .padding()
-                .padding()
+                }
+                .buttonStyle(CreateItemButtonStyle())
             }
         }
     }
@@ -35,5 +30,18 @@ struct CreateItemButton: View {
             newItem.timestamp = Date()
             PersistenceController.saveContext()
         }
+    }
+}
+
+struct CreateItemButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .background(Color(UIColor.systemBackground))
+            .font(.system(size: 55))
+            .clipShape(Circle())
+            .foregroundColor(.blue)
+            .shadow(radius: 3)
+            .padding()
+            .padding()
     }
 }
