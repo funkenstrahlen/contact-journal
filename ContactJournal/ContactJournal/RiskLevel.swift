@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public enum RiskLevel {
+public enum RiskLevel: CaseIterable {
     case low, high
 }
 

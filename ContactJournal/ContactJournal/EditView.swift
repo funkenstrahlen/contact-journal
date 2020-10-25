@@ -25,6 +25,7 @@ struct EditView: View {
     }
     
     @State private var showsContactPicker = false
+    @State private var riskLevel = RiskLevel.low
     
     var body: some View {
         // check if item is valid because it might be deleted and this causes a crash here
@@ -36,12 +37,12 @@ struct EditView: View {
                 
                 Section {
                     DatePicker("", selection: $item.timestamp).datePickerStyle(WheelDatePickerStyle())
-                }
-
-                Section {
                     Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
                         Text("Dauer: \(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
                     }
+                }
+
+                Section {
                     Toggle("Mund-Nasen-Bedeckung getragen", isOn: $item.didWearMask)
                     Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
                     HStack {
@@ -56,13 +57,18 @@ struct EditView: View {
                         Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
                     }
                     HStack {
-                        Text("Ansteckungsrisiko")
+                        Text("Empfundenes Ansteckungsrisiko")
                         Spacer()
-                        HStack {
-                            item.riskLevel.icon
-                            Text(item.riskLevel.localizedDescription)
-                        }.foregroundColor(item.riskLevel.color)
-
+                        Picker("", selection: $riskLevel) {
+                            ForEach(RiskLevel.allCases, id: \.self) { riskLevel in
+                                HStack {
+                                    riskLevel.icon
+                                    Text(riskLevel.localizedDescription)
+                                }
+                                .foregroundColor(riskLevel.color)
+                                .tag(riskLevel)
+                            }
+                        }
                     }
                 }
 
