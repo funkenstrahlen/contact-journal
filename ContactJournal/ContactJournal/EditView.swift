@@ -59,7 +59,7 @@ struct EditView: View {
                     HStack {
                         Text("Empfundenes Ansteckungsrisiko")
                         Spacer()
-                        Picker("", selection: $riskLevel) {
+                        Picker("", selection: $item.riskLevel) {
                             ForEach(RiskLevel.allCases, id: \.self) { riskLevel in
                                 HStack {
                                     riskLevel.icon

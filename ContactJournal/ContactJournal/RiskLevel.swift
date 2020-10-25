@@ -8,7 +8,8 @@
 import Foundation
 import SwiftUI
 
-public enum RiskLevel: CaseIterable {
+@objc
+public enum RiskLevel: Int64, CaseIterable {
     case low, high
 }
 
@@ -32,11 +33,5 @@ public extension RiskLevel {
         case .high: return "erhöht"
         case .low: return "gering"
         }
-    }
-}
-
-extension Item {
-    public var riskLevel: RiskLevel {
-        return .low
     }
 }

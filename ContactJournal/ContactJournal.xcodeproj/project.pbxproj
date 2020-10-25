@@ -51,6 +51,7 @@
 		F80BBDF4253732F0003DBE59 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		F8163F8F253B21210047870F /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
 		F81FB2D525458C1D005C50E7 /* RiskLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskLevel.swift; sourceTree = "<group>"; };
+		F81FB2EB2545B6FA005C50E7 /* ContactJournal 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 4.xcdatamodel"; sourceTree = "<group>"; };
 		F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 3.xcdatamodel"; sourceTree = "<group>"; };
 		F8543F672539CAE000583650 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F89701292536FAFE00EEDA18 /* ContactJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -667,11 +668,12 @@
 		F89701372536FB0000EEDA18 /* ContactJournal.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F81FB2EB2545B6FA005C50E7 /* ContactJournal 4.xcdatamodel */,
 				F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */,
 				F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */,
 				F89701382536FB0000EEDA18 /* ContactJournal.xcdatamodel */,
 			);
-			currentVersion = F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */;
+			currentVersion = F81FB2EB2545B6FA005C50E7 /* ContactJournal 4.xcdatamodel */;
 			path = ContactJournal.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
