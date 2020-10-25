@@ -34,3 +34,9 @@ public extension RiskLevel {
         }
     }
 }
+
+extension Item {
+    public var riskLevel: RiskLevel {
+        return .low
+    }
+}
