@@ -82,6 +82,10 @@ struct EditView: View {
         var contactString = "\n\n"
         contactString.append("\(contact.givenName) \(contact.familyName)")
         
+        if !contact.organizationName.isEmpty {
+            contactString.append("\n\(contact.organizationName)")
+        }
+        
         if let postalAddress = contact.postalAddresses.first {
             contactString.append("\n\(postalAddress.value.street)\n\(postalAddress.value.postalCode) \(postalAddress.value.city)")
         }
