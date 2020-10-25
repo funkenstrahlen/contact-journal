@@ -27,9 +27,9 @@ struct EditView: View {
     @State private var showsContactPicker = false
     
     var body: some View {
-        Form {
-            // check if item is valid because it might be deleted and this causes a crash here
-            if !item.isFault {
+        // check if item is valid because it might be deleted and this causes a crash here
+        if !item.isFault {
+            Form {
                 Section(header: Text("Beschreibung")) {
                     MultilineTextField(placeholder: "z.B. Kaffee mit Pia", text: $item.content)
                 }
@@ -62,14 +62,16 @@ struct EditView: View {
                     })
                 }
             }
+            .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
+            .onDisappear(perform: {
+                try! viewContext.save()
+            })
+            .sheet(isPresented: $showsContactPicker, content: {
+                ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
+            })
+        } else {
+            Text("Dieser Eintrag wurde gelöscht und existiert nicht mehr.").padding().foregroundColor(.secondary)
         }
-        .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
-        .onDisappear(perform: {
-            try! viewContext.save()
-        })
-        .sheet(isPresented: $showsContactPicker, content: {
-            ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
-        })
     }
     
     private func didSelectContact(contact: CNContact) {
