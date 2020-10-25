@@ -53,17 +53,17 @@ struct ContentView: View {
             .navigationBarTitle("Kontakt-Tagebuch")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: exportCSV) {
+                        Label("Exportieren", systemImage: "square.and.arrow.up")
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showsSettings = true
                     }, label: {
                         Label("Einstellungen", systemImage: "gearshape")
                     })
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: exportCSV) {
-                        Label("Exportieren", systemImage: "square.and.arrow.up")
-                    }
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
