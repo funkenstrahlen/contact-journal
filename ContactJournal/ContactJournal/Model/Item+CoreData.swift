@@ -38,3 +38,9 @@ extension Item {
         return timestamp < twoWeeksAgo
     }
 }
+
+extension Item {
+    public var riskLevel: RiskLevel {
+        return .medium
+    }
+}

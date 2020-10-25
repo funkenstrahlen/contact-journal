@@ -44,11 +44,9 @@ struct ItemRow: View {
                     Text(item.content).lineLimit(2)
                 }
                 HStack {
-                    Text("\(item.didWearMask ? "😷" : "🙂")")
-                    Text("\(item.isOutside ? "🌤" : "🏠")")
-                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
-                    Text("\(item.durationHours, specifier: "%g") h")
-                }.font(.subheadline)
+                    item.riskLevel.icon.foregroundColor(item.riskLevel.color)
+                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")").foregroundColor(.secondary)
+                }
             }
             .padding([.vertical], 8)
         }
