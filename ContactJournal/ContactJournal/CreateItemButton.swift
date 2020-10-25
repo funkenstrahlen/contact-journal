@@ -19,11 +19,12 @@ struct CreateItemButton: View {
                 Button(action: addItem) {
                     Image(systemName: "plus.circle.fill")
                 }.background(Color(UIColor.systemBackground))
-                .font(.system(size: 50))
+                .font(.system(size: 55))
                 .clipShape(Circle())
                 .foregroundColor(.blue)
-                .padding(.horizontal)
-                .padding(.horizontal)
+                .shadow(radius: 3)
+                .padding()
+                .padding()
             }
         }
     }
