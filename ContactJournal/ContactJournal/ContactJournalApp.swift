@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 @main
 struct ContactJournalApp: App {
@@ -24,6 +25,11 @@ struct ContactJournalApp: App {
                 // automatically delete deprecated entries when the user has activated the option
                 if UserDefaults.standard.bool(forKey: "shouldAutomaticallyDeleteDeprecatedItems") {
                     PersistenceController.deleteDeprecatedItems()
+                }
+                if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+                    #if !DEBUG
+                    SKStoreReviewController.requestReview(in: scene)
+                    #endif
                 }
             case .inactive: break
             case .background:
