@@ -36,7 +36,7 @@ struct Exporter {
     
     private static func csvStringFrom(items: [Item]) -> String {
         // header
-        var csvString = "Datum, Beschreibung, Ort, Mund-Nasen-Bedeckung getragen, Abstand gehalten, Dauer (Stunden), Personenzahl, Kontaktdetails\n"
+        var csvString = "Datum, Beschreibung, Ort, Mund-Nasen-Bedeckung getragen, Abstand gehalten, Dauer (Stunden), Personenzahl, Empfundenes Ansteckungsrisiko, Kontaktdetails\n"
         for item in items {
             csvString.append("\"\(dateFormatter.string(from: item.timestamp))\"")
             csvString.append(",\(item.content.escapedForCSV)")
@@ -45,6 +45,7 @@ struct Exporter {
             csvString.append(",\(item.couldKeepDistance ? "Ja" : "Nein")")
             csvString.append(",\"\(numberFormatter.string(from: NSNumber(value: item.durationHours))!)\"")
             csvString.append(",\(item.personCount)")
+            csvString.append(",\(item.riskLevel.localizedDescription)")
             csvString.append(",\(item.contactDetails.escapedForCSV)")
             csvString.append("\n")
         }
