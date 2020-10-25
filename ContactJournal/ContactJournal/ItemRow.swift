@@ -79,7 +79,7 @@ struct ItemRow_Previews: PreviewProvider {
                 ItemRow(item: item)
                 ItemRow(item: item)
                 ItemRow(item: newItem)
-            }.navigationBarTitle("Kontakt Tagebuch")
+            }.navigationBarTitle("Kontakt-Tagebuch")
         }
     }
 }

@@ -56,7 +56,7 @@ struct ContentView: View {
                         }
                     }
                 })
-            .navigationBarTitle("Kontakt Tagebuch")
+            .navigationBarTitle("Kontakt-Tagebuch")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
