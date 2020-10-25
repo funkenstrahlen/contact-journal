@@ -26,12 +26,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                if items.count == 0 {
-                    Button(action: addItem) {
-                        Label("Neuer Eintrag", systemImage: "plus.circle.fill").foregroundColor(.blue)
-                    }
-                }
-
                 ForEach(items) { item in
                     ItemRow(item: item)
                 }
@@ -72,26 +66,12 @@ struct ContentView: View {
                     }
                 }
                 
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: addItem) {
-                        Label("Neuer Eintrag", systemImage: "plus.circle.fill")
-                    }
-                }
-                
                 ToolbarItem(placement: .navigationBarLeading) {
                     if items.count > 0 {
                         EditButton()
                     }
                 }
             }
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-            PersistenceController.saveContext()
         }
     }
     

@@ -10,6 +10,7 @@
 		F80BBDF0253732D4003DBE59 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDEF253732D4003DBE59 /* EditView.swift */; };
 		F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDF4253732F0003DBE59 /* ItemRow.swift */; };
 		F8163F90253B21210047870F /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8163F8F253B21210047870F /* ContactPicker.swift */; };
+		F81FB2E12545AEB9005C50E7 /* CreateItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81FB2E02545AEB9005C50E7 /* CreateItemButton.swift */; };
 		F8543F682539CAE000583650 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8543F672539CAE000583650 /* Settings.swift */; };
 		F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */; };
 		F897012F2536FAFE00EEDA18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897012E2536FAFE00EEDA18 /* ContentView.swift */; };
@@ -49,6 +50,7 @@
 		F80BBDEF253732D4003DBE59 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		F80BBDF4253732F0003DBE59 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		F8163F8F253B21210047870F /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
+		F81FB2E02545AEB9005C50E7 /* CreateItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItemButton.swift; sourceTree = "<group>"; };
 		F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 3.xcdatamodel"; sourceTree = "<group>"; };
 		F8543F672539CAE000583650 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F89701292536FAFE00EEDA18 /* ContactJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 			children = (
 				F8970170253716D500EEDA18 /* ContactJournal.entitlements */,
 				F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */,
+				F81FB2E02545AEB9005C50E7 /* CreateItemButton.swift */,
 				F897012E2536FAFE00EEDA18 /* ContentView.swift */,
 				F8543F672539CAE000583650 /* Settings.swift */,
 				F80BBDF4253732F0003DBE59 /* ItemRow.swift */,
@@ -319,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F81FB2E12545AEB9005C50E7 /* CreateItemButton.swift in Sources */,
 				F8DF7170254053E500D3C1EA /* Exporter.swift in Sources */,
 				F8163F90253B21210047870F /* ContactPicker.swift in Sources */,
 				F8D492B52541E3B900397339 /* NotficationManager.swift in Sources */,

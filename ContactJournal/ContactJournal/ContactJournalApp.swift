@@ -16,8 +16,10 @@ struct ContactJournalApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            ZStack {
+                ContentView()
+                CreateItemButton()
+            }.environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
         .onChange(of: scenePhase) { phase in
             switch phase {
