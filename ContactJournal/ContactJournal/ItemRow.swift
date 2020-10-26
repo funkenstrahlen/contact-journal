@@ -22,7 +22,7 @@ struct ItemRow: View {
         if Calendar.current.isDateInToday(item.timestamp) { return "heute" }
         if Calendar.current.isDateInYesterday(item.timestamp) { return "gestern" }
         let diffInDays = Calendar.current.dateComponents([.day], from: startOfDay, to: Calendar.current.startOfDay(for: item.timestamp)).day!
-        if diffInDays < 0 {
+        if item.timestamp > Date() {
             return "in \(abs(diffInDays)) Tagen"
         } else {
             return "vor \(abs(diffInDays)) Tagen"
