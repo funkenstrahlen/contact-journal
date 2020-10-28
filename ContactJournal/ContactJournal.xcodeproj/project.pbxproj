@@ -12,6 +12,7 @@
 		F8163F90253B21210047870F /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8163F8F253B21210047870F /* ContactPicker.swift */; };
 		F81FB2D625458C1D005C50E7 /* RiskLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81FB2D525458C1D005C50E7 /* RiskLevel.swift */; };
 		F8543F682539CAE000583650 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8543F672539CAE000583650 /* Settings.swift */; };
+		F8659C6D2545F59A00469D75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8659C6C2545F59A00469D75 /* AppDelegate.swift */; };
 		F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */; };
 		F897012F2536FAFE00EEDA18 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897012E2536FAFE00EEDA18 /* ContentView.swift */; };
 		F89701312536FB0000EEDA18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F89701302536FB0000EEDA18 /* Assets.xcassets */; };
@@ -25,6 +26,8 @@
 		F8BBDDA7253F039200844894 /* MultilineTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */; };
 		F8D492B02541E3AC00397339 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D492AF2541E3AC00397339 /* UserSettings.swift */; };
 		F8D492B52541E3B900397339 /* NotficationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D492B42541E3B900397339 /* NotficationManager.swift */; };
+		F8DF29472545DA3500D86094 /* SKProductProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF29462545DA3500D86094 /* SKProductProvider.swift */; };
+		F8DF294C2545DB5F00D86094 /* DonationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF294B2545DB5F00D86094 /* DonationView.swift */; };
 		F8DF7170254053E500D3C1EA /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF716F254053E500D3C1EA /* Exporter.swift */; };
 		F8DF71752540581600D3C1EA /* ShareExportAktivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF71742540581600D3C1EA /* ShareExportAktivityController.swift */; };
 /* End PBXBuildFile section */
@@ -54,6 +57,7 @@
 		F81FB2EB2545B6FA005C50E7 /* ContactJournal 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 4.xcdatamodel"; sourceTree = "<group>"; };
 		F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 3.xcdatamodel"; sourceTree = "<group>"; };
 		F8543F672539CAE000583650 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		F8659C6C2545F59A00469D75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89701292536FAFE00EEDA18 /* ContactJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactJournalApp.swift; sourceTree = "<group>"; };
 		F897012E2536FAFE00EEDA18 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 		F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 2.xcdatamodel"; sourceTree = "<group>"; };
 		F8D492AF2541E3AC00397339 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F8D492B42541E3B900397339 /* NotficationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotficationManager.swift; sourceTree = "<group>"; };
+		F8DF29462545DA3500D86094 /* SKProductProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKProductProvider.swift; sourceTree = "<group>"; };
+		F8DF294B2545DB5F00D86094 /* DonationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationView.swift; sourceTree = "<group>"; };
 		F8DF716F254053E500D3C1EA /* Exporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
 		F8DF71742540581600D3C1EA /* ShareExportAktivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExportAktivityController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				F8970170253716D500EEDA18 /* ContactJournal.entitlements */,
+				F8659C6C2545F59A00469D75 /* AppDelegate.swift */,
 				F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */,
 				F897012E2536FAFE00EEDA18 /* ContentView.swift */,
 				F81FB2D525458C1D005C50E7 /* RiskLevel.swift */,
@@ -152,6 +159,8 @@
 				F8D492AF2541E3AC00397339 /* UserSettings.swift */,
 				F8D492B42541E3B900397339 /* NotficationManager.swift */,
 				F8DF716F254053E500D3C1EA /* Exporter.swift */,
+				F8DF29462545DA3500D86094 /* SKProductProvider.swift */,
+				F8DF294B2545DB5F00D86094 /* DonationView.swift */,
 				F89701302536FB0000EEDA18 /* Assets.xcassets */,
 				F80BBDF9253735B7003DBE59 /* Model */,
 				F897013A2536FB0000EEDA18 /* Info.plist */,
@@ -327,6 +336,7 @@
 				F8163F90253B21210047870F /* ContactPicker.swift in Sources */,
 				F8D492B52541E3B900397339 /* NotficationManager.swift in Sources */,
 				F8970169253709FB00EEDA18 /* Item+CoreData.swift in Sources */,
+				F8DF294C2545DB5F00D86094 /* DonationView.swift in Sources */,
 				F89701362536FB0000EEDA18 /* Persistence.swift in Sources */,
 				F8D492B02541E3AC00397339 /* UserSettings.swift in Sources */,
 				F8543F682539CAE000583650 /* Settings.swift in Sources */,
@@ -335,8 +345,10 @@
 				F8BBDDA7253F039200844894 /* MultilineTextEditor.swift in Sources */,
 				F81FB2D625458C1D005C50E7 /* RiskLevel.swift in Sources */,
 				F8DF71752540581600D3C1EA /* ShareExportAktivityController.swift in Sources */,
+				F8DF29472545DA3500D86094 /* SKProductProvider.swift in Sources */,
 				F897012F2536FAFE00EEDA18 /* ContentView.swift in Sources */,
 				F89701392536FB0000EEDA18 /* ContactJournal.xcdatamodeld in Sources */,
+				F8659C6D2545F59A00469D75 /* AppDelegate.swift in Sources */,
 				F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,7 +508,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ContactJournal/ContactJournal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 29;
 				DEVELOPMENT_ASSET_PATHS = "\"ContactJournal/Preview Content\"";
 				DEVELOPMENT_TEAM = Y85FVF2A97;
 				ENABLE_PREVIEWS = YES;
@@ -506,7 +518,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.ContactJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -521,7 +533,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ContactJournal/ContactJournal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 29;
 				DEVELOPMENT_ASSET_PATHS = "\"ContactJournal/Preview Content\"";
 				DEVELOPMENT_TEAM = Y85FVF2A97;
 				ENABLE_PREVIEWS = YES;
@@ -531,7 +543,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.ContactJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

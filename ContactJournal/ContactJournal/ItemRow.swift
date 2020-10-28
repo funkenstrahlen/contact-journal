@@ -10,6 +10,7 @@ import CoreData
 
 struct ItemRow: View {
     var item: Item
+    @Environment(\.managedObjectContext) private var viewContext
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -22,7 +23,7 @@ struct ItemRow: View {
         if Calendar.current.isDateInToday(item.timestamp) { return "heute" }
         if Calendar.current.isDateInYesterday(item.timestamp) { return "gestern" }
         let diffInDays = Calendar.current.dateComponents([.day], from: startOfDay, to: Calendar.current.startOfDay(for: item.timestamp)).day!
-        if diffInDays < 0 {
+        if item.timestamp > Date() {
             return "in \(abs(diffInDays)) Tagen"
         } else {
             return "vor \(abs(diffInDays)) Tagen"
@@ -48,7 +49,40 @@ struct ItemRow: View {
                     Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")").foregroundColor(.secondary)
                 }
             }
+            .contextMenu {
+                Button(action: duplicateItem) {
+                    Label("Duplizieren", systemImage: "plus.square.on.square")
+                }
+                Divider()
+                Button(action: deleteItem) {
+                    Label("Löschen", systemImage: "trash")
+                }
+            }
             .padding([.vertical], 8)
+        }
+    }
+    
+    private func duplicateItem() {
+        withAnimation {
+            let newItem = Item(context: viewContext)
+            newItem.timestamp = Date()
+            
+            newItem.contactDetails = item.contactDetails
+            newItem.couldKeepDistance = item.couldKeepDistance
+            newItem.content = item.content
+            newItem.durationHours = item.durationHours
+            newItem.didWearMask = item.didWearMask
+            newItem.isOutside = item.isOutside
+            newItem.personCount = item.personCount
+            
+            PersistenceController.saveContext()
+        }
+    }
+    
+    private func deleteItem() {
+        withAnimation {
+            viewContext.delete(item)
+            PersistenceController.saveContext()
         }
     }
 }

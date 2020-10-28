@@ -27,8 +27,10 @@ struct Exporter {
     
     private static func fetchAllItems() -> [Item] {
         let context = PersistenceController.shared.container.viewContext
+        let request = Item.fetchRequest
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)]
         do {
-            return try context.fetch(Item.fetchRequest)
+            return try context.fetch(request)
         } catch (let error as NSError) {
             fatalError("Unresolved error \(error), \(error.userInfo)")
         }

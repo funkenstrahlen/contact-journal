@@ -13,6 +13,7 @@ struct ContentView: View {
     
     @State private var showsSettings = false
     @State private var showsShareSheet = false
+    @State private var showsDonation = false
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)],
@@ -50,6 +51,9 @@ struct ContentView: View {
                     NavigationLink(destination: Settings(), isActive: $showsSettings) {
                         EmptyView()
                     }
+                    NavigationLink(destination: DonationView(), isActive: $showsDonation) {
+                        EmptyView()
+                    }
                     EmptyView().sheet(isPresented: $showsShareSheet) {
                         ShareExportActivityViewController(activityItems: [Exporter.exportFileURL]) { (_, _, _, _) in
                             showsShareSheet = false
@@ -58,6 +62,14 @@ struct ContentView: View {
                 })
             .navigationBarTitle("Kontakt-Tagebuch")
             .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        showsDonation = true
+                    }, label: {
+                        Label("Danke", systemImage: "heart")
+                    })
+                }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showsSettings = true

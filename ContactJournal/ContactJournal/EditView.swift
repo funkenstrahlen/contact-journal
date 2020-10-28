@@ -87,8 +87,6 @@ struct EditView: View {
             .sheet(isPresented: $showsContactPicker, content: {
                 ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
             })
-        } else {
-            Text("Dieser Eintrag wurde gelöscht und existiert nicht mehr.").padding().foregroundColor(.secondary)
         }
     }
     
