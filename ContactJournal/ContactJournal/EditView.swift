@@ -60,6 +60,11 @@ struct EditView: View {
                     Button(action: { showsContactPicker = true }, label: {
                         Label("Aus Adressbuch importieren", systemImage: "person.crop.circle.badge.plus")
                     })
+                    NavigationLink(
+                        destination: LocationPoiPicker(),
+                        label: {
+                            Label("Adresse aus Karte suchen", systemImage: "map")
+                        }).foregroundColor(.blue)
                 }
             }
             .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)

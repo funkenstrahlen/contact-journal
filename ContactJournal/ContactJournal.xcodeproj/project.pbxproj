@@ -10,6 +10,7 @@
 		F80BBDF0253732D4003DBE59 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDEF253732D4003DBE59 /* EditView.swift */; };
 		F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDF4253732F0003DBE59 /* ItemRow.swift */; };
 		F8163F90253B21210047870F /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8163F8F253B21210047870F /* ContactPicker.swift */; };
+		F84178F32549A707005456C3 /* LocationPoiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84178F22549A707005456C3 /* LocationPoiPicker.swift */; };
 		F8543F682539CAE000583650 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8543F672539CAE000583650 /* Settings.swift */; };
 		F8659C6D2545F59A00469D75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8659C6C2545F59A00469D75 /* AppDelegate.swift */; };
 		F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */; };
@@ -53,6 +54,7 @@
 		F80BBDF4253732F0003DBE59 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		F8163F8F253B21210047870F /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
 		F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 3.xcdatamodel"; sourceTree = "<group>"; };
+		F84178F22549A707005456C3 /* LocationPoiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPoiPicker.swift; sourceTree = "<group>"; };
 		F8543F672539CAE000583650 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F8659C6C2545F59A00469D75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89701292536FAFE00EEDA18 /* ContactJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 				F8DF71742540581600D3C1EA /* ShareExportAktivityController.swift */,
 				F8D492AF2541E3AC00397339 /* UserSettings.swift */,
 				F8D492B42541E3B900397339 /* NotficationManager.swift */,
+				F84178F22549A707005456C3 /* LocationPoiPicker.swift */,
 				F8DF716F254053E500D3C1EA /* Exporter.swift */,
 				F8DF29462545DA3500D86094 /* SKProductProvider.swift */,
 				F8DF294B2545DB5F00D86094 /* DonationView.swift */,
@@ -345,6 +348,7 @@
 				F89701392536FB0000EEDA18 /* ContactJournal.xcdatamodeld in Sources */,
 				F8659C6D2545F59A00469D75 /* AppDelegate.swift in Sources */,
 				F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */,
+				F84178F32549A707005456C3 /* LocationPoiPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
