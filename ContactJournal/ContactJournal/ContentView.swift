@@ -34,7 +34,9 @@ struct ContentView: View {
                 }
 
                 ForEach(items) { item in
-                    ItemRow(item: item)
+                    NavigationLink(destination: EditView(item: item)) {
+                        ItemRow(item: item)
+                    }
                 }
                 .onDelete(perform: deleteSelectedItems)
                 

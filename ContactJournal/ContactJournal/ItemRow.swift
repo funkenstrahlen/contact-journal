@@ -32,36 +32,34 @@ struct ItemRow: View {
     }
     
     var body: some View {
-        NavigationLink(destination: EditView(item: item)) {
-            VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .top) {
-                    Text("\(item.timestamp, formatter: dateFormatter)").font(.headline)
-                    Spacer()
-                    Text(realtimeRelativeTime).foregroundColor(.secondary)
-                }.font(.subheadline)
-                if(item.content == "") {
-                    Text("Neuer Eintrag").foregroundColor(.secondary).italic()
-                } else {
-                    Text(item.content).lineLimit(2)
-                }
-                HStack {
-                    Text("\(item.didWearMask ? "😷" : "🙂")")
-                    Text("\(item.isOutside ? "🌤" : "🏠")")
-                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
-                    Text("\(item.durationHours, specifier: "%g") h")
-                }.font(.subheadline)
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .top) {
+                Text("\(item.timestamp, formatter: dateFormatter)").font(.headline)
+                Spacer()
+                Text(realtimeRelativeTime).foregroundColor(.secondary)
+            }.font(.subheadline)
+            if(item.content == "") {
+                Text("Neuer Eintrag").foregroundColor(.secondary).italic()
+            } else {
+                Text(item.content).lineLimit(2)
             }
-            .contextMenu {
-                Button(action: duplicateItem) {
-                    Label("Duplizieren", systemImage: "plus.square.on.square")
-                }
-                Divider()
-                Button(action: deleteItem) {
-                    Label("Löschen", systemImage: "trash")
-                }
-            }
-            .padding([.vertical], 8)
+            HStack {
+                Text("\(item.didWearMask ? "😷" : "🙂")")
+                Text("\(item.isOutside ? "🌤" : "🏠")")
+                Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
+                Text("\(item.durationHours, specifier: "%g") h")
+            }.font(.subheadline)
         }
+        .contextMenu {
+            Button(action: duplicateItem) {
+                Label("Duplizieren", systemImage: "plus.square.on.square")
+            }
+            Divider()
+            Button(action: deleteItem) {
+                Label("Löschen", systemImage: "trash")
+            }
+        }
+        .padding([.vertical], 8)
     }
     
     private func duplicateItem() {
