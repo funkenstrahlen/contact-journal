@@ -36,10 +36,14 @@ struct EditView: View {
                 }
                 
                 Section {
-                    DatePicker("", selection: $item.timestamp).datePickerStyle(WheelDatePickerStyle())
-                    Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
-                        Text("Dauer: \(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
+                    DatePicker("", selection: $item.timestamp, displayedComponents: item.isAllDay ? .date : [.date, .hourAndMinute])
+                        .datePickerStyle(WheelDatePickerStyle())
+                    if !item.isAllDay {
+                        Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
+                            Text("Dauer: \(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
+                        }
                     }
+                    Toggle("Ganzer Tag", isOn: $item.isAllDay.animation())
                 }
 
                 Section {
