@@ -12,9 +12,15 @@ struct ItemRow: View {
     var item: Item
     @Environment(\.managedObjectContext) private var viewContext
     
-    private let dateFormatter: DateFormatter = {
+    private let dateAndTimeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE d. MMM HH:mm"
+        return formatter
+    }()
+    
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE d. MMM"
         return formatter
     }()
     
@@ -34,7 +40,7 @@ struct ItemRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(alignment: .top) {
-                Text("\(item.timestamp, formatter: dateFormatter)").font(.headline)
+                Text("\(item.timestamp, formatter: item.isAllDay ? dateFormatter : dateAndTimeFormatter)").font(.headline)
                 Spacer()
                 Text(realtimeRelativeTime).foregroundColor(.secondary)
             }.font(.subheadline)
