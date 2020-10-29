@@ -20,7 +20,7 @@ struct Settings: View {
             Section(footer: Text("Erhalte einmal täglich eine Push Benachrichtigung, die dich daran erinnert dein Kontakt-Tagebuch zu pflegen.")) {
                 Toggle("Erinnerung als Push Benachrichtigung", isOn: $userSettings.shouldSendPushNotification)
                 if userSettings.shouldSendPushNotification {
-                    DatePicker("", selection: $userSettings.notificationTime, displayedComponents: .hourAndMinute)
+                    DatePicker("Uhrzeit", selection: $userSettings.notificationTime, displayedComponents: .hourAndMinute)
                         .datePickerStyle(WheelDatePickerStyle())
                         .labelsHidden()
                         .frame(maxHeight: 100)
