@@ -25,6 +25,7 @@ struct EditView: View {
     }
     
     @State private var showsContactPicker = false
+    @State private var riskLevel = RiskLevel.low
     
     var body: some View {
         // check if item is valid because it might be deleted and this causes a crash here
@@ -41,20 +42,37 @@ struct EditView: View {
                     }
                 }
 
-                Toggle("Mund-Nasen-Bedeckung getragen", isOn: $item.didWearMask)
-                Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
-                HStack {
-                    Text("Ort")
-                    Spacer()
-                    Picker("Ort", selection: $item.isOutside) {
-                        Text("🏠 Drinnen").tag(false)
-                        Text("🌤 Draußen").tag(true)
-                    }.pickerStyle(SegmentedPickerStyle())
+                Section {
+                    Toggle("Mund-Nasen-Bedeckung getragen", isOn: $item.didWearMask)
+                    Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
+                    HStack {
+                        Text("Ort")
+                        Spacer()
+                        Picker("Ort", selection: $item.isOutside) {
+                            Text("🏠 Drinnen").tag(false)
+                            Text("🌤 Draußen").tag(true)
+                        }.pickerStyle(SegmentedPickerStyle())
+                    }
+                    Stepper(value: $item.personCount, in: 1...200) {
+                        Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
+                    }
+                    HStack {
+                        Text("Empfundenes Ansteckungsrisiko")
+                        Spacer()
+                        Picker("", selection: $item.riskLevel) {
+                            ForEach(RiskLevel.allCases, id: \.self) { riskLevel in
+                                HStack {
+                                    riskLevel.icon
+                                    Text(riskLevel.localizedDescription)
+                                }
+                                .foregroundColor(riskLevel.color)
+                                .tag(riskLevel)
+                            }
+                        }
+                    }
                 }
 
-                Stepper(value: $item.personCount, in: 1...200) {
-                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
-                }
+                
                 Section(header: Text("Kontaktdaten")) {
                     MultilineTextField(placeholder: "z.B. Telefonnummer, Adresse, E-Mail", text: $item.contactDetails)
                     Button(action: { showsContactPicker = true }, label: {
