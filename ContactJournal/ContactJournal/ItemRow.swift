@@ -78,6 +78,8 @@ struct ItemRow: View {
             newItem.didWearMask = item.didWearMask
             newItem.isOutside = item.isOutside
             newItem.personCount = item.personCount
+            newItem.isAllDay = item.isAllDay
+            newItem.riskLevel = item.riskLevel
             
             PersistenceController.saveContext()
         }
