@@ -36,7 +36,7 @@ extension Item : Identifiable {
 
 extension Item {
     public var isDeprecated: Bool {
-        let twoWeeksAgo = Calendar.current.date(byAdding: .day, value: -14, to: Date())!
-        return timestamp < twoWeeksAgo
+        let tresholdDate = Calendar.current.date(byAdding: .day, value: -21, to: Date())!
+        return timestamp < tresholdDate
     }
 }

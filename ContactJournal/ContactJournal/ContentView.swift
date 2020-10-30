@@ -51,7 +51,7 @@ struct ContentView: View {
                 if hasDeprecatedItems {
                     Spacer()
                     Button(action: deleteDeprecatedItems) {
-                        Label("Alle Einträge älter als 14 Tage löschen", systemImage: "trash").foregroundColor(.red)
+                        Label("Alle Einträge älter als 3 Wochen löschen", systemImage: "trash").foregroundColor(.red)
                     }
                     Text("")
                 }
