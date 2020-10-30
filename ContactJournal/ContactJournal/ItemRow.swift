@@ -9,20 +9,20 @@ import SwiftUI
 import CoreData
 
 struct ItemRow: View {
-    var item: Item
+    @ObservedObject var item: Item
     @Environment(\.managedObjectContext) private var viewContext
     
-    private let dateAndTimeFormatter: DateFormatter = {
+    private var dateAndTimeFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE d. MMM HH:mm"
         return formatter
-    }()
+    }
     
-    private let dateFormatter: DateFormatter = {
+    private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE d. MMM"
         return formatter
-    }()
+    }
     
     private var realtimeRelativeTime: String {
         let startOfDay = Calendar.current.startOfDay(for: Date())
@@ -34,36 +34,44 @@ struct ItemRow: View {
         } else {
             return "vor \(abs(diffInDays)) Tagen"
         }
-        
+    }
+    
+    private var dateString: String {
+        if item.isAllDay {
+            return dateFormatter.string(from: item.timestamp)
+        }
+        return dateAndTimeFormatter.string(from: item.timestamp)
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(alignment: .top) {
-                Text("\(item.timestamp, formatter: item.isAllDay ? dateFormatter : dateAndTimeFormatter)").font(.headline)
-                Spacer()
-                Text(realtimeRelativeTime).foregroundColor(.secondary)
-            }.font(.subheadline)
-            if(item.content == "") {
-                Text("Neuer Eintrag").foregroundColor(.secondary).italic()
-            } else {
-                Text(item.content).lineLimit(2)
+        if !item.isFault {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(alignment: .top) {
+                    Text(dateString).font(.headline)
+                    Spacer()
+                    Text(realtimeRelativeTime).foregroundColor(.secondary)
+                }.font(.subheadline)
+                if(item.content == "") {
+                    Text("Neuer Eintrag").foregroundColor(.secondary).italic()
+                } else {
+                    Text(item.content).lineLimit(2)
+                }
+                HStack {
+                    item.riskLevel.icon.foregroundColor(item.riskLevel.color)
+                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
+                }.font(.subheadline)
             }
-            HStack {
-                item.riskLevel.icon.foregroundColor(item.riskLevel.color)
-                Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
-            }.font(.subheadline)
+            .contextMenu {
+                Button(action: duplicateItem) {
+                    Label("Duplizieren", systemImage: "plus.square.on.square")
+                }
+                Divider()
+                Button(action: deleteItem) {
+                    Label("Löschen", systemImage: "trash")
+                }
+            }
+            .padding([.vertical], 8)
         }
-        .contextMenu {
-            Button(action: duplicateItem) {
-                Label("Duplizieren", systemImage: "plus.square.on.square")
-            }
-            Divider()
-            Button(action: deleteItem) {
-                Label("Löschen", systemImage: "trash")
-            }
-        }
-        .padding([.vertical], 8)
     }
     
     private func duplicateItem() {
