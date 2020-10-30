@@ -43,6 +43,9 @@ struct EditView: View {
                         Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
                             Text("Dauer: \(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
                         }
+                        .accessibility(label: Text("Dauer"))
+                        .accessibility(value: Text("\(item.durationHours, specifier: "%g")"))
+                        .accessibility(hint: Text("in Stunden"))
                     }
                     Toggle("Ganzer Tag", isOn: $item.isAllDay.animation())
                 }
@@ -61,6 +64,8 @@ struct EditView: View {
                     Stepper(value: $item.personCount, in: 1...200) {
                         Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
                     }
+                    .accessibility(label: Text("Personenzahl"))
+                    .accessibility(value: Text("\(item.personCount)"))
                     HStack {
                         Text("Empfundenes Ansteckungsrisiko")
                         Spacer()
@@ -69,7 +74,7 @@ struct EditView: View {
                                 HStack {
                                     riskLevel.icon
                                     Text(riskLevel.localizedDescription)
-                                }
+                                }.accessibility(label: Text(riskLevel.localizedDescription))
                                 .foregroundColor(riskLevel.color)
                                 .tag(riskLevel)
                             }
