@@ -81,7 +81,7 @@ struct ContentView: View {
                     Button(action: {
                         showsDonation = true
                     }, label: {
-                        Label("Danke", systemImage: "heart")
+                        Label("Danke sagen", systemImage: "heart")
                     })
                 }
                 
