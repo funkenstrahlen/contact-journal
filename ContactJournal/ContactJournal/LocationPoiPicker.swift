@@ -51,15 +51,11 @@ struct SearchBar: UIViewRepresentable {
         }
         
         func updateSearchResults() {
-            print(searchText)
-            
-    //        var pointOfInterestFilter: MKPointOfInterestFilter?
-    //        A filter that lists point of interest categories to include or exclude in search results.
-    //        var resultTypes: MKLocalSearch.ResultType
-    //        The types of items to include in the search results.
             search?.cancel()
             let request = MKLocalSearch.Request()
             request.naturalLanguageQuery = searchText
+            request.resultTypes = [.address, .pointOfInterest]
+            request.pointOfInterestFilter = MKPointOfInterestFilter(excluding: [.atm, .fireStation, .parking])
             search = MKLocalSearch(request: request)
             
             search?.start { response, _ in
