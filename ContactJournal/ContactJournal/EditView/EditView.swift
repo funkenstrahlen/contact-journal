@@ -97,9 +97,9 @@ struct EditView: View {
                         label: {
                             Label("Adresse suchen", systemImage: "map")
                         }).foregroundColor(.blue)
-                    Button(action: {}, label: {
-                        Label("Aktuellen Standort eintragen", systemImage: "location")
-                    })
+//                    Button(action: {}, label: {
+//                        Label("Aktuellen Standort eintragen", systemImage: "location")
+//                    })
                 }
             }
             .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
