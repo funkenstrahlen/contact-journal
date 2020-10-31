@@ -10,8 +10,8 @@ import StoreKit
 
 @main
 struct ContactJournalApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     let persistenceController = PersistenceController.shared
-    
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {

@@ -25,6 +25,7 @@ struct EditView: View {
     }
     
     @State private var showsContactPicker = false
+    @State private var riskLevel = RiskLevel.low
     
     var body: some View {
         // check if item is valid because it might be deleted and this causes a crash here
@@ -35,26 +36,53 @@ struct EditView: View {
                 }
                 
                 Section {
-                    DatePicker("", selection: $item.timestamp).datePickerStyle(WheelDatePickerStyle())
-                    Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
-                        Text("Dauer: \(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
+                    DatePicker("Zeitpunkt", selection: $item.timestamp, displayedComponents: item.isAllDay ? .date : [.date, .hourAndMinute])
+                        .datePickerStyle(WheelDatePickerStyle())
+                        .labelsHidden()
+                    if !item.isAllDay {
+                        Stepper(value: $item.durationHours, in: 0.25...24, step: 0.25) {
+                            Text("Dauer: \(item.durationHours, specifier: "%g") \(item.durationHours != 1 ? "Stunden" : "Stunde")")
+                        }
+                        .accessibility(label: Text("Dauer"))
+                        .accessibility(value: Text("\(item.durationHours, specifier: "%g")"))
+                        .accessibility(hint: Text("in Stunden"))
+                    }
+                    Toggle("Ganzer Tag", isOn: $item.isAllDay.animation())
+                }
+
+                Section {
+                    Toggle("Mund-Nasen-Bedeckung getragen", isOn: $item.didWearMask)
+                    Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
+                    HStack {
+                        Text("Ort")
+                        Spacer()
+                        Picker("Ort", selection: $item.isOutside) {
+                            Text("🏠 Drinnen").tag(false)
+                            Text("🌤 Draußen").tag(true)
+                        }.pickerStyle(SegmentedPickerStyle())
+                    }
+                    Stepper(value: $item.personCount, in: 1...200) {
+                        Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
+                    }
+                    .accessibility(label: Text("Personenzahl"))
+                    .accessibility(value: Text("\(item.personCount)"))
+                    HStack {
+                        Text("Empfundenes Ansteckungsrisiko")
+                        Spacer()
+                        Picker("", selection: $item.riskLevel) {
+                            ForEach(RiskLevel.allCases, id: \.self) { riskLevel in
+                                HStack {
+                                    riskLevel.icon
+                                    Text(riskLevel.localizedDescription)
+                                }.accessibility(label: Text(riskLevel.localizedDescription))
+                                .foregroundColor(riskLevel.color)
+                                .tag(riskLevel)
+                            }
+                        }
                     }
                 }
 
-                Toggle("Mund-Nasen-Bedeckung getragen", isOn: $item.didWearMask)
-                Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
-                HStack {
-                    Text("Ort")
-                    Spacer()
-                    Picker("Ort", selection: $item.isOutside) {
-                        Text("🏠 Drinnen").tag(false)
-                        Text("🌤 Draußen").tag(true)
-                    }.pickerStyle(SegmentedPickerStyle())
-                }
-
-                Stepper(value: $item.personCount, in: 1...200) {
-                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
-                }
+                
                 Section(header: Text("Kontaktdaten")) {
                     MultilineTextField(placeholder: "z.B. Telefonnummer, Adresse, E-Mail", text: $item.contactDetails)
                     Button(action: { showsContactPicker = true }, label: {
@@ -69,8 +97,6 @@ struct EditView: View {
             .sheet(isPresented: $showsContactPicker, content: {
                 ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
             })
-        } else {
-            Text("Dieser Eintrag wurde gelöscht und existiert nicht mehr.").padding().foregroundColor(.secondary)
         }
     }
     

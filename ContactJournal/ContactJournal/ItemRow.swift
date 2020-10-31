@@ -9,32 +9,45 @@ import SwiftUI
 import CoreData
 
 struct ItemRow: View {
-    var item: Item
+    @ObservedObject var item: Item
+    @Environment(\.managedObjectContext) private var viewContext
     
-    private let dateFormatter: DateFormatter = {
+    private var dateAndTimeFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE d. MMM HH:mm"
         return formatter
-    }()
+    }
+    
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE d. MMM"
+        return formatter
+    }
     
     private var realtimeRelativeTime: String {
         let startOfDay = Calendar.current.startOfDay(for: Date())
         if Calendar.current.isDateInToday(item.timestamp) { return "heute" }
         if Calendar.current.isDateInYesterday(item.timestamp) { return "gestern" }
         let diffInDays = Calendar.current.dateComponents([.day], from: startOfDay, to: Calendar.current.startOfDay(for: item.timestamp)).day!
-        if diffInDays < 0 {
+        if item.timestamp > Date() {
             return "in \(abs(diffInDays)) Tagen"
         } else {
             return "vor \(abs(diffInDays)) Tagen"
         }
-        
+    }
+    
+    private var dateString: String {
+        if item.isAllDay {
+            return dateFormatter.string(from: item.timestamp)
+        }
+        return dateAndTimeFormatter.string(from: item.timestamp)
     }
     
     var body: some View {
-        NavigationLink(destination: EditView(item: item)) {
+        if !item.isFault {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .top) {
-                    Text("\(item.timestamp, formatter: dateFormatter)").font(.headline)
+                    Text(dateString).font(.headline)
                     Spacer()
                     Text(realtimeRelativeTime).foregroundColor(.secondary)
                 }.font(.subheadline)
@@ -44,13 +57,46 @@ struct ItemRow: View {
                     Text(item.content).lineLimit(2)
                 }
                 HStack {
-                    Text("\(item.didWearMask ? "😷" : "🙂")")
-                    Text("\(item.isOutside ? "🌤" : "🏠")")
+                    item.riskLevel.icon.foregroundColor(item.riskLevel.color)
                     Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
-                    Text("\(item.durationHours, specifier: "%g") h")
                 }.font(.subheadline)
             }
+            .contextMenu {
+                Button(action: duplicateItem) {
+                    Label("Duplizieren", systemImage: "plus.square.on.square")
+                }
+                Divider()
+                Button(action: deleteItem) {
+                    Label("Löschen", systemImage: "trash")
+                }
+            }
             .padding([.vertical], 8)
+        }
+    }
+    
+    private func duplicateItem() {
+        withAnimation {
+            let newItem = Item(context: viewContext)
+            newItem.timestamp = Date()
+            
+            newItem.contactDetails = item.contactDetails
+            newItem.couldKeepDistance = item.couldKeepDistance
+            newItem.content = item.content
+            newItem.durationHours = item.durationHours
+            newItem.didWearMask = item.didWearMask
+            newItem.isOutside = item.isOutside
+            newItem.personCount = item.personCount
+            newItem.isAllDay = item.isAllDay
+            newItem.riskLevel = item.riskLevel
+            
+            PersistenceController.saveContext()
+        }
+    }
+    
+    private func deleteItem() {
+        withAnimation {
+            viewContext.delete(item)
+            PersistenceController.saveContext()
         }
     }
 }

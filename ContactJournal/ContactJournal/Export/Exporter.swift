@@ -27,8 +27,10 @@ struct Exporter {
     
     private static func fetchAllItems() -> [Item] {
         let context = PersistenceController.shared.container.viewContext
+        let request = Item.fetchRequest
+        request.sortDescriptors = [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)]
         do {
-            return try context.fetch(Item.fetchRequest)
+            return try context.fetch(request)
         } catch (let error as NSError) {
             fatalError("Unresolved error \(error), \(error.userInfo)")
         }
@@ -36,15 +38,22 @@ struct Exporter {
     
     private static func csvStringFrom(items: [Item]) -> String {
         // header
-        var csvString = "Datum, Beschreibung, Ort, Mund-Nasen-Bedeckung getragen, Abstand gehalten, Dauer (Stunden), Personenzahl, Kontaktdetails\n"
+        var csvString = "Datum, ISO Datum, Beschreibung, Ort, Mund-Nasen-Bedeckung getragen, Abstand gehalten, Dauer (Stunden), Personenzahl, Empfundenes Ansteckungsrisiko, Kontaktdetails\n"
         for item in items {
+            var durationString = numberFormatter.string(from: NSNumber(value: item.durationHours))!
+            if item.isAllDay {
+                durationString = "24"
+            }
+            
             csvString.append("\"\(dateFormatter.string(from: item.timestamp))\"")
+            csvString.append(",\"\(ISO8601DateFormatter().string(from: item.timestamp))\"")
             csvString.append(",\(item.content.escapedForCSV)")
             csvString.append(",\(item.isOutside ? "Draußen" : "Drinnen")")
             csvString.append(",\(item.didWearMask ? "Ja" : "Nein")")
             csvString.append(",\(item.couldKeepDistance ? "Ja" : "Nein")")
-            csvString.append(",\"\(numberFormatter.string(from: NSNumber(value: item.durationHours))!)\"")
+            csvString.append(",\"\(durationString)\"")
             csvString.append(",\(item.personCount)")
+            csvString.append(",\(item.riskLevel.localizedDescription)")
             csvString.append(",\(item.contactDetails.escapedForCSV)")
             csvString.append("\n")
         }
