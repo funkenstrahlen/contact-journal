@@ -9,12 +9,11 @@ import SwiftUI
 import MapKit
 
 struct LocationPoiPicker: View {
-    @State private var searchString = ""
     @State private var matchingItems = [MKMapItem]()
     
     var body: some View {
         List {
-            SearchBar(text: $searchString, matchingItems: $matchingItems, placeholder: "z.B. Starbucks Berlin")
+            SearchBar(matchingItems: $matchingItems, placeholder: "z.B. Starbucks Berlin")
             ForEach(matchingItems, id: \.self) { item in
                 Text(item.description)
             }
@@ -24,7 +23,6 @@ struct LocationPoiPicker: View {
 
 struct SearchBar: UIViewRepresentable {
 
-    @Binding var text: String
     @Binding var matchingItems: [MKMapItem]
     
     let placeholder: String
@@ -32,12 +30,11 @@ struct SearchBar: UIViewRepresentable {
     class Coordinator: NSObject, UISearchBarDelegate {
         
         private var search: MKLocalSearch?
-
-        @Binding var searchText: String
+        private var searchText = ""
+        
         @Binding var matchingItems: [MKMapItem]
 
-        init(text: Binding<String>, matchingItems: Binding<[MKMapItem]>) {
-            _searchText = text
+        init(matchingItems: Binding<[MKMapItem]>) {
             _matchingItems = matchingItems
         }
 
@@ -73,7 +70,7 @@ struct SearchBar: UIViewRepresentable {
         }
     }
     func makeCoordinator() -> SearchBar.Coordinator {
-        return Coordinator(text: $text, matchingItems: $matchingItems)
+        return Coordinator(matchingItems: $matchingItems)
     }
 
     func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
@@ -86,7 +83,6 @@ struct SearchBar: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
-        uiView.text = text
     }
     
 }
