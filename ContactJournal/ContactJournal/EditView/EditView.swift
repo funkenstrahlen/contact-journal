@@ -88,11 +88,18 @@ struct EditView: View {
                     Button(action: { showsContactPicker = true }, label: {
                         Label("Aus Adressbuch importieren", systemImage: "person.crop.circle.badge.plus")
                     })
+                }
+                
+                Section(header: Text("Ort")) {
+                    MultilineTextField(placeholder: "z.B. Adresse", text: $item.contactDetails)
                     NavigationLink(
                         destination: LocationPoiPicker(),
                         label: {
-                            Label("Adresse aus Karte suchen", systemImage: "map")
+                            Label("Adresse suchen", systemImage: "map")
                         }).foregroundColor(.blue)
+                    Button(action: {}, label: {
+                        Label("Aktuellen Standort eintragen", systemImage: "location")
+                    })
                 }
             }
             .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
