@@ -8,6 +8,18 @@
 import SwiftUI
 import MapKit
 
+struct MapItemRow: View {
+    let item: MKMapItem
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text(item.name ?? "")
+            Text(item.placemark.postalAddress?.description ?? "")
+        }
+        
+    }
+}
+
 struct LocationPoiPicker: View {
     @State private var matchingItems = [MKMapItem]()
     
@@ -15,7 +27,7 @@ struct LocationPoiPicker: View {
         List {
             SearchBar(matchingItems: $matchingItems, placeholder: "z.B. Starbucks Berlin")
             ForEach(matchingItems, id: \.self) { item in
-                Text(item.description)
+                MapItemRow(item: item)
             }
         }
     }
