@@ -30,7 +30,11 @@ struct LocationPoiPicker: View {
             .navigationBarTitle(Text("Adresse suchen"), displayMode: .inline)
             .toolbar(content: {
                 ToolbarItem {
-                    Button(action: { showsLocationPicker = false }, label: {
+                    Button(action: {
+                        endEditing()
+                        showsLocationPicker = true // workaround because keyboard breaks state
+                        showsLocationPicker = false
+                    }, label: {
                         Text("Abbrechen")
                     })
                 }
