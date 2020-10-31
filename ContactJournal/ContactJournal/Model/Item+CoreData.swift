@@ -28,6 +28,7 @@ extension Item {
     @NSManaged public var contactDetails: String
     @NSManaged public var riskLevel: RiskLevel
     @NSManaged public var isAllDay: Bool
+    @NSManaged public var location: String
 }
 
 extension Item : Identifiable {

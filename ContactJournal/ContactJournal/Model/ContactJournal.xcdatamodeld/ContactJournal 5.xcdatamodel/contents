@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Item" representedClassName="Item" syncable="YES">
+        <attribute name="contactDetails" attributeType="String" defaultValueString=""/>
+        <attribute name="content" attributeType="String" defaultValueString=""/>
+        <attribute name="couldKeepDistance" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="didWearMask" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="durationHours" attributeType="Double" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="isAllDay" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isOutside" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="location" attributeType="String" defaultValueString=""/>
+        <attribute name="personCount" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="riskLevel" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timestamp" attributeType="Date" defaultDateTimeInterval="624363600" usesScalarValueType="NO"/>
+    </entity>
+    <elements>
+        <element name="Item" positionX="-63" positionY="-18" width="128" height="208"/>
+    </elements>
+</model>

@@ -10,8 +10,8 @@
 		F80BBDF0253732D4003DBE59 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDEF253732D4003DBE59 /* EditView.swift */; };
 		F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDF4253732F0003DBE59 /* ItemRow.swift */; };
 		F8163F90253B21210047870F /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8163F8F253B21210047870F /* ContactPicker.swift */; };
-		F84178F32549A707005456C3 /* LocationPoiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84178F22549A707005456C3 /* LocationPoiPicker.swift */; };
 		F81FB2D625458C1D005C50E7 /* RiskLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81FB2D525458C1D005C50E7 /* RiskLevel.swift */; };
+		F84178F32549A707005456C3 /* LocationPoiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84178F22549A707005456C3 /* LocationPoiPicker.swift */; };
 		F8543F682539CAE000583650 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8543F672539CAE000583650 /* Settings.swift */; };
 		F8659C6D2545F59A00469D75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8659C6C2545F59A00469D75 /* AppDelegate.swift */; };
 		F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */; };
@@ -78,6 +78,7 @@
 		F8970170253716D500EEDA18 /* ContactJournal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContactJournal.entitlements; sourceTree = "<group>"; };
 		F8970175253716DB00EEDA18 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextEditor.swift; sourceTree = "<group>"; };
+		F8C13671254D7DE50043E2D2 /* ContactJournal 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 5.xcdatamodel"; sourceTree = "<group>"; };
 		F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 2.xcdatamodel"; sourceTree = "<group>"; };
 		F8D492AF2541E3AC00397339 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F8D492B42541E3B900397339 /* NotficationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotficationManager.swift; sourceTree = "<group>"; };
@@ -195,7 +196,7 @@
 				F811083C254B26F400086CC6 /* EditView */,
 				F811083B254B26BA00086CC6 /* Export */,
 				F8110837254B26A800086CC6 /* Donation */,
-                F84178F22549A707005456C3 /* LocationPoiPicker.swift */,
+				F84178F22549A707005456C3 /* LocationPoiPicker.swift */,
 				F89701302536FB0000EEDA18 /* Assets.xcassets */,
 				F80BBDF9253735B7003DBE59 /* Model */,
 				F897013A2536FB0000EEDA18 /* Info.plist */,
@@ -716,12 +717,13 @@
 		F89701372536FB0000EEDA18 /* ContactJournal.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F8C13671254D7DE50043E2D2 /* ContactJournal 5.xcdatamodel */,
 				F81FB2EB2545B6FA005C50E7 /* ContactJournal 4.xcdatamodel */,
 				F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */,
 				F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */,
 				F89701382536FB0000EEDA18 /* ContactJournal.xcdatamodel */,
 			);
-			currentVersion = F81FB2EB2545B6FA005C50E7 /* ContactJournal 4.xcdatamodel */;
+			currentVersion = F8C13671254D7DE50043E2D2 /* ContactJournal 5.xcdatamodel */;
 			path = ContactJournal.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -91,7 +91,7 @@ struct EditView: View {
                 }
                 
                 Section(header: Text("Ort")) {
-                    MultilineTextField(placeholder: "z.B. Adresse", text: $item.contactDetails)
+                    MultilineTextField(placeholder: "z.B. Adresse", text: $item.location)
                     NavigationLink(
                         destination: LocationPoiPicker(),
                         label: {

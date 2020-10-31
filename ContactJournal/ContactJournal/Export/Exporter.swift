@@ -38,7 +38,7 @@ struct Exporter {
     
     private static func csvStringFrom(items: [Item]) -> String {
         // header
-        var csvString = "Datum, ISO Datum, Beschreibung, Ort, Mund-Nasen-Bedeckung getragen, Abstand gehalten, Dauer (Stunden), Personenzahl, Empfundenes Ansteckungsrisiko, Kontaktdetails\n"
+        var csvString = "Datum, ISO Datum, Beschreibung, Umgebung, Mund-Nasen-Bedeckung getragen, Abstand gehalten, Dauer (Stunden), Personenzahl, Empfundenes Ansteckungsrisiko, Kontaktdetails, Ort\n"
         for item in items {
             var durationString = numberFormatter.string(from: NSNumber(value: item.durationHours))!
             if item.isAllDay {
@@ -55,6 +55,7 @@ struct Exporter {
             csvString.append(",\(item.personCount)")
             csvString.append(",\(item.riskLevel.localizedDescription)")
             csvString.append(",\(item.contactDetails.escapedForCSV)")
+            csvString.append(",\(item.location.escapedForCSV)")
             csvString.append("\n")
         }
         return csvString
