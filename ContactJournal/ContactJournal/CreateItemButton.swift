@@ -21,6 +21,9 @@ struct CreateItemButton: View {
                     Image(systemName: "plus.circle.fill")
                 }
                 .buttonStyle(CreateItemButtonStyle())
+                .accessibility(label: Text("Neuer Eintrag"))
+                .scaleEffect(viewModel.showsCreateItemButton ? 1.0 : 0)
+                .accessibility(hidden: !viewModel.showsCreateItemButton)
             }
         }
     }

@@ -19,9 +19,7 @@ struct ContactJournalApp: App {
         WindowGroup {
             ZStack {
                 ContentView()
-                if viewModel.showsCreateItemButton {
-                    CreateItemButton()
-                }
+                CreateItemButton()
             }
             .environment(\.managedObjectContext, persistenceController.container.viewContext)
             .environmentObject(viewModel)
