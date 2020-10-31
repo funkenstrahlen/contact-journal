@@ -11,34 +11,12 @@ import MapKit
 struct LocationPoiPicker: View {
     @State private var searchString = ""
     @State private var matchingItems = [MKMapItem]()
-    @State private var search: MKLocalSearch?
     
     var body: some View {
         List {
-            SearchBar(text: $searchString, placeholder: "z.B. Starbucks Berlin")
+            SearchBar(text: $searchString, matchingItems: $matchingItems, placeholder: "z.B. Starbucks Berlin")
             ForEach(matchingItems, id: \.self) { item in
                 Text(item.description)
-            }
-        }.onReceive(searchString.publisher, perform: { searchString in
-            updateSearchResults(searchString: self.searchString)
-        })
-    }
-    
-    func updateSearchResults(searchString: String) {
-        print(searchString)
-        
-//        var pointOfInterestFilter: MKPointOfInterestFilter?
-//        A filter that lists point of interest categories to include or exclude in search results.
-//        var resultTypes: MKLocalSearch.ResultType
-//        The types of items to include in the search results.
-        search?.cancel()
-        let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = searchString
-        search = MKLocalSearch(request: request)
-        
-        search?.start { response, _ in
-            DispatchQueue.main.async {
-                self.matchingItems = response?.mapItems ?? []
             }
         }
     }
@@ -47,26 +25,55 @@ struct LocationPoiPicker: View {
 struct SearchBar: UIViewRepresentable {
 
     @Binding var text: String
+    @Binding var matchingItems: [MKMapItem]
+    
     let placeholder: String
 
     class Coordinator: NSObject, UISearchBarDelegate {
+        
+        private var search: MKLocalSearch?
 
-        @Binding var text: String
+        @Binding var searchText: String
+        @Binding var matchingItems: [MKMapItem]
 
-        init(text: Binding<String>) {
-            _text = text
+        init(text: Binding<String>, matchingItems: Binding<[MKMapItem]>) {
+            _searchText = text
+            _matchingItems = matchingItems
         }
 
         func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            text = searchText
+            self.searchText = searchText
+            if searchText.isEmpty {
+                matchingItems = []
+            }
         }
         
         func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            updateSearchResults()
             searchBar.resignFirstResponder()
+        }
+        
+        func updateSearchResults() {
+            print(searchText)
+            
+    //        var pointOfInterestFilter: MKPointOfInterestFilter?
+    //        A filter that lists point of interest categories to include or exclude in search results.
+    //        var resultTypes: MKLocalSearch.ResultType
+    //        The types of items to include in the search results.
+            search?.cancel()
+            let request = MKLocalSearch.Request()
+            request.naturalLanguageQuery = searchText
+            search = MKLocalSearch(request: request)
+            
+            search?.start { response, _ in
+                DispatchQueue.main.async {
+                    self.matchingItems = response?.mapItems ?? []
+                }
+            }
         }
     }
     func makeCoordinator() -> SearchBar.Coordinator {
-        return Coordinator(text: $text)
+        return Coordinator(text: $text, matchingItems: $matchingItems)
     }
 
     func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
