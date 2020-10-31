@@ -10,8 +10,9 @@
 		F80BBDF0253732D4003DBE59 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDEF253732D4003DBE59 /* EditView.swift */; };
 		F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDF4253732F0003DBE59 /* ItemRow.swift */; };
 		F8163F90253B21210047870F /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8163F8F253B21210047870F /* ContactPicker.swift */; };
-		F81FB2E12545AEB9005C50E7 /* CreateItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81FB2E02545AEB9005C50E7 /* CreateItemButton.swift */; };
 		F81FB2D625458C1D005C50E7 /* RiskLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81FB2D525458C1D005C50E7 /* RiskLevel.swift */; };
+		F81FB2E12545AEB9005C50E7 /* CreateItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81FB2E02545AEB9005C50E7 /* CreateItemButton.swift */; };
+		F82D125B254D678A0016F6FB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82D125A254D678A0016F6FB /* ViewModel.swift */; };
 		F8543F682539CAE000583650 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8543F672539CAE000583650 /* Settings.swift */; };
 		F8659C6D2545F59A00469D75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8659C6C2545F59A00469D75 /* AppDelegate.swift */; };
 		F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */; };
@@ -54,10 +55,11 @@
 		F80BBDEF253732D4003DBE59 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		F80BBDF4253732F0003DBE59 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		F8163F8F253B21210047870F /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
-		F81FB2E02545AEB9005C50E7 /* CreateItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItemButton.swift; sourceTree = "<group>"; };
 		F81FB2D525458C1D005C50E7 /* RiskLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RiskLevel.swift; path = ../RiskLevel.swift; sourceTree = "<group>"; };
+		F81FB2E02545AEB9005C50E7 /* CreateItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateItemButton.swift; sourceTree = "<group>"; };
 		F81FB2EB2545B6FA005C50E7 /* ContactJournal 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 4.xcdatamodel"; sourceTree = "<group>"; };
 		F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 3.xcdatamodel"; sourceTree = "<group>"; };
+		F82D125A254D678A0016F6FB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		F8543F672539CAE000583650 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F8659C6C2545F59A00469D75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F89701292536FAFE00EEDA18 /* ContactJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,6 +191,7 @@
 				F8970170253716D500EEDA18 /* ContactJournal.entitlements */,
 				F8659C6C2545F59A00469D75 /* AppDelegate.swift */,
 				F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */,
+				F82D125A254D678A0016F6FB /* ViewModel.swift */,
 				F81FB2E02545AEB9005C50E7 /* CreateItemButton.swift */,
 				F897012E2536FAFE00EEDA18 /* ContentView.swift */,
 				F80BBDF4253732F0003DBE59 /* ItemRow.swift */,
@@ -377,6 +380,7 @@
 				F8D492B02541E3AC00397339 /* UserSettings.swift in Sources */,
 				F8543F682539CAE000583650 /* Settings.swift in Sources */,
 				F80BBDF0253732D4003DBE59 /* EditView.swift in Sources */,
+				F82D125B254D678A0016F6FB /* ViewModel.swift in Sources */,
 				F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */,
 				F8BBDDA7253F039200844894 /* MultilineTextEditor.swift in Sources */,
 				F81FB2D625458C1D005C50E7 /* RiskLevel.swift in Sources */,
