@@ -92,7 +92,7 @@ struct MapItemRow: View {
     var body: some View {
         HStack(spacing: 8) {
             Image(systemName: iconName).foregroundColor(iconColor).font(.title2)
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading) {
                 Text(item.name ?? "").font(.headline)
                 Text(address).font(.subheadline).foregroundColor(.secondary)
             }
