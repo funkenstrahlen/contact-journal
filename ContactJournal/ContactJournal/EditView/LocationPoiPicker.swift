@@ -10,12 +10,17 @@ import MapKit
 
 struct LocationPoiPicker: View {
     @State private var matchingItems = [MKMapItem]()
+    @Binding var selectedLocationAddress: String
+    @Binding var showsLocationPicker: Bool
     
     var body: some View {
         List {
             LocationSearchBar(matchingItems: $matchingItems, placeholder: "z.B. Starbucks Berlin")
             ForEach(matchingItems, id: \.self) { item in
-                MapItemRow(item: item)
+                MapItemRow(item: item).onTapGesture {
+                    selectedLocationAddress = item.description
+                    showsLocationPicker = false
+                }
             }
         }
     }

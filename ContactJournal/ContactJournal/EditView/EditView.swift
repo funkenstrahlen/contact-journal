@@ -25,6 +25,7 @@ struct EditView: View {
     }
     
     @State private var showsContactPicker = false
+    @State private var showsLocationPicker = false
     @State private var riskLevel = RiskLevel.low
     
     var body: some View {
@@ -93,7 +94,8 @@ struct EditView: View {
                 Section(header: Text("Ort")) {
                     MultilineTextField(placeholder: "z.B. Adresse", text: $item.location)
                     NavigationLink(
-                        destination: LocationPoiPicker(),
+                        destination: LocationPoiPicker(selectedLocationAddress: $item.location, showsLocationPicker: $showsLocationPicker),
+                        isActive: $showsLocationPicker,
                         label: {
                             Label("Adresse suchen", systemImage: "map")
                         }).foregroundColor(.blue)
