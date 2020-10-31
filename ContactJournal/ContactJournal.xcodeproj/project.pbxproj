@@ -150,6 +150,7 @@
 				F80BBDEF253732D4003DBE59 /* EditView.swift */,
 				F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */,
 				F8163F8F253B21210047870F /* ContactPicker.swift */,
+				F84178F22549A707005456C3 /* LocationPoiPicker.swift */,
 			);
 			path = EditView;
 			sourceTree = "<group>";
@@ -196,7 +197,6 @@
 				F811083C254B26F400086CC6 /* EditView */,
 				F811083B254B26BA00086CC6 /* Export */,
 				F8110837254B26A800086CC6 /* Donation */,
-				F84178F22549A707005456C3 /* LocationPoiPicker.swift */,
 				F89701302536FB0000EEDA18 /* Assets.xcassets */,
 				F80BBDF9253735B7003DBE59 /* Model */,
 				F897013A2536FB0000EEDA18 /* Info.plist */,
