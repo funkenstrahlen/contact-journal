@@ -37,13 +37,13 @@ fileprivate extension MKMapItem {
         if let street = placemark.postalAddress?.street, !street.isEmpty {
             string.append("\(street)\n")
         }
-        if let postalCode = placemark.postalAddress?.postalCode {
+        if let postalCode = placemark.postalAddress?.postalCode, !postalCode.isEmpty {
             string.append("\(postalCode) ")
         }
-        if let city = placemark.postalAddress?.city {
+        if let city = placemark.postalAddress?.city, !city.isEmpty {
             string.append("\(city)\n")
         }
-        if let phoneNumber = phoneNumber {
+        if let phoneNumber = phoneNumber, !phoneNumber.isEmpty {
             string.append("\(phoneNumber)\n")
         }
         return string.trimmingCharacters(in: .whitespacesAndNewlines)
