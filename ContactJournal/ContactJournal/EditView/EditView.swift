@@ -89,27 +89,24 @@ struct EditView: View {
                     Button(action: { showsContactPicker = true }, label: {
                         Label("Aus Adressbuch importieren", systemImage: "person.crop.circle.badge.plus")
                     })
+                    .sheet(isPresented: $showsContactPicker, content: {
+                        ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
+                    })
                 }
                 
                 Section(header: Text("Ort")) {
                     MultilineTextField(placeholder: "z.B. Adresse", text: $item.location)
-                    NavigationLink(
-                        destination: LocationPoiPicker(selectedLocationAddress: $item.location, showsLocationPicker: $showsLocationPicker),
-                        isActive: $showsLocationPicker,
-                        label: {
-                            Label("Adresse suchen", systemImage: "map")
-                        }).foregroundColor(.blue)
-//                    Button(action: {}, label: {
-//                        Label("Aktuellen Standort eintragen", systemImage: "location")
-//                    })
+                    Button(action: { showsLocationPicker = true }, label: {
+                        Label("Adresse suchen", systemImage: "map")
+                    })
+                    .sheet(isPresented: $showsLocationPicker, content: {
+                        LocationPoiPicker(selectedLocationAddress: $item.location, showsLocationPicker: $showsLocationPicker)
+                    })
                 }
             }
             .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
             .onDisappear(perform: {
                 try! viewContext.save()
-            })
-            .sheet(isPresented: $showsContactPicker, content: {
-                ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
             })
         }
     }

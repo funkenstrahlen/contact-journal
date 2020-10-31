@@ -14,16 +14,27 @@ struct LocationPoiPicker: View {
     @Binding var showsLocationPicker: Bool
     
     var body: some View {
-        List {
-            LocationSearchBar(matchingItems: $matchingItems, placeholder: "z.B. Starbucks Berlin")
-            ForEach(matchingItems, id: \.self) { item in
-                MapItemRow(item: item)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        selectedLocationAddress = item.fullDescription
-                        showsLocationPicker = false
-                    }
+        NavigationView {
+            List {
+                LocationSearchBar(matchingItems: $matchingItems, placeholder: "z.B. Starbucks Berlin")
+                ForEach(matchingItems, id: \.self) { item in
+                    MapItemRow(item: item)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            selectedLocationAddress = item.fullDescription
+                            showsLocationPicker = false
+                        }
+                }
             }
+            .listStyle(DefaultListStyle())
+            .navigationBarTitle(Text("Adresse suchen"), displayMode: .inline)
+            .toolbar(content: {
+                ToolbarItem {
+                    Button(action: { showsLocationPicker = false }, label: {
+                        Text("Abbrechen")
+                    })
+                }
+            })
         }
     }
 }
