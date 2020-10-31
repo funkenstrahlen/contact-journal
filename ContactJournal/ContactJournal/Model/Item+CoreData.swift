@@ -26,6 +26,8 @@ extension Item {
     @NSManaged public var durationHours: Double
     @NSManaged public var personCount: Int64
     @NSManaged public var contactDetails: String
+    @NSManaged public var riskLevel: RiskLevel
+    @NSManaged public var isAllDay: Bool
 }
 
 extension Item : Identifiable {
@@ -34,7 +36,7 @@ extension Item : Identifiable {
 
 extension Item {
     public var isDeprecated: Bool {
-        let twoWeeksAgo = Calendar.current.date(byAdding: .day, value: -14, to: Date())!
-        return timestamp < twoWeeksAgo
+        let tresholdDate = Calendar.current.date(byAdding: .day, value: -21, to: Date())!
+        return timestamp < tresholdDate
     }
 }

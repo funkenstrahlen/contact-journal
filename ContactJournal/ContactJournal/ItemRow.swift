@@ -9,14 +9,20 @@ import SwiftUI
 import CoreData
 
 struct ItemRow: View {
-    var item: Item
+    @ObservedObject var item: Item
     @Environment(\.managedObjectContext) private var viewContext
     
-    private let dateFormatter: DateFormatter = {
+    private var dateAndTimeFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE d. MMM HH:mm"
         return formatter
-    }()
+    }
+    
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE d. MMM"
+        return formatter
+    }
     
     private var realtimeRelativeTime: String {
         let startOfDay = Calendar.current.startOfDay(for: Date())
@@ -28,14 +34,20 @@ struct ItemRow: View {
         } else {
             return "vor \(abs(diffInDays)) Tagen"
         }
-        
+    }
+    
+    private var dateString: String {
+        if item.isAllDay {
+            return dateFormatter.string(from: item.timestamp)
+        }
+        return dateAndTimeFormatter.string(from: item.timestamp)
     }
     
     var body: some View {
-        NavigationLink(destination: EditView(item: item)) {
+        if !item.isFault {
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .top) {
-                    Text("\(item.timestamp, formatter: dateFormatter)").font(.headline)
+                    Text(dateString).font(.headline)
                     Spacer()
                     Text(realtimeRelativeTime).foregroundColor(.secondary)
                 }.font(.subheadline)
@@ -45,10 +57,8 @@ struct ItemRow: View {
                     Text(item.content).lineLimit(2)
                 }
                 HStack {
-                    Text("\(item.didWearMask ? "😷" : "🙂")")
-                    Text("\(item.isOutside ? "🌤" : "🏠")")
+                    item.riskLevel.icon.foregroundColor(item.riskLevel.color)
                     Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
-                    Text("\(item.durationHours, specifier: "%g") h")
                 }.font(.subheadline)
             }
             .contextMenu {
@@ -76,6 +86,8 @@ struct ItemRow: View {
             newItem.didWearMask = item.didWearMask
             newItem.isOutside = item.isOutside
             newItem.personCount = item.personCount
+            newItem.isAllDay = item.isAllDay
+            newItem.riskLevel = item.riskLevel
             
             PersistenceController.saveContext()
         }

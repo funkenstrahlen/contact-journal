@@ -11,6 +11,7 @@
 		F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BBDF4253732F0003DBE59 /* ItemRow.swift */; };
 		F8163F90253B21210047870F /* ContactPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8163F8F253B21210047870F /* ContactPicker.swift */; };
 		F84178F32549A707005456C3 /* LocationPoiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84178F22549A707005456C3 /* LocationPoiPicker.swift */; };
+		F81FB2D625458C1D005C50E7 /* RiskLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81FB2D525458C1D005C50E7 /* RiskLevel.swift */; };
 		F8543F682539CAE000583650 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8543F672539CAE000583650 /* Settings.swift */; };
 		F8659C6D2545F59A00469D75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8659C6C2545F59A00469D75 /* AppDelegate.swift */; };
 		F897012D2536FAFE00EEDA18 /* ContactJournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */; };
@@ -53,6 +54,8 @@
 		F80BBDEF253732D4003DBE59 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		F80BBDF4253732F0003DBE59 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		F8163F8F253B21210047870F /* ContactPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactPicker.swift; sourceTree = "<group>"; };
+		F81FB2D525458C1D005C50E7 /* RiskLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RiskLevel.swift; path = ../RiskLevel.swift; sourceTree = "<group>"; };
+		F81FB2EB2545B6FA005C50E7 /* ContactJournal 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 4.xcdatamodel"; sourceTree = "<group>"; };
 		F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 3.xcdatamodel"; sourceTree = "<group>"; };
 		F84178F22549A707005456C3 /* LocationPoiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPoiPicker.swift; sourceTree = "<group>"; };
 		F8543F672539CAE000583650 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -113,11 +116,50 @@
 		F80BBDF9253735B7003DBE59 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F8D492AF2541E3AC00397339 /* UserSettings.swift */,
 				F89701352536FB0000EEDA18 /* Persistence.swift */,
 				F8970168253709FB00EEDA18 /* Item+CoreData.swift */,
+				F81FB2D525458C1D005C50E7 /* RiskLevel.swift */,
 				F89701372536FB0000EEDA18 /* ContactJournal.xcdatamodeld */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F8110837254B26A800086CC6 /* Donation */ = {
+			isa = PBXGroup;
+			children = (
+				F8DF29462545DA3500D86094 /* SKProductProvider.swift */,
+				F8DF294B2545DB5F00D86094 /* DonationView.swift */,
+			);
+			path = Donation;
+			sourceTree = "<group>";
+		};
+		F811083B254B26BA00086CC6 /* Export */ = {
+			isa = PBXGroup;
+			children = (
+				F8DF71742540581600D3C1EA /* ShareExportAktivityController.swift */,
+				F8DF716F254053E500D3C1EA /* Exporter.swift */,
+			);
+			path = Export;
+			sourceTree = "<group>";
+		};
+		F811083C254B26F400086CC6 /* EditView */ = {
+			isa = PBXGroup;
+			children = (
+				F80BBDEF253732D4003DBE59 /* EditView.swift */,
+				F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */,
+				F8163F8F253B21210047870F /* ContactPicker.swift */,
+			);
+			path = EditView;
+			sourceTree = "<group>";
+		};
+		F8110840254B270400086CC6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F8543F672539CAE000583650 /* Settings.swift */,
+				F8D492B42541E3B900397339 /* NotficationManager.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		F89701202536FAFE00EEDA18 = {
@@ -148,18 +190,12 @@
 				F8659C6C2545F59A00469D75 /* AppDelegate.swift */,
 				F897012C2536FAFE00EEDA18 /* ContactJournalApp.swift */,
 				F897012E2536FAFE00EEDA18 /* ContentView.swift */,
-				F8543F672539CAE000583650 /* Settings.swift */,
 				F80BBDF4253732F0003DBE59 /* ItemRow.swift */,
-				F80BBDEF253732D4003DBE59 /* EditView.swift */,
-				F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */,
-				F8163F8F253B21210047870F /* ContactPicker.swift */,
-				F8DF71742540581600D3C1EA /* ShareExportAktivityController.swift */,
-				F8D492AF2541E3AC00397339 /* UserSettings.swift */,
-				F8D492B42541E3B900397339 /* NotficationManager.swift */,
-				F84178F22549A707005456C3 /* LocationPoiPicker.swift */,
-				F8DF716F254053E500D3C1EA /* Exporter.swift */,
-				F8DF29462545DA3500D86094 /* SKProductProvider.swift */,
-				F8DF294B2545DB5F00D86094 /* DonationView.swift */,
+				F8110840254B270400086CC6 /* Settings */,
+				F811083C254B26F400086CC6 /* EditView */,
+				F811083B254B26BA00086CC6 /* Export */,
+				F8110837254B26A800086CC6 /* Donation */,
+                F84178F22549A707005456C3 /* LocationPoiPicker.swift */,
 				F89701302536FB0000EEDA18 /* Assets.xcassets */,
 				F80BBDF9253735B7003DBE59 /* Model */,
 				F897013A2536FB0000EEDA18 /* Info.plist */,
@@ -342,6 +378,7 @@
 				F80BBDF0253732D4003DBE59 /* EditView.swift in Sources */,
 				F80BBDF5253732F0003DBE59 /* ItemRow.swift in Sources */,
 				F8BBDDA7253F039200844894 /* MultilineTextEditor.swift in Sources */,
+				F81FB2D625458C1D005C50E7 /* RiskLevel.swift in Sources */,
 				F8DF71752540581600D3C1EA /* ShareExportAktivityController.swift in Sources */,
 				F8DF29472545DA3500D86094 /* SKProductProvider.swift in Sources */,
 				F897012F2536FAFE00EEDA18 /* ContentView.swift in Sources */,
@@ -507,7 +544,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ContactJournal/ContactJournal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_ASSET_PATHS = "\"ContactJournal/Preview Content\"";
 				DEVELOPMENT_TEAM = Y85FVF2A97;
 				ENABLE_PREVIEWS = YES;
@@ -517,7 +554,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.ContactJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -532,7 +569,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ContactJournal/ContactJournal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 29;
+				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_ASSET_PATHS = "\"ContactJournal/Preview Content\"";
 				DEVELOPMENT_TEAM = Y85FVF2A97;
 				ENABLE_PREVIEWS = YES;
@@ -542,7 +579,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = de.stefantrauth.ContactJournal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -679,11 +716,12 @@
 		F89701372536FB0000EEDA18 /* ContactJournal.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F81FB2EB2545B6FA005C50E7 /* ContactJournal 4.xcdatamodel */,
 				F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */,
 				F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */,
 				F89701382536FB0000EEDA18 /* ContactJournal.xcdatamodel */,
 			);
-			currentVersion = F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */;
+			currentVersion = F81FB2EB2545B6FA005C50E7 /* ContactJournal 4.xcdatamodel */;
 			path = ContactJournal.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

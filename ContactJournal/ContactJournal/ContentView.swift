@@ -14,7 +14,10 @@ struct ContentView: View {
     @State private var showsSettings = false
     @State private var showsShareSheet = false
     @State private var showsDonation = false
-
+    
+    @State private var selectedItem: Item?
+    @State private var linkIsActive = false
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)],
         animation: .default)
@@ -23,7 +26,7 @@ struct ContentView: View {
     private var hasDeprecatedItems: Bool {
         items.contains(where: { $0.isDeprecated })
     }
-
+    
     var body: some View {
         NavigationView {
             List {
@@ -32,22 +35,34 @@ struct ContentView: View {
                         Label("Neuer Eintrag", systemImage: "plus.circle.fill").foregroundColor(.blue)
                     }
                 }
-
+                
                 ForEach(items) { item in
-                    ItemRow(item: item)
+                    Button(action: {
+                        self.selectedItem = item
+                        self.linkIsActive = true
+                    }) {
+                        NavigationLink(destination: EmptyView()){
+                            ItemRow(item: item)
+                        }
+                    }
                 }
                 .onDelete(perform: deleteSelectedItems)
                 
                 if hasDeprecatedItems {
                     Spacer()
                     Button(action: deleteDeprecatedItems) {
-                        Label("Alle Einträge älter als 14 Tage löschen", systemImage: "trash").foregroundColor(.red)
+                        Label("Alle Einträge älter als 3 Wochen löschen", systemImage: "trash").foregroundColor(.red)
                     }
                     Text("")
                 }
             }
             .background(
                 VStack {
+                    NavigationLink(
+                        destination: linkDestination(selectedItem: selectedItem),
+                        isActive: $linkIsActive) {
+                        EmptyView()
+                    }
                     NavigationLink(destination: Settings(), isActive: $showsSettings) {
                         EmptyView()
                     }
@@ -66,7 +81,7 @@ struct ContentView: View {
                     Button(action: {
                         showsDonation = true
                     }, label: {
-                        Label("Danke", systemImage: "heart")
+                        Label("Danke sagen", systemImage: "heart")
                     })
                 }
                 
@@ -98,11 +113,26 @@ struct ContentView: View {
             }
         }
     }
-
+    
+    struct linkDestination: View {
+        let selectedItem: Item?
+        var body: some View {
+            return Group {
+                if selectedItem != nil {
+                    EditView(item: selectedItem!)
+                } else {
+                    EmptyView()
+                }
+            }
+        }
+    }
+    
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
+            selectedItem = newItem
+            linkIsActive = true
             PersistenceController.saveContext()
         }
     }
@@ -111,7 +141,7 @@ struct ContentView: View {
         Exporter.generateCSVExport()
         showsShareSheet = true
     }
-
+    
     private func deleteSelectedItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
