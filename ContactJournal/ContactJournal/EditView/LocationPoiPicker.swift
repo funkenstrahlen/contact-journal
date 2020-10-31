@@ -17,12 +17,36 @@ struct LocationPoiPicker: View {
         List {
             LocationSearchBar(matchingItems: $matchingItems, placeholder: "z.B. Starbucks Berlin")
             ForEach(matchingItems, id: \.self) { item in
-                MapItemRow(item: item).onTapGesture {
-                    selectedLocationAddress = item.description
-                    showsLocationPicker = false
-                }
+                MapItemRow(item: item)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        selectedLocationAddress = item.fullDescription
+                        showsLocationPicker = false
+                    }
             }
         }
+    }
+}
+
+fileprivate extension MKMapItem {
+    var fullDescription: String {
+        var string = ""
+        if let name = name {
+            string.append("\(name)\n")
+        }
+        if let street = placemark.postalAddress?.street, !street.isEmpty {
+            string.append("\(street)\n")
+        }
+        if let postalCode = placemark.postalAddress?.postalCode {
+            string.append("\(postalCode) ")
+        }
+        if let city = placemark.postalAddress?.city {
+            string.append("\(city)\n")
+        }
+        if let phoneNumber = phoneNumber {
+            string.append("\(phoneNumber)\n")
+        }
+        return string.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
 
@@ -57,6 +81,7 @@ struct MapItemRow: View {
                 Text(item.name ?? "").font(.headline)
                 Text(address).font(.subheadline).foregroundColor(.secondary)
             }
+            Spacer()
         }
     }
 }
