@@ -10,13 +10,7 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
-    @State private var showsSettings = false
-    @State private var showsShareSheet = false
-    @State private var showsDonation = false
-    
-    @State private var selectedItem: Item?
-    @State private var linkIsActive = false
+    @EnvironmentObject private var viewModel: ViewModel
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)],
@@ -32,8 +26,8 @@ struct ContentView: View {
             List {
                 ForEach(items) { item in
                     Button(action: {
-                        self.selectedItem = item
-                        self.linkIsActive = true
+                        viewModel.selectedItem = item
+                        viewModel.linkIsActive = true
                     }) {
                         NavigationLink(destination: EmptyView()){
                             ItemRow(item: item)
@@ -53,19 +47,19 @@ struct ContentView: View {
             .background(
                 VStack {
                     NavigationLink(
-                        destination: linkDestination(selectedItem: selectedItem),
-                        isActive: $linkIsActive) {
+                        destination: linkDestination(selectedItem: viewModel.selectedItem),
+                        isActive: $viewModel.linkIsActive) {
                         EmptyView()
                     }
-                    NavigationLink(destination: Settings(), isActive: $showsSettings) {
+                    NavigationLink(destination: Settings(), isActive: $viewModel.showsSettings) {
                         EmptyView()
                     }
-                    NavigationLink(destination: DonationView(), isActive: $showsDonation) {
+                    NavigationLink(destination: DonationView(), isActive: $viewModel.showsDonation) {
                         EmptyView()
                     }
-                    EmptyView().sheet(isPresented: $showsShareSheet) {
+                    EmptyView().sheet(isPresented: $viewModel.showsShareSheet) {
                         ShareExportActivityViewController(activityItems: [Exporter.exportFileURL]) { (_, _, _, _) in
-                            showsShareSheet = false
+                            viewModel.showsShareSheet = false
                         }
                     }
                 })
@@ -79,7 +73,7 @@ struct ContentView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        showsDonation = true
+                        viewModel.showsDonation = true
                     }, label: {
                         Label("Danke sagen", systemImage: "heart")
                     })
@@ -87,7 +81,7 @@ struct ContentView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        showsSettings = true
+                        viewModel.showsSettings = true
                     }, label: {
                         Label("Einstellungen", systemImage: "gearshape")
                     })
@@ -117,7 +111,7 @@ struct ContentView: View {
     
     private func exportCSV() {
         Exporter.generateCSVExport()
-        showsShareSheet = true
+        viewModel.showsShareSheet = true
     }
     
     private func deleteSelectedItems(offsets: IndexSet) {
@@ -133,10 +127,4 @@ struct ContentView: View {
         }
     }
     
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
 }

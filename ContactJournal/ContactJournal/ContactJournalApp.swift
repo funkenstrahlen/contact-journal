@@ -13,13 +13,18 @@ struct ContactJournalApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     let persistenceController = PersistenceController.shared
     @Environment(\.scenePhase) private var scenePhase
+    @StateObject var viewModel = ViewModel()
 
     var body: some Scene {
         WindowGroup {
             ZStack {
                 ContentView()
-                CreateItemButton()
-            }.environment(\.managedObjectContext, persistenceController.container.viewContext)
+                if viewModel.showsCreateItemButton {
+                    CreateItemButton()
+                }
+            }
+            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            .environmentObject(viewModel)
         }
         .onChange(of: scenePhase) { phase in
             switch phase {
@@ -38,6 +43,32 @@ struct ContactJournalApp: App {
                 PersistenceController.saveContext()
             @unknown default: break
             }
+        }
+    }
+}
+
+class ViewModel: ObservableObject {
+    @Published var showsCreateItemButton = true
+    
+    @Published var showsSettings = false {
+        willSet {
+            showsCreateItemButton = !newValue
+        }
+    }
+    @Published var showsDonation = false {
+        willSet {
+            showsCreateItemButton = !newValue
+        }
+    }
+    @Published var showsShareSheet = false {
+        willSet {
+            showsCreateItemButton = !newValue
+        }
+    }
+    @Published var selectedItem: Item?
+    @Published var linkIsActive = false {
+        willSet {
+            showsCreateItemButton = !newValue
         }
     }
 }

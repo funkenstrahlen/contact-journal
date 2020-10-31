@@ -10,6 +10,7 @@ import SwiftUI
 
 struct CreateItemButton: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject private var viewModel: ViewModel
     
     var body: some View {
         VStack {
@@ -28,6 +29,8 @@ struct CreateItemButton: View {
         withAnimation {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
+            viewModel.selectedItem = newItem
+            viewModel.linkIsActive = true
             PersistenceController.saveContext()
         }
     }
