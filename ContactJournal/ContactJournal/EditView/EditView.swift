@@ -25,6 +25,7 @@ struct EditView: View {
     }
     
     @State private var showsContactPicker = false
+    @State private var showsLocationPicker = false
     @State private var riskLevel = RiskLevel.low
     
     var body: some View {
@@ -88,6 +89,19 @@ struct EditView: View {
                     Button(action: { showsContactPicker = true }, label: {
                         Label("Aus Adressbuch importieren", systemImage: "person.crop.circle.badge.plus")
                     })
+                }
+                
+                Section(header: Text("Ort")) {
+                    MultilineTextField(placeholder: "z.B. Adresse", text: $item.location)
+                    NavigationLink(
+                        destination: LocationPoiPicker(selectedLocationAddress: $item.location, showsLocationPicker: $showsLocationPicker),
+                        isActive: $showsLocationPicker,
+                        label: {
+                            Label("Adresse suchen", systemImage: "map")
+                        }).foregroundColor(.blue)
+//                    Button(action: {}, label: {
+//                        Label("Aktuellen Standort eintragen", systemImage: "location")
+//                    })
                 }
             }
             .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
