@@ -14,13 +14,7 @@ struct ItemRow: View {
     
     private var dateAndTimeFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE d. MMM HH:mm"
-        return formatter
-    }
-    
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE d. MMM"
+        formatter.dateFormat = "HH:mm"
         return formatter
     }
     
@@ -40,7 +34,7 @@ struct ItemRow: View {
     private var dateString: String {
         guard let timestamp = item.timestamp else { return "" }
         if item.isAllDay {
-            return dateFormatter.string(from: timestamp)
+            return "Ganzer Tag"
         }
         return dateAndTimeFormatter.string(from: timestamp)
     }
