@@ -88,26 +88,28 @@ struct EditView: View {
                 
                 Section(header: Text("Kontaktdaten")) {
                     MultilineTextField(placeholder: "z.B. Telefonnummer, Adresse, E-Mail", text: $item.contactDetails)
+                        .sheet(isPresented: $showsContactPicker, content: {
+                            ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
+                        })
                     Button(action: { showsContactPicker = true }, label: {
                         Label("Aus Adressbuch importieren", systemImage: "person.crop.circle.badge.plus")
                     })
-                    .sheet(isPresented: $showsContactPicker, content: {
-                        ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
-                    })
+
                 }
                 
                 Section(header: Text("Ort")) {
                     MultilineTextField(placeholder: "z.B. Adresse", text: $item.location)
+                        .sheet(isPresented: $showsLocationPicker, content: {
+                            LocationPoiPicker(onSelectLocation: { newLocation in
+                                item.location = newLocation
+                            })
+                        })
                     Button(action: {
                         showsLocationPicker = true
                     }, label: {
                         Label("Adresse suchen", systemImage: "map")
                     })
-                    .sheet(isPresented: $showsLocationPicker, content: {
-                        LocationPoiPicker(onSelectLocation: { newLocation in
-                            item.location = newLocation
-                        })
-                    })
+
                 }
             }
             .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
