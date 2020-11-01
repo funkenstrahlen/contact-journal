@@ -16,7 +16,7 @@ struct LocationPoiPicker: View {
     var body: some View {
         NavigationView {
             List {
-                LocationSearchBar(matchingItems: $matchingItems, placeholder: "z.B. Starbucks Berlin")
+                LocationSearchBar(matchingItems: $matchingItems, placeholder: "z.B. Brauhaus München")
                 ForEach(matchingItems, id: \.self) { item in
                     MapItemRow(item: item)
                         .contentShape(Rectangle())
