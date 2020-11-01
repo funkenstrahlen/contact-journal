@@ -84,6 +84,7 @@ struct ItemRow: View {
             newItem.personCount = item.personCount
             newItem.isAllDay = item.isAllDay
             newItem.riskLevel = item.riskLevel
+            newItem.location = item.location
             
             PersistenceController.saveContext()
         }
