@@ -21,7 +21,6 @@ struct DonationView: View {
                         PurchaseProductButton(product: product)
                     }
                 }
-                Spacer()
                 Link("Impressum & Datenschutzerklärung", destination: URL(string: "https://stefantrauth.de/contact-journal-privacy-policy.html")!).padding(.vertical).font(.caption)
             }.padding()
         }.navigationBarTitle("Danke sagen")
