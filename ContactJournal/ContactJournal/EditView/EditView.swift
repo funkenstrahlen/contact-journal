@@ -26,7 +26,6 @@ struct EditView: View {
     
     @State private var showsContactPicker = false
     @State private var showsLocationPicker = false
-    @State private var riskLevel = RiskLevel.low
     
     var body: some View {
         // check if item is valid because it might be deleted and this causes a crash here
