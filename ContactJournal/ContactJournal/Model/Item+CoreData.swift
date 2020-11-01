@@ -37,7 +37,6 @@ extension Item : Identifiable {
 
 extension Item {
     public var isDeprecated: Bool {
-        guard !isFault else { return true }
         let tresholdDate = Calendar.current.date(byAdding: .day, value: -21, to: Date())!
         return timestamp < tresholdDate
     }
