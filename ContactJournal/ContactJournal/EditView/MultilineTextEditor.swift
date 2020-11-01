@@ -115,19 +115,12 @@ struct TextView: UIViewRepresentable {
         var text: Binding<String> = .constant("")
         var width: CGFloat = 0
         var height: Binding<CGFloat?> = .constant(nil)
-        var cursor: Binding<CGFloat?> = .constant(nil)
         
         func textViewDidChange(_ textView: UITextView) {
             if text.wrappedValue != textView.text {
                 text.wrappedValue = textView.text
             }
             adjustHeight(view: textView)
-        }
-
-        func textViewDidChangeSelection(_ textView: UITextView) {
-            OperationQueue.main.addOperation { [weak self] in
-                self?.cursor.wrappedValue = self?.absoleteCursor(view: textView)
-            }
         }
         
         func adjustHeight(view: UITextView) {
@@ -138,81 +131,5 @@ struct TextView: UIViewRepresentable {
             }
         }
         
-        func absoleteCursor(view: UITextView) -> CGFloat? {
-            guard let range = view.selectedTextRange else {
-                return nil
-            }
-            let caretRect = view.caretRect(for: range.end)
-            let windowRect = view.convert(caretRect, to: nil)
-            return windowRect.origin.y + windowRect.height
-        }
-        
-    }
-}
-
-enum Keyboard {
-    
-    static let willShow = NotificationCenter.default
-        .publisher(for: UIResponder.keyboardWillShowNotification)
-        .receive(on: OperationQueue.main)
-    
-    static let didShow = NotificationCenter.default
-        .publisher(for: UIResponder.keyboardDidShowNotification)
-        .receive(on: OperationQueue.main)
-    
-    static let willHide = NotificationCenter.default
-        .publisher(for: UIResponder.keyboardWillHideNotification)
-        .receive(on: OperationQueue.main)
-    
-    static let didHide = NotificationCenter.default
-        .publisher(for: UIResponder.keyboardDidHideNotification)
-        .receive(on: OperationQueue.main)
-    
-    static let willChangeFrame = NotificationCenter.default
-        .publisher(for: UIResponder.keyboardWillChangeFrameNotification)
-        .receive(on: OperationQueue.main)
-    
-    static let didChangeFrame = NotificationCenter.default
-        .publisher(for: UIResponder.keyboardDidChangeFrameNotification)
-        .receive(on: OperationQueue.main)
-}
-
-public extension Notification {
-    
-    var keyboardRectBegin: CGRect {
-        return (userInfo![UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-    }
-
-    var keyboardRectEnd: CGRect {
-        return (userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-    }
-    
-    var keyboardGoesDown: Bool {
-        let beginY = keyboardRectBegin.origin.y
-        let endY = keyboardRectEnd.origin.y
-        return beginY < endY
-    }
-    
-    var keyboardGoesUp: Bool {
-        return !keyboardGoesDown
-    }
-
-    var keyboardHeight: CGFloat {
-        if keyboardGoesDown { // going down
-            return 0
-        } else { // otherwise
-            return keyboardRectEnd.size.height
-        }
-    }
-    
-    var keyboardAnimationDuration: Double {
-        return userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.25
-    }
-
-    var keyboardAnimationOptions: UIView.AnimationOptions {
-        if let curveValue = (userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber)?.uintValue {
-            return [UIView.AnimationOptions(rawValue: curveValue << 16), .beginFromCurrentState]
-        }
-        return []
     }
 }
