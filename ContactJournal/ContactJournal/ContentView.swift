@@ -15,7 +15,6 @@ struct ContentView: View {
     @State private var showsShareSheet = false
     @State private var showsDonation = false
     @State private var showsEditView = false
-    @State private var showsEditViewRow = false
     @State private var newItem: Item?
     
     @FetchRequest(
@@ -37,7 +36,7 @@ struct ContentView: View {
                 }
                 
                 ForEach(items) { item in
-                    NavigationLink(destination: EditView(item: item, isPresented: $showsEditViewRow), isActive: $showsEditViewRow){
+                    NavigationLink(destination: EditView(item: item)){
                         ItemRow(item: item)
                     }
                 }
@@ -54,7 +53,7 @@ struct ContentView: View {
             .background(
                 VStack {
                     if let item = newItem {
-                        NavigationLink(destination: EditView(item: item, isPresented: $showsEditView), isActive: $showsEditView) {
+                        NavigationLink(destination: EditView(item: item), isActive: $showsEditView) {
                             EmptyView()
                         }
                     }

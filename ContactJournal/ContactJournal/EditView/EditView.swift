@@ -28,8 +28,6 @@ struct EditView: View {
     @State private var showsLocationPicker = false
     @State private var riskLevel = RiskLevel.low
     
-    @Binding var isPresented: Bool
-    
     var body: some View {
         // check if item is valid because it might be deleted and this causes a crash here
         if !item.isFault {
@@ -142,10 +140,10 @@ struct EditView: View {
     }
 }
 
-//struct EditView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationView {
-//            EditView(item: Item(context: PersistenceController.preview.container.viewContext)).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//        }
-//    }
-//}
+struct EditView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            EditView(item: Item(context: PersistenceController.preview.container.viewContext)).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        }
+    }
+}
