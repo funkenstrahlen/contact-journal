@@ -11,7 +11,7 @@ import MapKit
 struct LocationPoiPicker: View {
     @State private var matchingItems = [MKMapItem]()
     @Binding var selectedLocationAddress: String
-    @Binding var showsLocationPicker: Bool
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
@@ -22,7 +22,7 @@ struct LocationPoiPicker: View {
                         .contentShape(Rectangle())
                         .onTapGesture {
                             selectedLocationAddress = item.fullDescription
-                            showsLocationPicker = false
+                            presentationMode.wrappedValue.dismiss()
                         }
                 }
             }
@@ -31,9 +31,7 @@ struct LocationPoiPicker: View {
             .toolbar(content: {
                 ToolbarItem {
                     Button(action: {
-                        endEditing()
-                        showsLocationPicker = true // workaround because keyboard breaks state
-                        showsLocationPicker = false
+                        presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text("Abbrechen")
                     })

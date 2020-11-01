@@ -98,11 +98,13 @@ struct EditView: View {
                 
                 Section(header: Text("Ort")) {
                     MultilineTextField(placeholder: "z.B. Adresse", text: $item.location)
-                    Button(action: { showsLocationPicker = true }, label: {
+                    Button(action: {
+                        showsLocationPicker = true
+                    }, label: {
                         Label("Adresse suchen", systemImage: "map")
                     })
                     .sheet(isPresented: $showsLocationPicker, content: {
-                        LocationPoiPicker(selectedLocationAddress: $item.location, showsLocationPicker: $showsLocationPicker)
+                        LocationPoiPicker(selectedLocationAddress: $item.location)
                     })
                 }
             }
