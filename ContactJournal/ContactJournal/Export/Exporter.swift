@@ -45,8 +45,8 @@ struct Exporter {
                 durationString = "24"
             }
             
-            csvString.append("\"\(dateFormatter.string(from: item.timestamp))\"")
-            csvString.append(",\"\(ISO8601DateFormatter().string(from: item.timestamp))\"")
+            csvString.append("\"\(dateFormatter.string(from: item.timestamp!))\"")
+            csvString.append(",\"\(ISO8601DateFormatter().string(from: item.timestamp!))\"")
             csvString.append(",\(item.content.escapedForCSV)")
             csvString.append(",\(item.isOutside ? "Draußen" : "Drinnen")")
             csvString.append(",\(item.didWearMask ? "Ja" : "Nein")")

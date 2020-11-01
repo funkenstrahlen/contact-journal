@@ -18,7 +18,7 @@ extension Item {
         NSFetchRequest<Item>(entityName: "Item")
     }
 
-    @NSManaged public var timestamp: Date
+    @NSManaged public var timestamp: Date?
     @NSManaged public var content: String
     @NSManaged public var isOutside: Bool
     @NSManaged public var didWearMask: Bool
@@ -37,6 +37,7 @@ extension Item : Identifiable {
 
 extension Item {
     public var isDeprecated: Bool {
+        guard let timestamp = timestamp else { return false }
         let tresholdDate = Calendar.current.date(byAdding: .day, value: -21, to: Date())!
         return timestamp < tresholdDate
     }

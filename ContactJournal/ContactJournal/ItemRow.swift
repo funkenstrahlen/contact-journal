@@ -25,11 +25,12 @@ struct ItemRow: View {
     }
     
     private var realtimeRelativeTime: String {
+        guard let timestamp = item.timestamp else { return "" }
         let startOfDay = Calendar.current.startOfDay(for: Date())
-        if Calendar.current.isDateInToday(item.timestamp) { return "heute" }
-        if Calendar.current.isDateInYesterday(item.timestamp) { return "gestern" }
-        let diffInDays = Calendar.current.dateComponents([.day], from: startOfDay, to: Calendar.current.startOfDay(for: item.timestamp)).day!
-        if item.timestamp > Date() {
+        if Calendar.current.isDateInToday(timestamp) { return "heute" }
+        if Calendar.current.isDateInYesterday(timestamp) { return "gestern" }
+        let diffInDays = Calendar.current.dateComponents([.day], from: startOfDay, to: Calendar.current.startOfDay(for: timestamp)).day!
+        if timestamp > Date() {
             return "in \(abs(diffInDays)) Tagen"
         } else {
             return "vor \(abs(diffInDays)) Tagen"
@@ -37,10 +38,11 @@ struct ItemRow: View {
     }
     
     private var dateString: String {
+        guard let timestamp = item.timestamp else { return "" }
         if item.isAllDay {
-            return dateFormatter.string(from: item.timestamp)
+            return dateFormatter.string(from: timestamp)
         }
-        return dateAndTimeFormatter.string(from: item.timestamp)
+        return dateAndTimeFormatter.string(from: timestamp)
     }
     
     var body: some View {

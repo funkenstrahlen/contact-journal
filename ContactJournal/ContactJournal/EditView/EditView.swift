@@ -20,8 +20,8 @@ struct EditView: View {
     }()
     
     private var navigationBarTitle: String {
-        guard !item.isFault else { return "" }
-        return dateFormatter.string(from: item.timestamp)
+        guard let timestamp = item.timestamp else { return "" }
+        return dateFormatter.string(from: timestamp)
     }
     
     @State private var showsContactPicker = false
@@ -37,7 +37,9 @@ struct EditView: View {
                 }
                 
                 Section {
-                    DatePicker("Zeitpunkt", selection: $item.timestamp, displayedComponents: item.isAllDay ? .date : [.date, .hourAndMinute])
+                    DatePicker("Zeitpunkt",
+                               selection: Binding<Date>(get: {item.timestamp ?? Date()}, set: {item.timestamp = $0}),
+                               displayedComponents: item.isAllDay ? .date : [.date, .hourAndMinute])
                         .datePickerStyle(WheelDatePickerStyle())
                         .labelsHidden()
                     if !item.isAllDay {
