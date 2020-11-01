@@ -10,8 +10,9 @@ import MapKit
 
 struct LocationPoiPicker: View {
     @State private var matchingItems = [MKMapItem]()
-    @Binding var selectedLocationAddress: String
     @Environment(\.presentationMode) var presentationMode
+    
+    let onSelectLocation: (_ locationDescription: String) -> Void
     
     var body: some View {
         NavigationView {
@@ -21,7 +22,7 @@ struct LocationPoiPicker: View {
                     MapItemRow(item: item)
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            selectedLocationAddress = item.fullDescription
+                            onSelectLocation(item.fullDescription)
                             presentationMode.wrappedValue.dismiss()
                         }
                 }

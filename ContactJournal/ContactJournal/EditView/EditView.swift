@@ -104,7 +104,9 @@ struct EditView: View {
                         Label("Adresse suchen", systemImage: "map")
                     })
                     .sheet(isPresented: $showsLocationPicker, content: {
-                        LocationPoiPicker(selectedLocationAddress: $item.location)
+                        LocationPoiPicker(onSelectLocation: { newLocation in
+                            item.location = newLocation
+                        })
                     })
                 }
             }
