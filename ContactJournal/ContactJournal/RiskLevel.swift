@@ -10,7 +10,7 @@ import SwiftUI
 
 @objc
 public enum RiskLevel: Int64, CaseIterable {
-    case low, high
+    case low, high, unknown
 }
 
 public extension RiskLevel {
@@ -18,6 +18,7 @@ public extension RiskLevel {
         switch self {
         case .high: return .red
         case .low: return .green
+        case .unknown: return .secondary
         }
     }
     
@@ -25,6 +26,7 @@ public extension RiskLevel {
         switch self {
         case .high: return Image(systemName: "exclamationmark.shield.fill")
         case .low: return Image(systemName: "checkmark.shield.fill")
+        case .unknown: return Image(systemName: "shield.fill")
         }
     }
     
@@ -32,6 +34,7 @@ public extension RiskLevel {
         switch self {
         case .high: return "erhöht"
         case .low: return "gering"
+        case .unknown: return "unbekannt"
         }
     }
 }

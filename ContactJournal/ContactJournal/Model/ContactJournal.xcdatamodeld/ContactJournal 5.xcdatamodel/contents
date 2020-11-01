@@ -10,7 +10,7 @@
         <attribute name="isOutside" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="location" attributeType="String" defaultValueString=""/>
         <attribute name="personCount" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES"/>
-        <attribute name="riskLevel" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="riskLevel" attributeType="Integer 64" defaultValueString="2" usesScalarValueType="YES"/>
         <attribute name="timestamp" attributeType="Date" defaultDateTimeInterval="624363600" usesScalarValueType="NO"/>
     </entity>
     <elements>
