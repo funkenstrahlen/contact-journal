@@ -25,6 +25,7 @@ struct ItemRow: View {
     }
     
     private var realtimeRelativeTime: String {
+        guard !item.isFault else { return "" }
         let startOfDay = Calendar.current.startOfDay(for: Date())
         if Calendar.current.isDateInToday(item.timestamp) { return "heute" }
         if Calendar.current.isDateInYesterday(item.timestamp) { return "gestern" }
@@ -37,6 +38,7 @@ struct ItemRow: View {
     }
     
     private var dateString: String {
+        guard !item.isFault else { return "" }
         if item.isAllDay {
             return dateFormatter.string(from: item.timestamp)
         }
