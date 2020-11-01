@@ -14,9 +14,8 @@ struct ContentView: View {
     @State private var showsSettings = false
     @State private var showsShareSheet = false
     @State private var showsDonation = false
-    
-    @State private var selectedItem: Item?
-    @State private var linkIsActive = false
+    @State private var showsEditView = false
+    @State private var newItem: Item?
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)],
@@ -37,13 +36,8 @@ struct ContentView: View {
                 }
                 
                 ForEach(items) { item in
-                    Button(action: {
-                        self.selectedItem = item
-                        self.linkIsActive = true
-                    }) {
-                        NavigationLink(destination: EmptyView()){
-                            ItemRow(item: item)
-                        }
+                    NavigationLink(destination: EditView(item: item)){
+                        ItemRow(item: item)
                     }
                 }
                 .onDelete(perform: deleteSelectedItems)
@@ -58,10 +52,10 @@ struct ContentView: View {
             }
             .background(
                 VStack {
-                    NavigationLink(
-                        destination: linkDestination(selectedItem: selectedItem),
-                        isActive: $linkIsActive) {
-                        EmptyView()
+                    if let item = newItem {
+                        NavigationLink(destination: EditView(item: item), isActive: $showsEditView) {
+                            EmptyView()
+                        }
                     }
                     NavigationLink(destination: Settings(), isActive: $showsSettings) {
                         EmptyView()
@@ -114,25 +108,12 @@ struct ContentView: View {
         }
     }
     
-    struct linkDestination: View {
-        let selectedItem: Item?
-        var body: some View {
-            return Group {
-                if selectedItem != nil {
-                    EditView(item: selectedItem!)
-                } else {
-                    EmptyView()
-                }
-            }
-        }
-    }
-    
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
-            selectedItem = newItem
-            linkIsActive = true
+            self.newItem = newItem
+            showsEditView = true
             PersistenceController.saveContext()
         }
     }
