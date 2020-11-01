@@ -71,19 +71,20 @@ struct ContentView: View {
                 })
             .navigationBarTitle("Kontakt-Tagebuch")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        showsDonation = true
-                    }, label: {
-                        Label("Danke sagen", systemImage: "heart")
-                    })
-                }
                 
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
                         showsSettings = true
                     }, label: {
                         Label("Einstellungen", systemImage: "gearshape")
+                    })
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        showsDonation = true
+                    }, label: {
+                        Label("Danke sagen", systemImage: "heart")
                     })
                 }
                 
@@ -96,12 +97,6 @@ struct ContentView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: addItem) {
                         Label("Neuer Eintrag", systemImage: "plus.circle.fill")
-                    }
-                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    if items.count > 0 {
-                        EditButton()
                     }
                 }
             }
