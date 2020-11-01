@@ -28,7 +28,7 @@ struct EditView: View {
     @State private var showsLocationPicker = false
     @State private var riskLevel = RiskLevel.low
     
-    @Binding var isPresented: Bool
+    let deleteItem: (_ item: Item) -> Void
     
     var body: some View {
         // check if item is valid because it might be deleted and this causes a crash here
@@ -107,6 +107,12 @@ struct EditView: View {
                         LocationPoiPicker(selectedLocationAddress: $item.location, showsLocationPicker: $showsLocationPicker)
                     })
                 }
+                
+                Button(action: {
+                    deleteItem(item)
+                }) {
+                    Label("Eintrag löschen", systemImage: "trash")
+                }.foregroundColor(.red)
             }
             .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
             .onDisappear(perform: {

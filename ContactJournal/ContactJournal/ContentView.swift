@@ -37,7 +37,7 @@ struct ContentView: View {
                 }
                 
                 ForEach(items) { item in
-                    NavigationLink(destination: EditView(item: item, isPresented: $showsEditViewRow), isActive: $showsEditViewRow){
+                    NavigationLink(destination: EditView(item: item, deleteItem: deleteItem(item:)), isActive: $showsEditViewRow){
                         ItemRow(item: item)
                     }
                 }
@@ -54,7 +54,7 @@ struct ContentView: View {
             .background(
                 VStack {
                     if let item = newItem {
-                        NavigationLink(destination: EditView(item: item, isPresented: $showsEditView), isActive: $showsEditView) {
+                        NavigationLink(destination: EditView(item: item, deleteItem: deleteItem(item:)), isActive: $showsEditView) {
                             EmptyView()
                         }
                     }
@@ -100,6 +100,17 @@ struct ContentView: View {
                         Label("Neuer Eintrag", systemImage: "plus.circle.fill")
                     }
                 }
+            }
+        }
+    }
+    
+    private func deleteItem(item: Item) {
+        withAnimation {
+            showsEditView = false
+            showsEditViewRow = false
+            DispatchQueue.main.async {
+                viewContext.delete(item)
+                PersistenceController.saveContext()
             }
         }
     }
