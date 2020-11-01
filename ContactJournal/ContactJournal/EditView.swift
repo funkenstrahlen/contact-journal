@@ -27,9 +27,9 @@ struct EditView: View {
     @State private var showsContactPicker = false
     
     var body: some View {
-        Form {
-            // check if item is valid because it might be deleted and this causes a crash here
-            if !item.isFault {
+        // check if item is valid because it might be deleted and this causes a crash here
+        if !item.isFault {
+            Form {
                 Section(header: Text("Beschreibung")) {
                     MultilineTextField(placeholder: "z.B. Kaffee mit Pia", text: $item.content)
                 }
@@ -62,14 +62,14 @@ struct EditView: View {
                     })
                 }
             }
+            .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
+            .onDisappear(perform: {
+                try! viewContext.save()
+            })
+            .sheet(isPresented: $showsContactPicker, content: {
+                ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
+            })
         }
-        .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
-        .onDisappear(perform: {
-            try! viewContext.save()
-        })
-        .sheet(isPresented: $showsContactPicker, content: {
-            ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
-        })
     }
     
     private func didSelectContact(contact: CNContact) {
@@ -79,6 +79,10 @@ struct EditView: View {
     private func append(contact: CNContact) {
         var contactString = "\n\n"
         contactString.append("\(contact.givenName) \(contact.familyName)")
+        
+        if !contact.organizationName.isEmpty {
+            contactString.append("\n\(contact.organizationName)")
+        }
         
         if let postalAddress = contact.postalAddresses.first {
             contactString.append("\n\(postalAddress.value.street)\n\(postalAddress.value.postalCode) \(postalAddress.value.city)")
