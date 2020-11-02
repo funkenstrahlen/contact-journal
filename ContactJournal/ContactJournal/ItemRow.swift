@@ -45,6 +45,18 @@ struct ItemRow: View {
                 HStack {
                     item.riskLevel.icon.foregroundColor(item.riskLevel.color)
                     Text(dateString)
+                    Spacer()
+                    HStack(spacing: 12) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "clock")
+                            Text("\(duration) h")
+                        }
+                        HStack(spacing: 4) {
+                            Image(systemName: "person")
+                            Text("\(item.personCount)")
+                        }
+                    }
+                    .foregroundColor(.secondary)
                 }.font(.subheadline)
                 
                 if(item.content == "") {
@@ -52,17 +64,6 @@ struct ItemRow: View {
                 } else {
                     Text(item.content).lineLimit(2)
                 }
-                HStack(spacing: 12) {
-                    HStack(spacing: 5) {
-                        Image(systemName: "timer")
-                        Text("\(duration) h")
-                    }
-                    HStack(spacing: 5) {
-                        Image(systemName: "person")
-                        Text("\(item.personCount)")
-                    }
-                    
-                }.font(.caption).foregroundColor(.secondary)
             }
             .contextMenu {
                 Button(action: duplicateItem) {
