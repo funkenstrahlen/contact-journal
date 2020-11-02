@@ -45,6 +45,26 @@ struct PersistenceController {
         }
     }
     
+    static func duplicate(item: Item) {
+        let context = shared.container.viewContext
+
+        let newItem = Item(context: context)
+        newItem.timestamp = Date()
+        
+        newItem.contactDetails = item.contactDetails
+        newItem.couldKeepDistance = item.couldKeepDistance
+        newItem.content = item.content
+        newItem.durationHours = item.durationHours
+        newItem.didWearMask = item.didWearMask
+        newItem.isOutside = item.isOutside
+        newItem.personCount = item.personCount
+        newItem.isAllDay = item.isAllDay
+        newItem.riskLevel = item.riskLevel
+        newItem.location = item.location
+        
+        saveContext()
+    }
+    
     static func saveContext() {
         let context = shared.container.viewContext
         do {

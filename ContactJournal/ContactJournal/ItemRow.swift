@@ -72,21 +72,7 @@ struct ItemRow: View {
     
     private func duplicateItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-            
-            newItem.contactDetails = item.contactDetails
-            newItem.couldKeepDistance = item.couldKeepDistance
-            newItem.content = item.content
-            newItem.durationHours = item.durationHours
-            newItem.didWearMask = item.didWearMask
-            newItem.isOutside = item.isOutside
-            newItem.personCount = item.personCount
-            newItem.isAllDay = item.isAllDay
-            newItem.riskLevel = item.riskLevel
-            newItem.location = item.location
-            
-            PersistenceController.saveContext()
+            PersistenceController.duplicate(item: item)
         }
     }
     
