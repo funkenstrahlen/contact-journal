@@ -44,19 +44,9 @@ struct ItemRow: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     item.riskLevel.icon.foregroundColor(item.riskLevel.color)
-                    Text(dateString)
+                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
                     Spacer()
-                    HStack(spacing: 12) {
-                        HStack(spacing: 4) {
-                            Image(systemName: "clock")
-                            Text("\(duration) h")
-                        }
-                        HStack(spacing: 4) {
-                            Image(systemName: "person")
-                            Text("\(item.personCount)")
-                        }
-                    }
-                    .foregroundColor(.secondary)
+                    Text(dateString).foregroundColor(.secondary)
                 }.font(.subheadline)
                 
                 if(item.content == "") {
