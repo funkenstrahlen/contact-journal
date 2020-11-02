@@ -122,7 +122,7 @@ struct ContentView: View {
                     })
                 }
                 
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: exportCSV) {
                         Label("Exportieren", systemImage: "square.and.arrow.up")
                     }
