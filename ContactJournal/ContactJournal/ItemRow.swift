@@ -18,19 +18,6 @@ struct ItemRow: View {
         return formatter
     }
     
-    private var realtimeRelativeTime: String {
-        guard let timestamp = item.timestamp else { return "" }
-        let startOfDay = Calendar.current.startOfDay(for: Date())
-        if Calendar.current.isDateInToday(timestamp) { return "heute" }
-        if Calendar.current.isDateInYesterday(timestamp) { return "gestern" }
-        let diffInDays = Calendar.current.dateComponents([.day], from: startOfDay, to: Calendar.current.startOfDay(for: timestamp)).day!
-        if timestamp > Date() {
-            return "in \(abs(diffInDays)) Tagen"
-        } else {
-            return "vor \(abs(diffInDays)) Tagen"
-        }
-    }
-    
     private var dateString: String {
         guard let timestamp = item.timestamp else { return "" }
         if item.isAllDay {
@@ -39,23 +26,43 @@ struct ItemRow: View {
         return dateAndTimeFormatter.string(from: timestamp)
     }
     
+    private var numberFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 2
+        return numberFormatter
+    }
+    
+    private var duration: String {
+        if item.isAllDay {
+            return "24"
+        }
+        return numberFormatter.string(from: NSNumber(value: item.durationHours))!
+    }
+    
     var body: some View {
         if !item.isFault {
             VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .top) {
-                    Text(dateString).font(.headline)
-                    Spacer()
-                    Text(realtimeRelativeTime).foregroundColor(.secondary)
+                HStack {
+                    item.riskLevel.icon.foregroundColor(item.riskLevel.color)
+                    Text(dateString)
                 }.font(.subheadline)
+                
                 if(item.content == "") {
                     Text("Neuer Eintrag").foregroundColor(.secondary).italic()
                 } else {
                     Text(item.content).lineLimit(2)
                 }
-                HStack {
-                    item.riskLevel.icon.foregroundColor(item.riskLevel.color)
-                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
-                }.font(.subheadline)
+                HStack(spacing: 12) {
+                    HStack(spacing: 5) {
+                        Image(systemName: "timer")
+                        Text("\(duration) h")
+                    }
+                    HStack(spacing: 5) {
+                        Image(systemName: "person")
+                        Text("\(item.personCount)")
+                    }
+                    
+                }.font(.caption).foregroundColor(.secondary)
             }
             .contextMenu {
                 Button(action: duplicateItem) {

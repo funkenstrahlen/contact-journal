@@ -38,6 +38,18 @@ struct ContentView: View {
         items.contains(where: { $0.isDeprecated })
     }
     
+    private func realtimeRelativeTimeFor(timestamp: Date) -> String {
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        if Calendar.current.isDateInToday(timestamp) { return "heute" }
+        if Calendar.current.isDateInYesterday(timestamp) { return "gestern" }
+        let diffInDays = Calendar.current.dateComponents([.day], from: startOfDay, to: Calendar.current.startOfDay(for: timestamp)).day!
+        if timestamp > Date() {
+            return "in \(abs(diffInDays)) Tagen"
+        } else {
+            return "vor \(abs(diffInDays)) Tagen"
+        }
+    }
+    
     var body: some View {
         NavigationView {
             List {
@@ -48,7 +60,13 @@ struct ContentView: View {
                 }
                 
                 ForEach(groupItems(items), id: \.self) { (section: [Item]) in
-                    Section(header: Text(self.dateFormatter.string(from: section[0].timestamp!))) {
+                    Section(header:
+                            HStack {
+                                Text(self.dateFormatter.string(from: section[0].timestamp!))
+                                Spacer()
+                                Text(self.realtimeRelativeTimeFor(timestamp: section[0].timestamp!))
+                            }
+                    ) {
                         ForEach(section, id: \.self) { item in
                             NavigationLink(destination: EditView(item: item)){
                                 ItemRow(item: item)
