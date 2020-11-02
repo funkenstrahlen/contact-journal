@@ -88,7 +88,6 @@ struct ContentView: View {
                 })
             .navigationBarTitle("Kontakt-Tagebuch")
             .toolbar {
-                
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
                         showsSettings = true

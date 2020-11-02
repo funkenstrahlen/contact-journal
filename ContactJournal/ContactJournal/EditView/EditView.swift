@@ -112,6 +112,24 @@ struct EditView: View {
                 }
             }
             .navigationBarTitle(Text(navigationBarTitle), displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        PersistenceController.duplicate(item: item)
+                    }) {
+                        Label("Duplizieren", systemImage: "plus.square.on.square")
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        viewContext.delete(item)
+                        PersistenceController.saveContext()
+                    }) {
+                        Label("Löschen", systemImage: "trash")
+                    }
+                }
+            }
             .onDisappear(perform: {
                 try! viewContext.save()
             })
