@@ -49,6 +49,7 @@ struct MultilineTextField: View {
                     .foregroundColor(.init(placeholderColor))
                     .font(.init(font))
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibility(hidden: true)
             }
             textView(with: geo)
         }
