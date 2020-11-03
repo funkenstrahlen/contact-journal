@@ -71,8 +71,9 @@ struct ContentView: View {
                             NavigationLink(destination: EditView(item: item)){
                                 ItemRow(item: item)
                             }
+                        }.onDelete { rows in
+                            deleteSelectedItems(section: section, rows: rows)
                         }
-                        .onDelete(perform: deleteSelectedItems)
                     }.textCase(nil)
                 }
                 
@@ -152,9 +153,9 @@ struct ContentView: View {
         showsShareSheet = true
     }
     
-    private func deleteSelectedItems(offsets: IndexSet) {
+    private func deleteSelectedItems(section: [Item], rows: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            rows.map { section[$0] }.forEach(viewContext.delete)
             PersistenceController.saveContext()
         }
     }
