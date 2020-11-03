@@ -27,12 +27,12 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)],
         animation: .default)
     private var items: FetchedResults<Item>
-    
-    func groupItems(_ result : FetchedResults<Item>)-> [[Item]]{
-        return  Dictionary(grouping: result){ (element : Item)  in
+    private var groupedItems: [[Item]] {
+        Dictionary(grouping: items){ (element : Item)  in
             dateFormatter.string(from: element.timestamp!)
         }.values.sorted() { $0[0].timestamp! > $1[0].timestamp! }
     }
+
     
     private var hasDeprecatedItems: Bool {
         items.contains(where: { $0.isDeprecated })
@@ -59,7 +59,7 @@ struct ContentView: View {
                     }
                 }
                 
-                ForEach(groupItems(items), id: \.self) { (section: [Item]) in
+                ForEach(groupedItems, id: \.self) { (section: [Item]) in
                     Section(header:
                             HStack {
                                 Text(self.dateFormatter.string(from: section[0].timestamp!))
