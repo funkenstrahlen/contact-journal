@@ -47,10 +47,9 @@ struct PersistenceController {
     
     static func duplicate(item: Item) {
         let context = shared.container.viewContext
-
         let newItem = Item(context: context)
-        newItem.timestamp = Date()
         
+        newItem.timestamp = item.timestamp
         newItem.contactDetails = item.contactDetails
         newItem.couldKeepDistance = item.couldKeepDistance
         newItem.content = item.content
