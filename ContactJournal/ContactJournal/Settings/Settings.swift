@@ -27,9 +27,6 @@ struct Settings: View {
                         .clipped()
                 }
             }
-            Section {
-                Link("Impressum & Datenschutzerklärung", destination: URL(string: "https://stefantrauth.de/contact-journal-privacy-policy.html")!)
-            }
         }.navigationBarTitle("Einstellungen")
     }
 }
