@@ -55,17 +55,6 @@ struct EditView: View {
                 Section {
                     Toggle("Mund-Nasen-Bedeckung getragen", isOn: $item.didWearMask)
                     Toggle("Abstand gehalten", isOn: $item.couldKeepDistance)
-                    HStack {
-                        Text("Ort")
-                        Spacer()
-                        Picker("Ort", selection: $item.isOutside) {
-                            Text("🏠 Drinnen").tag(false)
-                            Text("🌤 Draußen").tag(true)
-                        }.pickerStyle(SegmentedPickerStyle())
-                    }
-                    Stepper(value: $item.personCount, in: 1...200) {
-                        Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
-                    }
                     .accessibility(label: Text("Personenzahl"))
                     .accessibility(value: Text("\(item.personCount)"))
                     HStack {
@@ -89,6 +78,9 @@ struct EditView: View {
                 }
                 
                 Section(header: Text("Kontaktdaten")) {
+                    Stepper(value: $item.personCount, in: 1...200) {
+                        Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
+                    }
                     MultilineTextField(placeholder: "z.B. Telefonnummer, Adresse, E-Mail", text: $item.contactDetails)
                         .sheet(isPresented: $showsContactPicker, content: {
                             ContactPicker(showPicker: $showsContactPicker, onSelectContact: didSelectContact(contact:))
@@ -96,10 +88,13 @@ struct EditView: View {
                     Button(action: { showsContactPicker = true }, label: {
                         Label("Aus Adressbuch importieren", systemImage: "person.crop.circle.badge.plus")
                     })
-
                 }
                 
                 Section(header: Text("Ort")) {
+                    Picker("Ort", selection: $item.isOutside) {
+                        Text("🏠 Drinnen").tag(false)
+                        Text("🌤 Draußen").tag(true)
+                    }.pickerStyle(SegmentedPickerStyle())
                     MultilineTextField(placeholder: "z.B. Adresse", text: $item.location)
                         .sheet(isPresented: $showsLocationPicker, content: {
                             LocationPoiPicker(onSelectLocation: { newLocation in
