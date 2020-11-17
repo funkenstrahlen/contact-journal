@@ -13,7 +13,6 @@ struct ContentView: View {
     
     @State private var showsSettings = false
     @State private var showsShareSheet = false
-    @State private var showsDonation = false
     @State private var showsEditView = false
     @State private var newItem: Item?
     
@@ -96,9 +95,6 @@ struct ContentView: View {
                     NavigationLink(destination: Settings(), isActive: $showsSettings) {
                         EmptyView()
                     }
-                    NavigationLink(destination: DonationView(), isActive: $showsDonation) {
-                        EmptyView()
-                    }
                     EmptyView().sheet(isPresented: $showsShareSheet) {
                         ShareExportActivityViewController(activityItems: [Exporter.exportFileURL]) { (_, _, _, _) in
                             showsShareSheet = false
@@ -112,14 +108,6 @@ struct ContentView: View {
                         showsSettings = true
                     }, label: {
                         Label("Einstellungen", systemImage: "gearshape")
-                    })
-                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        showsDonation = true
-                    }, label: {
-                        Label("Danke sagen", systemImage: "heart")
                     })
                 }
                 

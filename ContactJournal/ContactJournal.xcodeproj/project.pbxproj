@@ -28,8 +28,6 @@
 		F8C13673254D7EBA0043E2D2 /* LocationSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C13672254D7EBA0043E2D2 /* LocationSearchBar.swift */; };
 		F8D492B02541E3AC00397339 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D492AF2541E3AC00397339 /* UserSettings.swift */; };
 		F8D492B52541E3B900397339 /* NotficationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D492B42541E3B900397339 /* NotficationManager.swift */; };
-		F8DF29472545DA3500D86094 /* SKProductProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF29462545DA3500D86094 /* SKProductProvider.swift */; };
-		F8DF294C2545DB5F00D86094 /* DonationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF294B2545DB5F00D86094 /* DonationView.swift */; };
 		F8DF7170254053E500D3C1EA /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF716F254053E500D3C1EA /* Exporter.swift */; };
 		F8DF71752540581600D3C1EA /* ShareExportAktivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DF71742540581600D3C1EA /* ShareExportAktivityController.swift */; };
 /* End PBXBuildFile section */
@@ -84,8 +82,6 @@
 		F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 2.xcdatamodel"; sourceTree = "<group>"; };
 		F8D492AF2541E3AC00397339 /* UserSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F8D492B42541E3B900397339 /* NotficationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotficationManager.swift; sourceTree = "<group>"; };
-		F8DF29462545DA3500D86094 /* SKProductProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKProductProvider.swift; sourceTree = "<group>"; };
-		F8DF294B2545DB5F00D86094 /* DonationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonationView.swift; sourceTree = "<group>"; };
 		F8DF716F254053E500D3C1EA /* Exporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
 		F8DF71742540581600D3C1EA /* ShareExportAktivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExportAktivityController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,15 +122,6 @@
 				F89701372536FB0000EEDA18 /* ContactJournal.xcdatamodeld */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		F8110837254B26A800086CC6 /* Donation */ = {
-			isa = PBXGroup;
-			children = (
-				F8DF29462545DA3500D86094 /* SKProductProvider.swift */,
-				F8DF294B2545DB5F00D86094 /* DonationView.swift */,
-			);
-			path = Donation;
 			sourceTree = "<group>";
 		};
 		F811083B254B26BA00086CC6 /* Export */ = {
@@ -199,7 +186,6 @@
 				F8110840254B270400086CC6 /* Settings */,
 				F811083C254B26F400086CC6 /* EditView */,
 				F811083B254B26BA00086CC6 /* Export */,
-				F8110837254B26A800086CC6 /* Donation */,
 				F89701302536FB0000EEDA18 /* Assets.xcassets */,
 				F80BBDF9253735B7003DBE59 /* Model */,
 				F897013A2536FB0000EEDA18 /* Info.plist */,
@@ -375,7 +361,6 @@
 				F8163F90253B21210047870F /* ContactPicker.swift in Sources */,
 				F8D492B52541E3B900397339 /* NotficationManager.swift in Sources */,
 				F8970169253709FB00EEDA18 /* Item+CoreData.swift in Sources */,
-				F8DF294C2545DB5F00D86094 /* DonationView.swift in Sources */,
 				F89701362536FB0000EEDA18 /* Persistence.swift in Sources */,
 				F8D492B02541E3AC00397339 /* UserSettings.swift in Sources */,
 				F8543F682539CAE000583650 /* Settings.swift in Sources */,
@@ -384,7 +369,6 @@
 				F8BBDDA7253F039200844894 /* MultilineTextEditor.swift in Sources */,
 				F81FB2D625458C1D005C50E7 /* RiskLevel.swift in Sources */,
 				F8DF71752540581600D3C1EA /* ShareExportAktivityController.swift in Sources */,
-				F8DF29472545DA3500D86094 /* SKProductProvider.swift in Sources */,
 				F8C13673254D7EBA0043E2D2 /* LocationSearchBar.swift in Sources */,
 				F897012F2536FAFE00EEDA18 /* ContentView.swift in Sources */,
 				F89701392536FB0000EEDA18 /* ContactJournal.xcdatamodeld in Sources */,
