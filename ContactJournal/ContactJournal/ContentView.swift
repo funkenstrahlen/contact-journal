@@ -13,17 +13,42 @@ struct ContentView: View {
     
     @State private var showsSettings = false
     @State private var showsShareSheet = false
-    @State private var showsDonation = false
-
+    @State private var showsEditView = false
+    @State private var newItem: Item?
+    
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE d. MMMM"
+        return formatter
+    }
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: false)],
         animation: .default)
     private var items: FetchedResults<Item>
+    private var groupedItems: [[Item]] {
+        Dictionary(grouping: items){ (element : Item)  in
+            dateFormatter.string(from: element.timestamp!)
+        }.values.sorted() { $0[0].timestamp! > $1[0].timestamp! }
+    }
+
     
     private var hasDeprecatedItems: Bool {
         items.contains(where: { $0.isDeprecated })
     }
-
+    
+    private func realtimeRelativeTimeFor(timestamp: Date) -> String {
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        if Calendar.current.isDateInToday(timestamp) { return "heute" }
+        if Calendar.current.isDateInYesterday(timestamp) { return "gestern" }
+        let diffInDays = Calendar.current.dateComponents([.day], from: startOfDay, to: Calendar.current.startOfDay(for: timestamp)).day!
+        if timestamp > Date() {
+            return "in \(abs(diffInDays)) Tagen"
+        } else {
+            return "vor \(abs(diffInDays)) Tagen"
+        }
+    }
+    
     var body: some View {
         NavigationView {
             List {
@@ -32,26 +57,42 @@ struct ContentView: View {
                         Label("Neuer Eintrag", systemImage: "plus.circle.fill").foregroundColor(.blue)
                     }
                 }
-
-                ForEach(items) { item in
-                    ItemRow(item: item)
+                
+                ForEach(groupedItems, id: \.self) { (section: [Item]) in
+                    Section(header:
+                            HStack {
+                                Text(self.dateFormatter.string(from: section[0].timestamp!))
+                                Spacer()
+                                Text(self.realtimeRelativeTimeFor(timestamp: section[0].timestamp!))
+                            }
+                    ) {
+                        ForEach(section, id: \.self) { item in
+                            NavigationLink(destination: EditView(item: item)){
+                                ItemRow(item: item)
+                            }
+                        }.onDelete { rows in
+                            deleteSelectedItems(section: section, rows: rows)
+                        }
+                    }.textCase(nil)
                 }
-                .onDelete(perform: deleteSelectedItems)
+                
                 
                 if hasDeprecatedItems {
                     Spacer()
                     Button(action: deleteDeprecatedItems) {
-                        Label("Alle Einträge älter als 14 Tage löschen", systemImage: "trash").foregroundColor(.red)
+                        Label("Alle Einträge älter als 3 Wochen löschen", systemImage: "trash").foregroundColor(.red)
                     }
                     Text("")
                 }
             }
             .background(
                 VStack {
-                    NavigationLink(destination: Settings(), isActive: $showsSettings) {
-                        EmptyView()
+                    if let item = newItem {
+                        NavigationLink(destination: EditView(item: item), isActive: $showsEditView) {
+                            EmptyView()
+                        }
                     }
-                    NavigationLink(destination: DonationView(), isActive: $showsDonation) {
+                    NavigationLink(destination: Settings(), isActive: $showsSettings) {
                         EmptyView()
                     }
                     EmptyView().sheet(isPresented: $showsShareSheet) {
@@ -62,15 +103,7 @@ struct ContentView: View {
                 })
             .navigationBarTitle("Kontakt-Tagebuch")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        showsDonation = true
-                    }, label: {
-                        Label("Danke", systemImage: "heart")
-                    })
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
                         showsSettings = true
                     }, label: {
@@ -78,7 +111,7 @@ struct ContentView: View {
                     })
                 }
                 
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: exportCSV) {
                         Label("Exportieren", systemImage: "square.and.arrow.up")
                     }
@@ -89,20 +122,16 @@ struct ContentView: View {
                         Label("Neuer Eintrag", systemImage: "plus.circle.fill")
                     }
                 }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    if items.count > 0 {
-                        EditButton()
-                    }
-                }
             }
         }
     }
-
+    
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
+            self.newItem = newItem
+            showsEditView = true
             PersistenceController.saveContext()
         }
     }
@@ -111,10 +140,10 @@ struct ContentView: View {
         Exporter.generateCSVExport()
         showsShareSheet = true
     }
-
-    private func deleteSelectedItems(offsets: IndexSet) {
+    
+    private func deleteSelectedItems(section: [Item], rows: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            rows.map { section[$0] }.forEach(viewContext.delete)
             PersistenceController.saveContext()
         }
     }

@@ -10,10 +10,10 @@ import CoreData
 struct PersistenceController {
     static let shared = PersistenceController()
 
-    let container: NSPersistentCloudKitContainer
+    let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "ContactJournal")
+        container = NSPersistentContainer(name: "ContactJournal")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -43,6 +43,25 @@ struct PersistenceController {
         } catch (let error as NSError) {
             fatalError("Unresolved error \(error), \(error.userInfo)")
         }
+    }
+    
+    static func duplicate(item: Item) {
+        let context = shared.container.viewContext
+        let newItem = Item(context: context)
+        
+        newItem.timestamp = item.timestamp
+        newItem.contactDetails = item.contactDetails
+        newItem.couldKeepDistance = item.couldKeepDistance
+        newItem.content = item.content
+        newItem.durationHours = item.durationHours
+        newItem.didWearMask = item.didWearMask
+        newItem.isOutside = item.isOutside
+        newItem.personCount = item.personCount
+        newItem.isAllDay = item.isAllDay
+        newItem.riskLevel = item.riskLevel
+        newItem.location = item.location
+        
+        saveContext()
     }
     
     static func saveContext() {

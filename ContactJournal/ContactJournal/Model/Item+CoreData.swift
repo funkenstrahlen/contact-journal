@@ -18,7 +18,7 @@ extension Item {
         NSFetchRequest<Item>(entityName: "Item")
     }
 
-    @NSManaged public var timestamp: Date
+    @NSManaged public var timestamp: Date?
     @NSManaged public var content: String
     @NSManaged public var isOutside: Bool
     @NSManaged public var didWearMask: Bool
@@ -26,6 +26,10 @@ extension Item {
     @NSManaged public var durationHours: Double
     @NSManaged public var personCount: Int64
     @NSManaged public var contactDetails: String
+    @NSManaged public var riskLevel: RiskLevel
+    @NSManaged public var isAllDay: Bool
+    @NSManaged public var location: String
+    @NSManaged public var notes: String
 }
 
 extension Item : Identifiable {
@@ -34,7 +38,8 @@ extension Item : Identifiable {
 
 extension Item {
     public var isDeprecated: Bool {
-        let twoWeeksAgo = Calendar.current.date(byAdding: .day, value: -14, to: Date())!
-        return timestamp < twoWeeksAgo
+        guard let timestamp = timestamp else { return false }
+        let tresholdDate = Calendar.current.date(byAdding: .day, value: -21, to: Date())!
+        return timestamp < tresholdDate
     }
 }

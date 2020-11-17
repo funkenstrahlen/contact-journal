@@ -9,47 +9,51 @@ import SwiftUI
 import CoreData
 
 struct ItemRow: View {
-    var item: Item
+    @ObservedObject var item: Item
     @Environment(\.managedObjectContext) private var viewContext
     
-    private let dateFormatter: DateFormatter = {
+    private var dateAndTimeFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE d. MMM HH:mm"
+        formatter.dateFormat = "HH:mm"
         return formatter
-    }()
+    }
     
-    private var realtimeRelativeTime: String {
-        let startOfDay = Calendar.current.startOfDay(for: Date())
-        if Calendar.current.isDateInToday(item.timestamp) { return "heute" }
-        if Calendar.current.isDateInYesterday(item.timestamp) { return "gestern" }
-        let diffInDays = Calendar.current.dateComponents([.day], from: startOfDay, to: Calendar.current.startOfDay(for: item.timestamp)).day!
-        if item.timestamp > Date() {
-            return "in \(abs(diffInDays)) Tagen"
-        } else {
-            return "vor \(abs(diffInDays)) Tagen"
+    private var dateString: String {
+        guard let timestamp = item.timestamp else { return "" }
+        if item.isAllDay {
+            return "Ganzer Tag"
         }
-        
+        return dateAndTimeFormatter.string(from: timestamp)
+    }
+    
+    private var numberFormatter: NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.maximumFractionDigits = 2
+        return numberFormatter
+    }
+    
+    private var duration: String {
+        if item.isAllDay {
+            return "24"
+        }
+        return numberFormatter.string(from: NSNumber(value: item.durationHours))!
     }
     
     var body: some View {
-        NavigationLink(destination: EditView(item: item)) {
+        if !item.isFault {
             VStack(alignment: .leading, spacing: 8) {
-                HStack(alignment: .top) {
-                    Text("\(item.timestamp, formatter: dateFormatter)").font(.headline)
+                HStack {
+                    item.riskLevel.icon.foregroundColor(item.riskLevel.color)
+                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
                     Spacer()
-                    Text(realtimeRelativeTime).foregroundColor(.secondary)
+                    Text(dateString).foregroundColor(.secondary)
                 }.font(.subheadline)
+                
                 if(item.content == "") {
                     Text("Neuer Eintrag").foregroundColor(.secondary).italic()
                 } else {
                     Text(item.content).lineLimit(2)
                 }
-                HStack {
-                    Text("\(item.didWearMask ? "😷" : "🙂")")
-                    Text("\(item.isOutside ? "🌤" : "🏠")")
-                    Text("\(item.personCount) \(item.personCount > 1 ? "Personen" : "Person")")
-                    Text("\(item.durationHours, specifier: "%g") h")
-                }.font(.subheadline)
             }
             .contextMenu {
                 Button(action: duplicateItem) {
@@ -66,18 +70,7 @@ struct ItemRow: View {
     
     private func duplicateItem() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-            
-            newItem.contactDetails = item.contactDetails
-            newItem.couldKeepDistance = item.couldKeepDistance
-            newItem.content = item.content
-            newItem.durationHours = item.durationHours
-            newItem.didWearMask = item.didWearMask
-            newItem.isOutside = item.isOutside
-            newItem.personCount = item.personCount
-            
-            PersistenceController.saveContext()
+            PersistenceController.duplicate(item: item)
         }
     }
     
