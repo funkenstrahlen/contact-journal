@@ -84,6 +84,9 @@ struct EditView: View {
                     }
                 }
 
+                Section(header: Text("Anmerkungen")) {
+                    MultilineTextField(placeholder: "", text: $item.notes)
+                }
                 
                 Section(header: Text("Kontaktdaten")) {
                     MultilineTextField(placeholder: "z.B. Telefonnummer, Adresse, E-Mail", text: $item.contactDetails)

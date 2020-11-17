@@ -76,6 +76,7 @@
 		F8970168253709FB00EEDA18 /* Item+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreData.swift"; sourceTree = "<group>"; };
 		F8970170253716D500EEDA18 /* ContactJournal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContactJournal.entitlements; sourceTree = "<group>"; };
 		F8970175253716DB00EEDA18 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		F8A22D5C256457C400E5CD62 /* ContactJournal 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 6.xcdatamodel"; sourceTree = "<group>"; };
 		F8BBDDA6253F039200844894 /* MultilineTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextEditor.swift; sourceTree = "<group>"; };
 		F8C13671254D7DE50043E2D2 /* ContactJournal 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "ContactJournal 5.xcdatamodel"; sourceTree = "<group>"; };
 		F8C13672254D7EBA0043E2D2 /* LocationSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchBar.swift; sourceTree = "<group>"; };
@@ -705,13 +706,14 @@
 		F89701372536FB0000EEDA18 /* ContactJournal.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F8A22D5C256457C400E5CD62 /* ContactJournal 6.xcdatamodel */,
 				F8C13671254D7DE50043E2D2 /* ContactJournal 5.xcdatamodel */,
 				F81FB2EB2545B6FA005C50E7 /* ContactJournal 4.xcdatamodel */,
 				F8275C5C253AAD2A007155B2 /* ContactJournal 3.xcdatamodel */,
 				F8CAA7BC2539777F00E18CF3 /* ContactJournal 2.xcdatamodel */,
 				F89701382536FB0000EEDA18 /* ContactJournal.xcdatamodel */,
 			);
-			currentVersion = F8C13671254D7DE50043E2D2 /* ContactJournal 5.xcdatamodel */;
+			currentVersion = F8A22D5C256457C400E5CD62 /* ContactJournal 6.xcdatamodel */;
 			path = ContactJournal.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

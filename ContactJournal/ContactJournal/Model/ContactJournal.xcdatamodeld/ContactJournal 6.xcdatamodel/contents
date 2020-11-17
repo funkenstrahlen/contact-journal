@@ -9,11 +9,12 @@
         <attribute name="isAllDay" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isOutside" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="location" attributeType="String" defaultValueString=""/>
+        <attribute name="notes" attributeType="String" defaultValueString=""/>
         <attribute name="personCount" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="riskLevel" attributeType="Integer 64" defaultValueString="2" usesScalarValueType="YES"/>
         <attribute name="timestamp" attributeType="Date" defaultDateTimeInterval="624363600" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="208"/>
+        <element name="Item" positionX="-63" positionY="-18" width="128" height="223"/>
     </elements>
 </model>
